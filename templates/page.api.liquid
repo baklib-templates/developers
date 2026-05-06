@@ -1,0 +1,44 @@
+{% layout 'api_doc' %}
+
+<div id="main-content" class="elements-wrapper not-prose min-h-[calc(100vh-var(--header-height))]">
+  <div
+    data-controller="element-doc"
+    data-element-doc-url-value="{{ page.settings.api_document_url }}"
+    data-element-doc-content-value="{{ page.settings.api_document }}"
+    class='h-full'
+  >
+    <div class='flex justify-center items-center w-full h-full' data-element-doc-target="loading">
+      <div class='loading' class="text-gray-500">加载中...</div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "api-doc",
+    "description": "openapi doc",
+    "thumb_url": "images/theme/api-doc.png",
+    "preview_image_urls": [
+      "images/theme/api-doc.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "t:schema.templates.page.settings.title.label",
+        "default": "Knowledge base site"
+      },
+      {
+        "id": "api_document",
+        "type": "textarea",
+        "label": "t:schema.templates.page.settings.api_document.label"
+      },
+      {
+        "id": "api_document_url",
+        "type": "text",
+        "label": "t:schema.templates.page.settings.api_document_url.label"
+      }
+    ]
+  }
+{% endschema %}

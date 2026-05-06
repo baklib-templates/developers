@@ -1,0 +1,86 @@
+<!-- locals: pages: 搜索返回结果, keywords: 搜索关键词 -->
+
+<main class="grow">
+
+  <div class="relative px-4 mx-auto max-w-7xl sm:px-6">
+
+    <!-- Main content -->
+    <div class="pb-8 w-5xl">
+
+      <!-- Page header -->
+      <div class="flex justify-between my-2 md:my-4">
+        <a class="mr-auto flex" href="javascript: history.back();">
+          <button class="btn btn-sm rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+              <path fill="currentColor"
+                d="M16.707 19.293 9.414 12l7.293-7.293-1.414-1.414L6.586 12l8.707 8.707 1.414-1.414z"></path>
+            </svg>
+            <span class="text-xs md:text-sm font-medium">{{ "generic.back" | t }}</span>
+          </button>
+        </a>
+
+        <div>
+          {% render 'search_modal' %}
+        </div>
+      </div>
+
+      <!-- Tag Cloud -->
+      <div class="my-4 md:my-8 max-h-36 overflow-y-auto">
+        <nav class="flex gap-3 flex-wrap justify-center text-lg">
+          {% for tag in site.tags %}
+            <a href="{{ tag.path }}" class="">
+              {% render 'tag', tag: tag %}
+            </a>
+          {% endfor %}
+        </nav>
+      </div>
+
+      <article class="flex xl:space-x-12">
+
+        <!-- Main area -->
+        <div class="min-w-0">
+
+          <!-- Article content -->
+          <div>
+            <header class="mb-6">
+              <h1 class="mb-4 text-2xl lg:text-4xl">
+                <span class="text-primary">
+                  # {{ tag.name }}
+                </span>
+              </h1>
+              <hr class=""/>
+            </header>
+
+            <div class="space-y-3">
+              {% paginate_tag tag.pages, as: 'pages' %}
+                {% for page in pages %}
+                  <div class="space-y-4 rounded-md bg-accent-100 hover:bg-accent-200 p-2 md:p-4 ">
+                    <a class="text-lg font-bold md:text-xl text-slate-700" href="{{ page.path }}">{{ page.link_text | highlight: tag.name }}</a>
+                    <p class="text-sm line-clamp-3 text-slate-400">{{ page.settings.content | strip_html | highlight: tag.name }}</p>
+                    <div class="flex items-center justify-between">
+                      <div class="breadcrumbs hidden overflow-x-auto md:block text-sm">
+                        {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
+                      </div>
+                    </div>
+                  </div>
+                {% else %}
+                  {{ 'generic.empty' | t }}
+                {% endfor %}
+                {% render 'paginate', paginate: paginate %}
+              {% endpaginate_tag %}
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Secondary navigation -->
+
+      </article>
+
+    </div>
+
+
+  </div>
+
+</main>

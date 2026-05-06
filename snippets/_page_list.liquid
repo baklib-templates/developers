@@ -1,0 +1,26 @@
+<section class="mb-10 min-h-[30vh]">
+  <div>
+    <h1 class="flex items-center mb-2 text-2xl font-bold sm:text-3xl xl:text-4xl">
+      {{ page.settings.title }}
+    </h1>
+    <div class="flow-root mt-8">
+      <div class="overflow-auto">
+        <div data-controller="images-viewer"
+          class="ProseMirror break-words scroll-mt-96 scroll-pt-72">
+          {{ page.settings.content }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider my-5"></div>
+  {% paginate_tag sub_pages, per: 25 %}
+    <ul class="list-disc list-inside space-y-2">
+      {% for sub_page in sub_pages %}
+        <li><a href="{{ sub_page.path }}" class="text-md text-wrap">{{ sub_page.link_text }}</a></li>
+      {% endfor %}
+    </ul>
+    <!-- Pagination -->
+    {% render 'paginate', paginate: paginate %}
+  {% endpaginate_tag %}
+</section>

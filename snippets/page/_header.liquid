@@ -1,0 +1,41 @@
+{% if site.settings.header_type.value == '0' %}
+{% else %}
+  {% assign header_bg_color = site.settings.header_bg_color | presence | default: '#fff' %}
+  {% assign header_text_color = site.settings.header_text_color | presence | default: '#000' %}
+{% endif %}
+
+<header
+  class="js--header sticky top-0 z-10 flex flex-col h-16 w-full px-4 md:px-10 [transform:translate3d(0,0,0)] justify-center backdrop-blur transition-shadow duration-100 print:hidden shadow-sm
+         bg-[var(--header-bg)] text-[var(--header-text)]
+         dark:bg-[var(--header-bg-dark)] dark:text-[var(--header-text-dark)]"
+  style="
+    --header-bg: {{ header_bg_color }};
+    --header-text: {{ header_text_color }};
+    --header-bg-dark: {{ site.settings.header_bg_color_dark | default: '--color-primary' }};
+    --header-text-dark: {{ site.settings.header_text_color_dark | default: '--color-primary-content' }};
+  "
+>
+  <nav class="navbar px-0 flex w-full">
+    <div class="flex items-center gap-2 lg:gap-4 min-w-0 w-full">
+      <div class='block md:hidden flex-1'>
+        {% render 'header_logo' title_style: 'font-bold text-xl md:text-2xl text-base-content/80' %}
+      </div>
+      <div class="hidden md:flex flex-1 min-w-0">
+        {% assign header_menu_html = site.settings.header_menu_html | presence %}
+        {% if header_menu_html %}
+          <div class="flex items-center gap-6">{{ header_menu_html }}</div>
+        {% else %}
+          <div class="flex items-center gap-6">
+            <ul class="menu menu-horizontal pl-0">
+              <li><a class='flex items-center space-x-1 inner-block group hover:underline hover:text-primary' href="{{ statics['about'] }}">About</a></li>
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class='md:hidden'>
+        {% render 'header_drawer' %}
+      </div>
+    </div>
+  </nav>
+</header>

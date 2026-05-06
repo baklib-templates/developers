@@ -1,0 +1,39 @@
+{
+  "generic": {
+    "theme": "Theme",
+    "back": "return",
+    "popular_search": "Trending searches",
+    "read_more": "Read more",
+    "empty": "The content is empty.",
+    "copyright": "Copyright",
+    "published_at": "Posted on",
+    "hot_pages": "hot topic",
+    "feedback_created_at": "Last feedback on"
+  },
+  "placeholders": {
+    "search": "Search within the website"
+  },
+  "templates": {
+    "page": {
+      "copy_success": "Link copied"
+    }
+  },
+  "snippets": {
+    "feedback_form": {
+      "title": "Submit feedback",
+      "message_label": "message",
+      "message_placeholder": "Please enter feedback content",
+      "message_required": "The feedback content cannot be empty",
+      "submit": "submit",
+      "cancel": "Cancel"
+    },
+    "feedback_button": {
+      "title_posted": "Thank you for your feedback",
+      "title_unposted": "Submit feedback"
+    },
+    "page": {
+      "prev_page": "Previous Page",
+      "next_page": "Next page"
+    }
+  }
+}

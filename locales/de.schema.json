@@ -1,0 +1,103 @@
+{
+  "theme_label": "Daisy Wiki",
+  "theme_description": "Ein content-driven Knowledgebase-Portal, das auf DaisyUI basiert. Multi-Themen-Stil, Multi-Komponenten-Stil, geeignet für kundenspezifische Systeme.",
+  "generic": {
+    "name": "Grundlagen der Website",
+    "settings": {
+      "company_name": {
+        "label": "Firmenname",
+        "default": "Baklib.cn"
+      },
+      "copyright_info": {
+        "label": "Archivierung/Urheberrechtsinformationen",
+        "default": "ICP Nr. 15035023"
+      }
+    }
+  },
+  "custom_html": {
+    "settings": {
+      "footer_menu_html": {
+        "label": "Fügen Sie den HTML-Code in den unteren Bereich ein (Footer, footer_menu_html)",
+        "info": "Unterstützung für HTML-Tags und begrenzten TailwindCSS-Style-Code",
+        "placeholder": "In der Regel werden hier externe Navigationslinks, Freundschaftslinks, SEO-Optimierungslinks usw. zu anderen Websites des Unternehmens eingefügt."
+      },
+      "header_menu_html": {
+        "label": "HTML-Code im oberen Navigationsbereich einfügen",
+        "info": "Unterstützung für HTML-Tags und begrenzten TailwindCSS-Style-Code",
+        "placeholder": "In der Regel werden hier Navigationslinks zu anderen Websites des Unternehmens eingefügt"
+      },
+      "head_html": {
+        "label": "Head Meta HTML-Code",
+        "info": "Dieser Teil wird in das <head>-Tag der Website eingefügt. Verwenden Sie bitte das Standard-HTML-Format.",
+        "placeholder": "Beispiel: <meta name='author' content='Baklib' />"
+      }
+    },
+    "name": "Benutzerdefinierter HTML-Code"
+  },
+  "templates": {
+    "index": {
+      "documentation": {
+        "settings": {
+          "hero_image_url": {
+            "label": "Hintergrundbild",
+            "info": "Hintergrundbild wird automatisch auf Seitenbreite und Hintergrundhöhe geschnitten"
+          },
+          "hot_tags": {
+            "label": "Hot Search Keywords (bitte durch ein Komma getrennt)"
+          },
+          "hero_slogan": {
+            "label": "Schlagworttitel"
+          },
+          "hero_description": {
+            "label": "Slogan Beschreibung"
+          }
+        }
+      },
+      "portal": {
+        "settings": {
+          "hero_image_url": {
+            "label": "Hintergrundbild",
+            "info": "Hintergrundbild wird automatisch auf Seitenbreite und Hintergrundhöhe geschnitten"
+          },
+          "hot_tags": {
+            "label": "Hot Search Keywords (bitte durch ein Komma getrennt)"
+          },
+          "hero_slogan": {
+            "label": "Schlagworttitel"
+          },
+          "hero_description": {
+            "label": "Slogan Beschreibung"
+          }
+        }
+      }
+    },
+    "page": {
+      "channel": {
+        "settings": {
+          "content": {
+            "label": "Inhalt",
+            "info": "Synchronisierung von Datenquellen, nicht bearbeitbar"
+          }
+        }
+      },
+      "settings": {
+        "tags": {
+          "label": "Etikett"
+        },
+        "content": {
+          "label": "Inhalt",
+          "info": "Synchronisierung von Datenquellen, nicht bearbeitbar"
+        },
+        "title": {
+          "label": "Titel"
+        },
+        "api_document": {
+          "label": "OpenAPI Dokumentation"
+        },
+        "api_document_url": {
+          "label": "OpenAPI Dokumentation URL"
+        }
+      }
+    }
+  }
+}

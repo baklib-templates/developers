@@ -1,0 +1,24 @@
+
+<footer id="footer" class="border-t px-4 border-base-200 print:hidden">
+  <div class='max-w-[var(--max-content-width)] mx-auto'>
+    {% # 自定义导航菜单 %}
+    {% if site.settings.footer_menu_html %}
+      <div class="mx-auto max-w-screen-xl md:py-4 space-x-2">
+        {{ site.settings.footer_menu_html }}
+      </div>
+    {% endif %}
+    {% # 底部备案和链接 %}
+    <div class="mx-auto max-w-screen-xl md:py-4">
+      <div class="md:flex md:items-center md:justify-between">
+        <div class='hidden md:block'>
+          {% render 'header_logo' %}
+        </div>
+        <div class="md:space-x-6 text-center md:flex md:justify-center my-4 md:my-0 space-y-1 md:space-y-0">
+          <div>©  {{ site.settings.company_name }}<span class="md:lg:inline"> {{ 'generic.copyright' | t }}.</span></div>
+          <a href="https://beian.miit.gov.cn/#" target="_blank" class="hover:underline md:block">{{ site.settings.copyright_info }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+

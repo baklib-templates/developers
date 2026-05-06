@@ -1,0 +1,91 @@
+{% # 列表指南- Channel %}
+{% assign card_pages = site.pages['/'].children_in_nav_menu %}
+{% assign limit_page_count = page.settings.index_card_page_count | default: 5 %}
+
+<!-- Hero Section -->
+{% render 'hero', page: page %}
+
+<section id="table-of-contents" aria-labelledby="table-of-contents-title" class="">
+  <div class="px-4 mx-auto max-w-[calc(var(--max-content-width)*0.8)]">
+    <!-- 栏目列表 -->
+    {% paginate_tag card_pages, per: limit_page_count %}
+      <ol role="list" class="mt-6 space-y-8 md:mt-8 sm:space-y-8">
+        {% for card_page in card_pages %}
+          <li>
+            <div class="flex justify-start items-center">
+              {% if card_page.settings.icon %}
+                <span class="mr-4"><img src="{{ card_page.settings.icon }}" class="h-10"/> </span>
+              {% endif %}
+              <h3 class="text-xl md:text-2xl font-bold font-display lg:text-3xl line-clamp-1">{{ card_page.link_text}}</h3>
+            </div>
+
+            {% assign sub_pages = card_page.children_in_list | limit: limit_page_count %}
+            <!-- 页面列表 -->
+            <ol role="list" class="px-6 py-3 mt-4 text-base rounded-2xl divide-y divide-base-300 bg-base-300 sm:px-8 sm:py-7">
+              {% for sub_page in sub_pages %}
+                <li class="flex justify-between items-center hover:underline hover:bg-base-content/5" aria-label="{{ sub_page.link_text }} ">
+                  <a href="{{ sub_page.path }}" class="py-3 font-medium flex-1" aria-hidden="true">{{ sub_page.link_text }}</a>
+                  <span class="font-mono text-base-400" aria-hidden="true">{{ forloop.index }}</span>
+                </li>
+              {% endfor %}
+            </ol>
+          </li>
+        {% endfor %}
+      </ol>
+      <div class="flex justify-center mt-10">
+        {% render 'paginate', paginate: paginate %}
+      </div>
+    {% endpaginate_tag %}
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Portal",
+  "description": "Ideal for feature-rich portal site",
+  "thumb_url": "images/theme/index-portal.png",
+  "preview_image_urls": [
+    "images/theme/index-portal.png"
+  ],
+  "sub_page_templates": ["page"],
+  "settings": [
+    {
+      "id": "hero_image_url",
+      "type": "image_picker",
+      "ratio": "19:6",
+      "width": 900,
+      "label": "t:schema.templates.index.portal.settings.hero_image_url.label",
+      "info": "t:schema.templates.index.portal.settings.hero_image_url.info"
+    },
+    {
+      "id": "hero_slogan",
+      "type": "text",
+      "label": "t:schema.templates.index.portal.settings.hero_slogan.label",
+      "default": "Knowledge base site"
+    },
+    {
+      "id": "hero_description",
+      "type": "text",
+      "label": "t:schema.templates.index.portal.settings.hero_description.label",
+      "default": "👋 What Can We Help?"
+    },
+    {
+      "id": "hot_tags",
+      "label": "t:schema.templates.index.portal.settings.hot_tags.label",
+      "type": "text",
+      "placeholder": "sign in,install,account,how to"
+    },
+    {
+      "id": "index_card_page_count",
+      "type": "number",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 5,
+      "label": "首页列表展示页面数量",
+      "info": ""
+    }
+  ]
+}
+{% endschema %}

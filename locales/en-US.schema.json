@@ -1,0 +1,103 @@
+{
+  "theme_label": "Daisy Wiki",
+  "theme_description": "A content driven knowledge base portal built on DaisyUI. Multi theme style, multi component style, suitable for customized systems.",
+  "generic": {
+    "name": "Basic information settings for the site",
+    "settings": {
+      "company_name": {
+        "label": "Company Name",
+        "default": "Baklib.cn"
+      },
+      "copyright_info": {
+        "label": "Filing/Copyright Information",
+        "default": "Shu ICP No. 15035023"
+      }
+    }
+  },
+  "custom_html": {
+    "settings": {
+      "footer_menu_html": {
+        "label": "Insert HTML code into the bottom area (footer, footer_menu_html)",
+        "info": "Support HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually, external navigation links, friendship links, SEO optimization links, etc. of other company websites are inserted here"
+      },
+      "header_menu_html": {
+        "label": "Insert HTML code into the top navigation area",
+        "info": "Support HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually insert navigation links from other company websites here"
+      },
+      "head_html": {
+        "label": "Head Meta HTML Code",
+        "info": "This part of the content will be embedded in the<head>tag of the site, please use standard HTML format",
+        "placeholder": "For example:<meta name='author 'content=' Baklib '/>"
+      }
+    },
+    "name": "Customize HTML code"
+  },
+  "templates": {
+    "index": {
+      "documentation": {
+        "settings": {
+          "hero_image_url": {
+            "label": "background image",
+            "info": "The background image will be automatically cropped based on the page width and background height"
+          },
+          "hot_tags": {
+            "label": "Hot search keywords (please separate them with commas)"
+          },
+          "hero_slogan": {
+            "label": "Slogan Title"
+          },
+          "hero_description": {
+            "label": "Slogan description"
+          }
+        }
+      },
+      "portal": {
+        "settings": {
+          "hero_image_url": {
+            "label": "background image",
+            "info": "The background image will be automatically cropped based on the page width and background height"
+          },
+          "hot_tags": {
+            "label": "Hot search keywords (please separate them with commas)"
+          },
+          "hero_slogan": {
+            "label": "Slogan Title"
+          },
+          "hero_description": {
+            "label": "Slogan description"
+          }
+        }
+      }
+    },
+    "page": {
+      "channel": {
+        "settings": {
+          "content": {
+            "label": "content",
+            "info": "Synchronize from data source, non editable"
+          }
+        }
+      },
+      "settings": {
+        "tags": {
+          "label": "label"
+        },
+        "content": {
+          "label": "content",
+          "info": "Synchronize from data source, non editable"
+        },
+        "title": {
+          "label": "Title"
+        },
+        "api_document": {
+          "label": "OpenAPI documentation"
+        },
+        "api_document_url": {
+          "label": "OpenAPI document URL"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,146 @@
+
+<section class="relative bg-base">
+  <!-- Hero Section -->
+  {% render 'hero', page: page %}
+  <!-- Pages Section -->
+  <section class="bg-transparent px-4">
+    <div class="mx-auto max-w-[var(--max-content-width)]">
+      {% # 列表指南- Guide %}
+      {% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 9 %}
+      <div class="items-start lg:max-w-none grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-12 mt-12">
+        {% for card_page in card_pages %}
+          <!-- Card -->
+          <div class="card flex flex-col h-full bg-base-100 bg-opacity-50 border shadow-md shadow-base-200 overflow-hidden">
+            <!-- Image -->
+            <!-- Card Content -->
+            <div class="card-body flex-1 flex flex-col p-6">
+                <!-- Card body -->
+                <div class="flex-1">
+                    <!-- Header -->
+                    <header class="mb-2 card-title">
+                      <div class="flex items-center justify-start">
+                        {% if card_page.settings.icon %}
+                          <span class="mr-2"><img src="{{ card_page.settings.icon }}" class="h-6 w-6"/> </span>
+                        {% else %}
+                          <span class="mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w-6 h-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                            </svg>
+                          </span>
+                        {% endif %}
+                        <a class="text-xl font-semibold hover:text-primary" href="{{ card_page.path }}">
+                          <h3 class="line-clamp-1">{{ card_page.link_text }}</h3>
+                        </a>
+                      </div>
+                    </header>
+                    <!-- Content -->
+                    <div class="my-4">
+                      <ul>
+                        {% assign limit_page_count = page.settings.index_card_page_count | default: 5 %}
+                        {% assign sub_pages = card_page.children_in_list | limit: limit_page_count %}
+                        {% for sub_page in sub_pages %}
+                          <li class="mt-2 truncate">
+                            <a
+                              href="{{ sub_page.path }}"
+                              class="relative transition duration-500 group text-gray-550 text-tiny hover:text-primary"
+                            >
+                              <span
+                                class="absolute inline-block w-1.5 h-1.5 border-0 bg-gray-400 rounded-full group-hover:bg-primary transition duration-500 top-2"
+                              ></span>
+                              <span class="ml-4 line-clamp-1">{{ sub_page.link_text }}</span>
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                </div>
+                <!-- Card footer -->
+                <div class="flex justify-end space-x-2 border-t border-slate-200 dark:border-gray-700 pt-3 md:pt-5">
+                  <a href="{{ card_page.path }}" class="cursor-pointer text-primary">{{ 'generic.read_more' | t}}</a>
+                </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% # 常见问题 - FAQ %}
+      {% assign faq_pages = site.pages['/'].pages_in_list | order_by: '-visits_count' | limit: 10 %}
+      <div class="pt-4 pb-8 mt-8 lg:mt-14 lg:pb-12">
+        {% # 标题 %}
+        <div class="flex items-center h-8 mb-8 text-2xl font-bold">
+          <div class="w-1 h-full mr-3 bg-primary"></div>
+          <span>{{ 'generic.hot_pages' | t }}</span>
+        </div>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 gap-y-4">
+          {% for faq_page in faq_pages %}
+            <a class="flex items-center justify-between transition transform group"
+              href="{{ faq_page.path }}">
+              <div class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 transition group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+                <h6 class="ml-2 transition text-gray-550 group-hover:text-primary">
+                  {{ faq_page.link_text }}
+                </h6>
+              </div>
+
+              <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 mr-4 text-gray-500 transition group-hover:text-primary group-hover:translate-x-3 md:transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+{% schema %}
+  {
+    "name": "Documentation",
+    "description": "Ideal for documentation site",
+    "thumb_url": "images/theme/index-documentation.png",
+    "preview_image_urls": [
+      "images/theme/index-documentation.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+        {
+          "id": "hero_image_url",
+          "type": "image_picker",
+          "ratio": "19:6",
+          "width": 900,
+          "label": "t:schema.templates.index.documentation.settings.hero_image_url.label",
+          "info": "t:schema.templates.index.documentation.settings.hero_image_url.info"
+        },
+        {
+          "id": "hero_slogan",
+          "type": "text",
+          "label": "t:schema.templates.index.documentation.settings.hero_slogan.label",
+          "default": "Knowledge base site"
+        },
+        {
+          "id": "hero_description",
+          "type": "text",
+          "label": "t:schema.templates.index.documentation.settings.hero_description.label",
+          "default": "👋 What Can We Help?"
+        },
+        {
+          "id": "hot_tags",
+          "label": "t:schema.templates.index.documentation.settings.hot_tags.label",
+          "type": "text",
+          "placeholder": "sign in,install,account,how to"
+        },
+        {
+          "id": "index_card_page_count",
+          "type": "number",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 5,
+          "label": "首页列表展示页面数量",
+          "info": ""
+        }
+      ]
+  }
+{% endschema %}

@@ -1,0 +1,24 @@
+<div class='hidden md:block'>
+  <div class="md:border-r sticky h-screen overflow-auto top-0 z-20 md:border-base-200">
+    <aside class="bg-base-200 h-full w-full px-4 flex flex-col">
+      <div class='flex-0 sticky top-0 z-10'>
+        <div class="bg-base-200 items-center gap-2 py-4 backdrop-blur lg:flex">
+          {% render 'header_logo' title_style: 'font-bold md:text-xl text-base-content/80 whitespace-nowrap' %}
+        </div>
+      </div >
+
+      <div class="my-2 md:my-4">
+        {% render 'search_modal' %}
+      </div>
+
+      <ul class="custom-menu w-full px-0 py-0" data-controller="navtree" data-navtree-target="menuList">
+        <turbo-frame id="page_nav_tree_frame__" src="/s/page/nav_tree" loading="lazy">
+          <div class="flex items-center justify-center h-20 text-base-content/60">
+            <span class="loading loading-spinner loading-md"></span>
+          </div>
+        </turbo-frame>
+      </ul>
+    </aside>
+  </div>
+</div>
+

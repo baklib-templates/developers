@@ -1,0 +1,77 @@
+{% layout 'page_layout' %}
+{% assign sub_pages = page.children_in_list %}
+{% assign sub_pages_size = sub_pages | size %}
+
+{% comment %} 页面内容部分 {% endcomment %}
+<turbo-frame id="main-content" class='w-full flex-1' x-init="
+               $el.addEventListener('turbo:before-fetch-request', () => {
+                 $el.scrollTop = 0
+                 window.scrollTo({ top: 0, behavior: 'instant' })
+               })
+             "
+>
+  {% assign right_features_block = site.settings.features_one | presence %}
+  <div class='w-full group {% if right_features_block | present? %} has-right-feature-block {% endif %}'>
+    <div class='w-full grid grid-cols-[1fr] gap-6 group-[.has-right-feature-block]:lg:grid-cols-[1fr_var(--right-sidebar-width)]'>
+      <!-- 中间内容 -->
+      <div class="flex flex-col px-4 lg:px-10 group-[.has-right-feature-block]:md:pr-0 py-6 overflow-x-hidden relative">
+        {% comment %} 背景 Hero, 可选 {% endcomment %}
+        {% if true %}
+          <div class="absolute inset-x-0 overflow-hidden top-0 -z-10 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative -left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-secondary opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+          </div>
+        {% endif %}
+        {% comment %} 面包屑导航 {% endcomment %}
+        <div class="text-sm breadcrumbs pt-0 pb-6">
+          {% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
+        </div>
+        {% comment %} 页面正文 {% endcomment %}
+        {% render 'page_list', page: page, sub_pages: sub_pages %}
+      </div>
+
+      <!-- 右侧 feature block -->
+      {% if right_features_block | present? %}
+        <div class="print:hidden hidden lg:block has-right-feature-block">
+          <div class="sticky top-[calc(var(--header-height)_+_1.5rem)] h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto border-l border-base-200" data-toc-target="menu">
+            {{ right_features_block }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</turbo-frame>
+
+{% schema %}
+    {
+    "name": "Page Channel",
+    "description": "The Page as a channel section",
+    "thumb_url": "images/theme/page-channel.png",
+    "preview_image_urls": [
+      "images/theme/page-channel.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "icon",
+        "type": "image_picker",
+        "ratio": "1:1",
+        "width": 60,
+        "label": "图标"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "readonly": true,
+        "label": "标题",
+        "info": "知识库同步，不可编辑"
+      },
+      {
+        "id": "content",
+        "type": "richtext",
+        "label": "t:schema.templates.page.channel.settings.content.label",
+        "readonly": true,
+        "info": "t:schema.templates.page.channel.settings.content.info"
+      }
+    ]
+    }
+{% endschema %}

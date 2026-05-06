@@ -1,0 +1,12 @@
+{%  assign tree_menu_style = site.settings.tree_menu_style.value |  default: 'tree'  %}
+
+<turbo-frame id="{{ turbo_frame_request_id }}" class="relative hidden md:block">
+  {% assign pages = pages | limit: 200 %}
+  {% for page in pages %}
+    {% if tree_menu_style == 'tree2' %}
+      {% render 'tree2', page: page, expanded_ids: expanded_ids, selected_ids: selected_ids %}
+    {% else %}
+      {% render 'tree', page: page, expanded_ids: expanded_ids, selected_ids: selected_ids %}
+    {% endif %}
+  {% endfor %}
+</turbo-frame>

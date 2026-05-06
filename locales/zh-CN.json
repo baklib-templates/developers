@@ -1,0 +1,39 @@
+{
+  "generic": {
+    "theme": "主题",
+    "back": "返回",
+    "popular_search": "热门搜索",
+    "read_more": "阅读更多",
+    "empty": "内容为空",
+    "copyright": "版权所有",
+    "published_at": "发布于",
+    "hot_pages": "热门话题",
+    "feedback_created_at": "上次反馈于"
+  },
+  "placeholders": {
+    "search": "在站内搜索"
+  },
+  "templates": {
+    "page": {
+      "copy_success": "链接已复制"
+    }
+  },
+  "snippets": {
+    "feedback_form": {
+      "title": "提交反馈",
+      "message_label": "留言",
+      "message_placeholder": "请输入反馈内容",
+      "message_required": "反馈内容不能为空",
+      "submit": "提交",
+      "cancel": "取消"
+    },
+    "feedback_button": {
+      "title_posted": "感谢您的反馈",
+      "title_unposted": "提交反馈"
+    },
+    "page": {
+      "prev_page": "上一页",
+      "next_page": "下一页"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{% comment %}
+  @params breadcrumb
+    array of objects with keys:
+      link_text: string
+      path: string
+{% endcomment %}
+<ul>
+  {% for crumb in breadcrumb %}
+    <li>
+        <a href="{{ crumb.path }}" data-turbo-frame="_top">{{ crumb.link_text }}</a>
+    </li>
+  {% endfor %}
+</ul>

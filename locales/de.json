@@ -1,0 +1,39 @@
+{
+  "generic": {
+    "theme": "Thema",
+    "back": "zurückkehren",
+    "popular_search": "Beliebte Suche",
+    "read_more": "Weiterlesen",
+    "empty": "Inhalt ist leer",
+    "copyright": "Alle Rechte vorbehalten",
+    "published_at": "Veröffentlicht am",
+    "hot_pages": "Beliebte Themen",
+    "feedback_created_at": "Letztes Feedback"
+  },
+  "placeholders": {
+    "search": "Auf der Website suchen"
+  },
+  "templates": {
+    "page": {
+      "copy_success": "Link kopiert"
+    }
+  },
+  "snippets": {
+    "feedback_form": {
+      "title": "Feedback senden",
+      "message_label": "Nachricht hinterlassen",
+      "message_placeholder": "Bitte geben Sie Ihr Feedback ein",
+      "message_required": "Feedback darf nicht leer sein",
+      "submit": "einreichen",
+      "cancel": "stornieren"
+    },
+    "feedback_button": {
+      "title_posted": "Vielen Dank für Ihr Feedback",
+      "title_unposted": "Feedback senden"
+    },
+    "page": {
+      "prev_page": "Vorherige Seite",
+      "next_page": "Nächste Seite"
+    }
+  }
+}

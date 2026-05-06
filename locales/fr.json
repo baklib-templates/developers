@@ -1,0 +1,39 @@
+{
+  "generic": {
+    "theme": "thème",
+    "back": "retourner",
+    "popular_search": "Recherches populaires",
+    "read_more": "Lire plus",
+    "empty": "Le contenu est vide",
+    "copyright": "Tous droits réservés",
+    "published_at": "Publié dans",
+    "hot_pages": "Sujets populaires",
+    "feedback_created_at": "Dernier Feedback en"
+  },
+  "placeholders": {
+    "search": "Rechercher dans la station"
+  },
+  "templates": {
+    "page": {
+      "copy_success": "Le lien a été copié"
+    }
+  },
+  "snippets": {
+    "feedback_form": {
+      "title": "Soumettre un feedback",
+      "message_label": "Message",
+      "message_placeholder": "Veuillez entrer le contenu du feedback",
+      "message_required": "Le contenu du feedback ne peut pas être vide",
+      "submit": "soumettre",
+      "cancel": "Annuler"
+    },
+    "feedback_button": {
+      "title_posted": "Merci pour votre feedback",
+      "title_unposted": "Soumettre un feedback"
+    },
+    "page": {
+      "prev_page": "Page précédente",
+      "next_page": "Page suivante"
+    }
+  }
+}

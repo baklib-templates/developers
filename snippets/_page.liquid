@@ -1,0 +1,87 @@
+{% assign default_avatar_url = 'images/avatar.svg' | asset_url %}
+<div class="w-full">
+  <h1 class="flex items-center mb-2 text-2xl font-bold sm:text-3xl xl:text-4xl">
+    {{ page.settings.title }}
+  </h1>
+
+  <div class='space-y-4 mb-4'>
+    <div class="flex items-center space-x-2">
+      {% if site.settings.is_allow_author %}
+        <img src="{{ page.author.avatar_url | default: default_avatar_url }}" class="w-8 h-8 rounded-full" />
+      {% endif %}
+      <div>
+        {% if site.settings.is_allow_author %}
+          <p class="text-lead line-clamp-2 mb-[3px] text-heading-6">
+            {{ page.author.name }}
+          </p>
+        {% endif %}
+        {% if site.settings.is_allow_published_at %}
+          <p class="text-sm text-md">{{ 'generic.published_at' | t }}：{{ page.published_at | date: "%Y-%m-%d" }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if page.settings.description %}
+      <figure class="p-4 border-l-2 rounded-md border-primary">
+        <blockquote class="font-semibold text-base-content/70">
+          <p>{{ page.settings.description }}</p>
+        </blockquote>
+      </figure>
+    {% endif %}
+
+    {% if page.settings.tags.size > 0 %}
+      <div class="flex flex-wrap items-center gap-4 text-sm">
+        {% for tag in page.settings.tags %}
+          {% render 'tag', tag: tag %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <section id="page-content" class="ProseMirror !h-auto min-h-[30vh] flex-1 break-words" data-controller="link-target images-viewer" data-toc-target="content">
+    {{ page.settings.content }}
+  </section>
+
+  <!-- 上下页 -->
+  <div class="divider"></div>
+  {% # 反馈 %}
+  <section class="my-8">
+    {% render 'feedback_button', page: page %}
+  </section>
+
+  {% # 页内目录导航 %}
+  <section class="my-8">
+    {% assign prev_page = page.prev_page %}
+    {% assign next_page = page.next_page %}
+
+    <div class="items-center justify-between space-y-3 lg:flex lg:space-y-0 lg:space-x-6 print:hidden">
+      {% if prev_page %}
+        <a href="{{ prev_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+          <div class="mb-2 text-base-content/40 text-sm">{{ 'snippets.page.prev_page' | t }}</div>
+          <div class="text-base text-primary dark:text-primary-200">
+            <div class="flex items-center space-x-1 line-clamp-1">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
+              <span class="line-clamp-1">{{ prev_page.link_text }}</span>
+            </div>
+          </div>
+        </a>
+      {% else %}
+        <div class="flex-1"></div>
+      {% endif %}
+      <!-- Next link -->
+      {% if next_page %}
+        <a href="{{ next_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+          <div class="mb-2 text-base-content/40 md:text-right text-sm">{{ 'snippets.page.next_page' | t}}</div>
+          <div class="text-base text-primary dark:text-primary-200">
+            <div class="flex items-center space-x-1 lg:justify-end line-clamp-1">
+              <span class="line-clamp-1">{{ next_page.link_text }}</span>
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+            </div>
+          </div>
+        </a>
+      {%  else %}
+        <div class="flex-1"></div>
+      {% endif %}
+    </div>
+  </section>
+</div>
