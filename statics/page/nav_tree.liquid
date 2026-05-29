@@ -4,12 +4,24 @@
 <turbo-frame id="page_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" class='w-full'>
   {% assign page1 = site.pages[parent_path] %}
   {% assign nav_tree = page1 | nav_tree: 1 %}
-  {% assign depth = params.depth | presence | default: page1.depth %}
+  {% assign depth = params.depth | presence | default: page1.depth | default: 0 %}
+
+  {% capture nav_icon_entries %}
+    {% for item in nav_tree %}
+      {% assign nav_page = site.pages[item.path] %}
+      {% assign nav_icon = 'folder' %}
+      {% if nav_page.settings.nav_lucide_icon.value != blank %}
+        {% assign nav_icon = nav_page.settings.nav_lucide_icon.value %}
+      {% endif %}
+      "{{ item.path }}":"{{ nav_icon }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  {% endcapture %}
 
   <div
     data-controller="turbo-nav-tree"
     data-turbo-nav-tree-nav-tree-value='{{ nav_tree | to_json | escape }}'
     data-turbo-nav-tree-depth-value='{{ depth }}'
+    data-turbo-nav-tree-icons-value='{ {{- nav_icon_entries | strip | strip_newlines -}} }'
     data-turbo-nav-tree-root-container-value=".custom-menu"
     data-turbo-nav-tree-parent-path-value='{{ parent_path }}'
     data-turbo-nav-tree-url-value='/s/page/nav_tree'
@@ -17,36 +29,57 @@
   >
     <template data-turbo-nav-tree-target="itemTemplate">
       {% raw %}
-        {{#hasChildren}}
-          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200 break-all" data-action="click->turbo-nav-tree#toggle">
-            <a href="{{path}}"
-              data-turbo-frame="main-content" data-turbo-action='advance'
-              class="line-clamp-2 hover:underline"
-              data-action="click->turbo-nav-tree#click"
-              data-turbo-nav-tree-only-open-param="true"
-              >
-              {{link_text}}
-            </a>
-            <!-- 有子节点时显示 toggle 按钮 -->
-            <div turbo-nav-tree-item-target-icon class="ml-auto mr-1 {{#open}}rotate-90{{/open}}">
-              <svg class="w-4 h-4 opacity-70 transition-transform duration-200"
-                  fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path d="M9 6l6 6-6 6"/>
-              </svg>
+        {{#isSectionHeader}}
+          {{#hasChildren}}
+            <div class="flex w-full cursor-pointer items-center gap-2 rounded-full bg-base-300/60 px-3 py-2 text-xs font-bold uppercase tracking-wide text-base-content/80 break-all hover:bg-base-300 dark:hover:bg-base-300/80" data-action="click->turbo-nav-tree#toggle">
+              <i data-lucide="{{icon}}" class="size-4 shrink-0 opacity-80" aria-hidden="true"></i>
+              <span class="line-clamp-2 min-w-0 flex-1">{{link_text}}</span>
+              <div turbo-nav-tree-item-target-icon class="ml-auto shrink-0 {{chevronRotateClass}}">
+                <svg class="h-4 w-4 opacity-70 transition-transform duration-200"
+                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6"/>
+                </svg>
+              </div>
             </div>
-          </div>
-        {{/hasChildren}}
-        {{^hasChildren}}
-          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200 break-all">
-            <a href="{{path}}"
-              data-turbo-frame="main-content" data-turbo-action='advance'
-              class="line-clamp-2 hover:underline flex-1"
-              data-action="click->turbo-nav-tree#click"
-              >
-              {{link_text}}
-            </a>
-          </div>
-        {{/hasChildren}}
+          {{/hasChildren}}
+          {{^hasChildren}}
+            <div class="flex w-full items-center gap-2 rounded-full bg-base-300/60 px-3 py-2 text-xs font-bold uppercase tracking-wide text-base-content/80 break-all">
+              <i data-lucide="{{icon}}" class="size-4 shrink-0 opacity-80" aria-hidden="true"></i>
+              <span class="line-clamp-2 min-w-0 flex-1">{{link_text}}</span>
+            </div>
+          {{/hasChildren}}
+        {{/isSectionHeader}}
+        {{^isSectionHeader}}
+          {{#hasChildren}}
+            <div class="flex w-full items-center rounded-sm p-2 text-base-content break-all hover:bg-base-200 dark:hover:bg-base-300" data-action="click->turbo-nav-tree#toggle">
+              <a href="{{path}}"
+                data-turbo-frame="main-content" data-turbo-action='advance'
+                class="line-clamp-2 min-w-0 flex-1 hover:underline"
+                data-action="click->turbo-nav-tree#click"
+                data-turbo-nav-tree-only-open-param="true"
+                >
+                {{link_text}}
+              </a>
+              <div turbo-nav-tree-item-target-icon class="ml-auto mr-1 shrink-0 {{chevronRotateClass}}">
+                <svg class="h-4 w-4 opacity-70 transition-transform duration-200"
+                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M9 6l6 6-6 6"/>
+                </svg>
+              </div>
+            </div>
+          {{/hasChildren}}
+          {{^hasChildren}}
+            <div class="flex w-full items-center rounded-sm p-2 text-base-content break-all hover:bg-base-200 dark:hover:bg-base-300">
+              <a href="{{path}}"
+                data-turbo-frame="main-content" data-turbo-action='advance'
+                class="line-clamp-2 min-w-0 flex-1 hover:underline"
+                data-action="click->turbo-nav-tree#click"
+                >
+                {{link_text}}
+              </a>
+            </div>
+          {{/hasChildren}}
+        {{/isSectionHeader}}
       {% endraw %}
     </template>
   </div>

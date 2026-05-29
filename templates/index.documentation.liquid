@@ -4,7 +4,7 @@
   {% render 'hero', page: page %}
   <!-- Pages Section -->
   <section class="bg-transparent px-4">
-    <div class="mx-auto max-w-[var(--max-content-width)]">
+    <div class="mx-auto max-w-6xl">
       {% # 列表指南- Guide %}
       {% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 9 %}
       <div class="items-start lg:max-w-none grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-12 mt-12">
@@ -19,16 +19,10 @@
                     <!-- Header -->
                     <header class="mb-2 card-title">
                       <div class="flex items-center justify-start">
-                        {% if card_page.settings.icon %}
-                          <span class="mr-2"><img src="{{ card_page.settings.icon }}" class="h-6 w-6"/> </span>
-                        {% else %}
-                          <span class="mr-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 w-6 h-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
-                            </svg>
-                          </span>
-                        {% endif %}
-                        <a class="text-xl font-semibold hover:text-primary" href="{{ card_page.path }}">
+                        <span class="mr-2">
+                          {% render 'page_nav_icon', page: card_page, class: 'size-6 text-base-content/80' %}
+                        </span>
+                        <a class="text-xl font-semibold no-underline hover:text-primary hover:no-underline" href="{{ card_page.path }}">
                           <h3 class="line-clamp-1">{{ card_page.link_text }}</h3>
                         </a>
                       </div>
@@ -42,10 +36,10 @@
                           <li class="mt-2 truncate">
                             <a
                               href="{{ sub_page.path }}"
-                              class="relative transition duration-500 group text-gray-550 text-tiny hover:text-primary"
+                              class="group relative text-tiny text-base-content/70 transition duration-500 hover:text-primary"
                             >
                               <span
-                                class="absolute inline-block w-1.5 h-1.5 border-0 bg-gray-400 rounded-full group-hover:bg-primary transition duration-500 top-2"
+                                class="absolute top-2 inline-block h-1.5 w-1.5 rounded-full border-0 bg-base-content/40 transition duration-500 group-hover:bg-primary"
                               ></span>
                               <span class="ml-4 line-clamp-1">{{ sub_page.link_text }}</span>
                             </a>
@@ -55,7 +49,7 @@
                     </div>
                 </div>
                 <!-- Card footer -->
-                <div class="flex justify-end space-x-2 border-t border-slate-200 dark:border-gray-700 pt-3 md:pt-5">
+                <div class="flex justify-end space-x-2 border-t border-base-300 pt-3 md:pt-5">
                   <a href="{{ card_page.path }}" class="cursor-pointer text-primary">{{ 'generic.read_more' | t}}</a>
                 </div>
             </div>
@@ -76,15 +70,15 @@
             <a class="flex items-center justify-between transition transform group"
               href="{{ faq_page.path }}">
               <div class="flex">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 transition group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/50 transition group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
-                <h6 class="ml-2 transition text-gray-550 group-hover:text-primary">
+                <h6 class="ml-2 text-base-content transition group-hover:text-primary">
                   {{ faq_page.link_text }}
                 </h6>
               </div>
 
-              <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 mr-4 text-gray-500 transition group-hover:text-primary group-hover:translate-x-3 md:transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-4 h-5 w-5 shrink-0 text-base-content/60 transition group-hover:translate-x-3 group-hover:text-primary md:transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
@@ -114,6 +108,13 @@
           "info": "t:schema.templates.index.documentation.settings.hero_image_url.info"
         },
         {
+          "id": "hero_font_color",
+          "type": "color",
+          "label": "t:schema.templates.index.documentation.settings.hero_font_color.label",
+          "info": "t:schema.templates.index.documentation.settings.hero_font_color.info",
+          "default": "#ffffff"
+        },
+        {
           "id": "hero_slogan",
           "type": "text",
           "label": "t:schema.templates.index.documentation.settings.hero_slogan.label",
@@ -138,8 +139,8 @@
           "max": 20,
           "step": 1,
           "default": 5,
-          "label": "首页列表展示页面数量",
-          "info": ""
+          "label": "t:schema.templates.index.documentation.settings.index_card_page_count.label",
+          "info": "t:schema.templates.index.documentation.settings.index_card_page_count.info"
         }
       ]
   }

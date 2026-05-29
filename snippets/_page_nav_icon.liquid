@@ -1,0 +1,12 @@
+{% comment %}
+  Lucide icon from page.settings.nav_lucide_icon (Page template select).
+  @param page {Page} required
+  @param class {string} optional CSS classes passed to lucide_icon
+{% endcomment %}
+{% assign nav_icon_name = 'folder' %}
+{% if page.settings.nav_lucide_icon.value != blank %}
+  {% assign nav_icon_name = page.settings.nav_lucide_icon.value %}
+{% elsif page.settings.nav_lucide_icon != blank %}
+  {% assign nav_icon_name = page.settings.nav_lucide_icon %}
+{% endif %}
+{% render 'lucide_icon', name: nav_icon_name, class: class %}

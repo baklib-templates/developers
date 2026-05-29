@@ -1,0 +1,15 @@
+<button
+  type="button"
+  class="site-search-trigger whitespace-nowrap"
+  @click.prevent="$store.search.openSearch()"
+  @keydown.slash.window="$store.search.openSearch()"
+  aria-controls="search-modal"
+>
+  <span class="flex min-w-0 items-center gap-3">
+    <svg class="size-4 shrink-0" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path fill="currentColor" d="m14.707 13.293-1.414 1.414-2.4-2.4 1.414-1.414 2.4 2.4ZM6.8 12.6A5.8 5.8 0 1 1 6.8 1a5.8 5.8 0 0 1 0 11.6Zm0-2a3.8 3.8 0 1 0 0-7.6 3.8 3.8 0 0 0 0 7.6Z" />
+    </svg>
+    <span class="truncate">{{ 'placeholders.search' | t }}<span class="hidden sm:inline"> </span>…</span>
+  </span>
+  <kbd class="site-search-trigger__shortcut" aria-hidden="true">/</kbd>
+</button>

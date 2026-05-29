@@ -6,17 +6,41 @@
   @params page (optional)
     current page object — when present, shows page tools dropdown
 {% endcomment %}
-<div class="flex flex-wrap items-center justify-between gap-3 w-full">
-  <div class="breadcrumbs text-sm min-w-0 flex-1 overflow-x-auto">
+{% assign crumbs_count = breadcrumb | size %}
+<div class="flex w-full min-w-0 flex-col gap-2 sm:flex-row sm:flex-nowrap sm:items-center sm:justify-between sm:gap-3">
+  <div
+    class="breadcrumbs min-w-0 w-full overflow-x-auto overscroll-x-contain text-sm sm:flex-1 [-ms-overflow-style:none] [scrollbar-width:none] max-sm:[direction:rtl] [&::-webkit-scrollbar]:hidden [&>ul]:flex-nowrap [&>ul]:gap-x-1.5 max-sm:[&>ul]:[direction:ltr]"
+  >
     <ul>
       {% for crumb in breadcrumb %}
-        <li>
-          <a href="{{ crumb.path }}" data-turbo-frame="_top">{{ crumb.link_text }}</a>
-        </li>
+        {% assign is_middle = false %}
+        {% if crumbs_count > 2 and forloop.first == false and forloop.last == false %}
+          {% assign is_middle = true %}
+        {% endif %}
+
+        {% if is_middle %}
+          {% if forloop.index == 2 %}
+            <li class="shrink-0 text-base-content/40 sm:hidden" aria-hidden="true">…</li>
+          {% endif %}
+          <li class="max-sm:hidden shrink-0">
+            <a href="{{ crumb.path }}" class="whitespace-nowrap" data-turbo-frame="_top">{{ crumb.link_text }}</a>
+          </li>
+        {% else %}
+          <li class="shrink-0 min-w-0 {% if forloop.last %}max-w-[min(100%,16rem)] sm:max-w-none{% elsif forloop.first %}max-w-[6rem] sm:max-w-none{% endif %}">
+            <a
+              href="{{ crumb.path }}"
+              class="block truncate whitespace-nowrap"
+              data-turbo-frame="_top"
+              {% if forloop.last %}aria-current="page"{% endif %}
+            >{{ crumb.link_text }}</a>
+          </li>
+        {% endif %}
       {% endfor %}
     </ul>
   </div>
   {% if page %}
-    {% render 'page_tools_dropdown', page: page %}
+    <div class="shrink-0 self-end sm:self-auto">
+      {% render 'page_tools_dropdown', page: page %}
+    </div>
   {% endif %}
 </div>

@@ -14,10 +14,10 @@
     data-controller="toc"
     data-toc-header-selector-value=".js--header"
     data-toc-offset-value="10"
-    data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t: '链接已复制' }}"
+    data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t }}"
     class='w-full group'
   >
-    <div class='w-full grid lg:grid-cols-[1fr] gap-6 group-[.has-toc]:lg:grid-cols-[1fr_var(--right-sidebar-width)]'>
+    <div class='w-full grid lg:grid-cols-[1fr] gap-6 group-[.has-toc]:lg:grid-cols-[1fr_240px]'>
       <div class="flex flex-col px-4 lg:px-10 group-[.has-toc]:md:pr-0 py-6 overflow-x-hidden relative">
         {% if true %}
           <div class="absolute inset-x-0 overflow-hidden top-0 -z-10 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
@@ -31,7 +31,7 @@
       </div>
 
       <div class="print:hidden hidden lg:block">
-        <div class="sticky top-[calc(var(--header-height)_+_1.5rem)] h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto border-l border-base-200" data-toc-target="menu">
+        <div class="sticky top-[5.5rem] h-[calc(100vh-8rem)] max-w-full w-full overflow-auto border-l border-base-200" data-toc-target="menu">
           <div class="menu w-full">
             <div data-toc-target="links"></div>
           </div>
@@ -59,17 +59,25 @@
         "label": "t:schema.templates.page.settings.tags.label"
       },
       {
+        "id": "nav_lucide_icon",
+        "type": "select",
+        "label": "t:schema.templates.page.settings.nav_lucide_icon.label",
+        "info": "t:schema.templates.page.settings.nav_lucide_icon.info",
+        "default": "folder",
+        "choices_from": "$site.lucide_icons"
+      },
+      {
         "id": "description",
         "type": "textarea",
-        "label": "描述",
-        "info": "*[可选] 页面个性化内容描述"
+        "label": "t:schema.templates.page.settings.description.label",
+        "info": "t:schema.templates.page.settings.description.info"
       },
       {
         "id": "title",
         "type": "text",
         "readonly": true,
-        "label": "标题",
-        "info": "知识库同步，不可编辑"
+        "label": "t:schema.templates.page.settings.title.label",
+        "info": "t:schema.templates.page.settings.title.info"
       },
       {
         "id": "content",

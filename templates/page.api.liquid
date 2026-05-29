@@ -1,6 +1,6 @@
 {% layout 'api_doc' %}
 
-<div id="main-content" class="elements-wrapper not-prose min-h-[calc(100vh-var(--header-height))]">
+<div id="main-content" class="elements-wrapper not-prose min-h-[calc(100vh-4rem)]">
   <div
     data-controller="element-doc"
     data-element-doc-url-value="{{ page.settings.api_document_url }}"
@@ -8,7 +8,7 @@
     class='h-full'
   >
     <div class='flex justify-center items-center w-full h-full' data-element-doc-target="loading">
-      <div class='loading' class="text-gray-500">加载中...</div>
+      <div class="loading text-base-content/60">{{ 'templates.page_api.loading' | t }}</div>
     </div>
   </div>
 </div>

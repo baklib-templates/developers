@@ -1,8 +1,41 @@
 {
   "theme_label": "Developers",
-  "theme_description": "A documentation theme for developers and technical teams — ideal for API references, product manuals, and technical guides. Built on DaisyUI with multi-theme support and flexible customization.",
+  "theme_description": "A documentation theme for developers and technical teams — ideal for API references, product manuals, and technical guides.",
+  "theme_languages": {
+    "zh_cn": "Simplified Chinese",
+    "en": "English",
+    "de": "German",
+    "fr": "French"
+  },
+  "recommendations": {
+    "baklib": {
+      "name": "Baklib Brand"
+    },
+    "fashion": {
+      "name": "Fashion"
+    },
+    "old_school": {
+      "name": "Retro"
+    }
+  },
   "generic": {
-    "name": "Basic information settings for the site"
+    "name": "Basic information settings for the site",
+    "settings": {
+      "logo_url": {
+        "label": "Logo image",
+        "info": "When set, the header shows this logo only; otherwise the site favicon and site name are shown."
+      },
+      "is_allow_published_at": {
+        "label": "Show publish date on articles"
+      },
+      "is_allow_author": {
+        "label": "Show author on articles"
+      },
+      "left_sidebar_width": {
+        "label": "Left sidebar width",
+        "info": "Used on documentation pages with a sidebar. Default: 300px."
+      }
+    }
   },
   "custom_html": {
     "settings": {
@@ -20,9 +53,33 @@
         "label": "Head Meta HTML Code",
         "info": "This part of the content will be embedded in the<head>tag of the site, please use standard HTML format",
         "placeholder": "For example:<meta name='author 'content=' Baklib '/>"
+      },
+      "features_one": {
+        "label": "Features block one",
+        "placeholder": "HTML snippet",
+        "info": "Preset HTML block. Front-end: site.settings.features_one"
+      },
+      "features_two": {
+        "label": "Features block two",
+        "placeholder": "HTML snippet",
+        "info": "Preset HTML block. Front-end: site.settings.features_two"
+      },
+      "features_three": {
+        "label": "Features block three",
+        "placeholder": "HTML snippet",
+        "info": "Preset HTML block. Front-end: site.settings.features_three"
       }
     },
     "name": "Customize HTML code"
+  },
+  "lucide_icons": {
+    "name": "Lucide icons",
+    "settings": {
+      "lucide_icons": {
+        "label": "Allowed Lucide icon names",
+        "info": "One kebab-case icon name per line (e.g. folder, book-open). Page and channel templates use this list for the sidebar icon dropdown. Icons must match the theme JS bundle; adding names here without updating the bundle will not render on the site."
+      }
+    }
   },
   "templates": {
     "index": {
@@ -32,6 +89,10 @@
             "label": "background image",
             "info": "The background image will be automatically cropped based on the page width and background height"
           },
+          "hero_font_color": {
+            "label": "Hero text color",
+            "info": "Applies to the title, subtitle, and popular search tags in the hero section (e.g. #ffffff on a dark background)"
+          },
           "hot_tags": {
             "label": "Hot search keywords (please separate them with commas)"
           },
@@ -40,23 +101,75 @@
           },
           "hero_description": {
             "label": "Slogan description"
+          },
+          "index_card_page_count": {
+            "label": "Pages listed per guide card",
+            "info": "Number of child pages shown under each guide on the documentation home page"
           }
         }
       },
       "portal": {
         "settings": {
           "hero_image_url": {
-            "label": "background image",
-            "info": "The background image will be automatically cropped based on the page width and background height"
+            "label": "Hero background image",
+            "info": "16:9 image at full width with natural height; fades to fully transparent toward the bottom"
           },
-          "hot_tags": {
-            "label": "Hot search keywords (please separate them with commas)"
+          "hero_font_color": {
+            "label": "Hero text color",
+            "info": "Applies to the title, subtitle, and popular search tags in the hero section (e.g. #ffffff on a dark background)"
           },
           "hero_slogan": {
-            "label": "Slogan Title"
+            "label": "Hero title"
           },
           "hero_description": {
-            "label": "Slogan description"
+            "label": "Hero subtitle"
+          },
+          "hot_tags": {
+            "label": "Hot search keywords (comma-separated)"
+          },
+          "show_hero_section": {
+            "label": "Show hero section"
+          },
+          "show_hero_hot_tags": {
+            "label": "Show popular search tags"
+          },
+          "hero_search_placeholder": {
+            "label": "Search placeholder"
+          },
+          "show_featured_section": {
+            "label": "Show featured guides"
+          },
+          "featured_section_title": {
+            "label": "Featured section title"
+          },
+          "featured_count": {
+            "label": "Number of featured guides",
+            "info": "Taken from the first items in the site navigation menu"
+          },
+          "show_categories_section": {
+            "label": "Show categories"
+          },
+          "categories_section_title": {
+            "label": "Categories section title"
+          },
+          "categories_max_count": {
+            "label": "Maximum categories to show",
+            "info": "Remaining nav menu items after featured guides; order follows navigation"
+          },
+          "show_trending_section": {
+            "label": "Show trending guides"
+          },
+          "trending_section_title": {
+            "label": "Trending section title"
+          },
+          "trending_popular_title": {
+            "label": "Most popular column title"
+          },
+          "trending_recent_title": {
+            "label": "Recently added column title"
+          },
+          "trending_list_limit": {
+            "label": "Links per trending column"
           }
         }
       }
@@ -79,7 +192,16 @@
           "info": "Synchronize from data source, non editable"
         },
         "title": {
-          "label": "Title"
+          "label": "Title",
+          "info": "Synced from the knowledge base; not editable here"
+        },
+        "description": {
+          "label": "Description",
+          "info": "Optional page summary for the article header"
+        },
+        "nav_lucide_icon": {
+          "label": "Sidebar section icon",
+          "info": "Lucide icon for this page when it appears as a top-level sidebar group (no link, expand/collapse only)"
         },
         "api_document": {
           "label": "OpenAPI documentation"

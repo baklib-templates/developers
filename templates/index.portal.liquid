@@ -1,44 +1,217 @@
-{% # 列表指南- Channel %}
-{% assign card_pages = site.pages['/'].children_in_nav_menu %}
-{% assign limit_page_count = page.settings.index_card_page_count | default: 5 %}
+{% # Portal home — GitBook Guides style layout %}
+{% assign nav_pages = site.pages['/'].children_in_nav_menu %}
+{% assign hot_tags = page.settings.hot_tags | split: ',' %}
+{% assign featured_count = page.settings.featured_count | default: 3 %}
+{% assign categories_limit = page.settings.categories_max_count | default: 9 %}
+{% assign trending_limit = page.settings.trending_list_limit | default: 5 %}
+{% assign search_placeholder = page.settings.hero_search_placeholder | presence | default: 'placeholders.search' | t %}
 
-<!-- Hero Section -->
-{% render 'hero', page: page %}
+{% assign show_hero = page.settings.show_hero_section != false %}
+{% assign show_hero_hot_tags = page.settings.show_hero_hot_tags != false %}
+{% assign show_featured = page.settings.show_featured_section != false %}
+{% assign show_categories = page.settings.show_categories_section != false %}
+{% assign show_trending = page.settings.show_trending_section != false %}
+{% assign hero_image_src = page.settings.hero_image_url | presence %}
+{% assign hero_has_bg = hero_image_src | present? %}
+{% assign hero_font_color = page.settings.hero_font_color | presence %}
 
-<section id="table-of-contents" aria-labelledby="table-of-contents-title" class="">
-  <div class="px-4 mx-auto max-w-[calc(var(--max-content-width)*0.8)]">
-    <!-- 栏目列表 -->
-    {% paginate_tag card_pages, per: limit_page_count %}
-      <ol role="list" class="mt-6 space-y-8 md:mt-8 sm:space-y-8">
-        {% for card_page in card_pages %}
-          <li>
-            <div class="flex justify-start items-center">
-              {% if card_page.settings.icon %}
-                <span class="mr-4"><img src="{{ card_page.settings.icon }}" class="h-10"/> </span>
+<div class="relative w-full">
+  {% if hero_has_bg %}
+    <div class="pointer-events-none absolute inset-x-0 top-0 z-0 w-full" aria-hidden="true">
+      <img
+        src="{{ hero_image_src }}"
+        alt=""
+        width="1920"
+        height="1080"
+        decoding="async"
+        class="block h-auto w-full"
+        style="-webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 15%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 15%, transparent 100%); -webkit-mask-size: 100% 100%; mask-size: 100% 100%;"
+      >
+    </div>
+  {% endif %}
+
+  <main class="relative z-10 mx-auto max-w-6xl px-4 py-12 md:py-16 space-y-14 md:space-y-16">
+  {% if show_hero %}
+    <section
+      id="portal-hero"
+      aria-labelledby="portal-hero-title"
+      class="text-center{% unless hero_font_color %} text-base-content{% endunless %}"
+      {% if hero_font_color %}style="color: {{ hero_font_color }};"{% endif %}
+    >
+      {% assign hero_slogan = page.settings.hero_slogan | presence %}
+      {% assign hero_description = page.settings.hero_description | presence %}
+      {% if hero_slogan | present? %}
+        <h1 id="portal-hero-title" class="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+          {{ hero_slogan }}
+        </h1>
+      {% endif %}
+      {% if hero_description | present? %}
+        <p class="mx-auto mt-4 max-w-2xl text-base md:text-lg{% if hero_font_color %} opacity-80{% else %} text-base-content/70{% endif %}">
+          {{ hero_description }}
+        </p>
+      {% endif %}
+
+      <div class="mx-auto mt-8 w-full max-w-xl">
+        {% form_tag 'search', class: 'w-full' %}
+          {% render 'search_field',
+            name: form.keywords_field_name,
+            value: search.keywords | escape_once,
+            placeholder: search_placeholder,
+            size: 'lg',
+            autocomplete: 'off',
+            icon: 'search',
+            submit_icon: 'arrow'
+          %}
+        {% endform_tag %}
+
+        {% if show_hero_hot_tags and hot_tags | size > 0 %}
+          <div class="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm">
+            <span class="{% if hero_font_color %}opacity-70{% else %}text-base-content/60{% endif %}">{{ 'generic.popular_search' | t }}:</span>
+            {% for search_hot_key in hot_tags %}
+              {% assign hot_key = search_hot_key | strip %}
+              {% if hot_key != blank %}
+                <a
+                  href="{{ site.index_path }}-/search?q={{ hot_key }}"
+                  class="{% if hero_font_color %}opacity-90 hover:opacity-100{% else %}text-base-content/80 hover:text-primary{% endif %} underline-offset-2 hover:underline"
+                >
+                  {{ hot_key }}
+                </a>
               {% endif %}
-              <h3 class="text-xl md:text-2xl font-bold font-display lg:text-3xl line-clamp-1">{{ card_page.link_text}}</h3>
-            </div>
-
-            {% assign sub_pages = card_page.children_in_list | limit: limit_page_count %}
-            <!-- 页面列表 -->
-            <ol role="list" class="px-6 py-3 mt-4 text-base rounded-2xl divide-y divide-base-300 bg-base-300 sm:px-8 sm:py-7">
-              {% for sub_page in sub_pages %}
-                <li class="flex justify-between items-center hover:underline hover:bg-base-content/5" aria-label="{{ sub_page.link_text }} ">
-                  <a href="{{ sub_page.path }}" class="py-3 font-medium flex-1" aria-hidden="true">{{ sub_page.link_text }}</a>
-                  <span class="font-mono text-base-400" aria-hidden="true">{{ forloop.index }}</span>
-                </li>
-              {% endfor %}
-            </ol>
-          </li>
-        {% endfor %}
-      </ol>
-      <div class="flex justify-center mt-10">
-        {% render 'paginate', paginate: paginate %}
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
-    {% endpaginate_tag %}
-  </div>
-</section>
+    </section>
+  {% endif %}
 
+  {% if show_featured %}
+    {% assign featured_title = page.settings.featured_section_title | presence | default: 'templates.index_portal.featured_title' | t %}
+    <section id="portal-featured" aria-labelledby="portal-featured-title">
+      <h2 id="portal-featured-title" class="text-xl font-bold text-base-content md:text-2xl">
+        {{ featured_title }}
+      </h2>
+      <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {% for card_page in nav_pages %}
+          {% if forloop.index <= featured_count %}
+          <a
+            href="{{ card_page.path }}"
+            class="group flex flex-col overflow-hidden rounded-xl border border-base-300 bg-base-100 no-underline transition-colors hover:border-primary/40 hover:no-underline"
+          >
+            <div class="relative aspect-[4/3] overflow-hidden bg-base-200">
+              <div class="absolute -right-8 -top-8 size-40 rounded-full bg-accent/25 blur-2xl" aria-hidden="true"></div>
+              <div class="absolute -bottom-6 -left-6 size-32 rounded-full bg-primary/15 blur-xl" aria-hidden="true"></div>
+              <div class="relative flex h-full items-center justify-center p-8">
+                <div class="flex size-16 items-center justify-center rounded-2xl border border-base-300/60 bg-base-100/80 shadow-sm backdrop-blur-sm transition-transform group-hover:scale-105">
+                  {% render 'page_nav_icon', page: card_page, class: 'size-9 text-base-content/80' %}
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-base-300 px-5 py-4">
+              <h3 class="font-semibold text-base-content group-hover:text-primary line-clamp-2">
+                {{ card_page.link_text }}
+              </h3>
+            </div>
+          </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if show_categories %}
+    {% assign categories_title = page.settings.categories_section_title | presence | default: 'templates.index_portal.categories_title' | t %}
+    <section id="portal-categories" aria-labelledby="portal-categories-title">
+      <h2 id="portal-categories-title" class="text-xl font-bold text-base-content md:text-2xl">
+        {{ categories_title }}
+      </h2>
+      <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {% for card_page in nav_pages %}
+          {% if forloop.index > featured_count %}
+          {% assign category_index = forloop.index | minus: featured_count %}
+          {% if category_index <= categories_limit %}
+          {% assign category_description = card_page.settings.description | strip_html | strip %}
+          {% if category_description == blank %}
+            {% assign category_description = card_page.settings.content | strip_html | truncate: 120 %}
+          {% endif %}
+          <a
+            href="{{ card_page.path }}"
+            class="group flex h-full flex-col rounded-lg border border-base-300 bg-base-100 p-5 no-underline transition-all duration-200 hover:border-primary hover:no-underline hover:shadow-sm"
+          >
+            <div class="mb-4">
+              {% render 'page_nav_icon', page: card_page, class: 'size-8 text-base-content/80' %}
+            </div>
+            <h3 class="font-semibold text-base-content transition-colors group-hover:text-primary line-clamp-2">
+              {{ card_page.link_text }}
+            </h3>
+            {% if category_description != blank %}
+              <p class="mt-2 text-sm leading-relaxed text-base-content/60 line-clamp-3">
+                {{ category_description }}
+              </p>
+            {% endif %}
+          </a>
+          {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if show_trending %}
+    {% assign trending_title = page.settings.trending_section_title | presence | default: 'templates.index_portal.trending_title' | t %}
+    {% assign popular_title = page.settings.trending_popular_title | presence | default: 'templates.index_portal.trending_popular_title' | t %}
+    {% assign recent_title = page.settings.trending_recent_title | presence | default: 'templates.index_portal.trending_recent_title' | t %}
+    {% assign popular_pages = site.pages['/'].pages_in_list | order_by: '-visits_count' | limit: trending_limit %}
+    {% assign recent_pages = site.pages['/'].pages_in_list | order_by: '-published_at' | limit: trending_limit %}
+
+    <section id="portal-trending" aria-labelledby="portal-trending-title">
+      <h2 id="portal-trending-title" class="text-xl font-bold text-base-content md:text-2xl">
+        {{ trending_title }}
+      </h2>
+      <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div class="rounded-xl border border-base-300 bg-base-100 p-6">
+          <div class="mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-base-content/70" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+            </svg>
+            <h3 class="font-semibold text-base-content">{{ popular_title }}</h3>
+          </div>
+          <ul class="list-disc space-y-2 pl-5 text-base-content">
+            {% for trend_page in popular_pages %}
+              <li>
+                <a href="{{ trend_page.path }}" class="hover:text-primary hover:underline underline-offset-2">
+                  {{ trend_page.link_text }}
+                </a>
+              </li>
+            {% else %}
+              <li class="list-none pl-0 text-sm text-base-content/50">{{ 'generic.empty' | t }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="rounded-xl border border-base-300 bg-base-100 p-6">
+          <div class="mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-base-content/70" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+            </svg>
+            <h3 class="font-semibold text-base-content">{{ recent_title }}</h3>
+          </div>
+          <ul class="list-disc space-y-2 pl-5 text-base-content">
+            {% for trend_page in recent_pages %}
+              <li>
+                <a href="{{ trend_page.path }}" class="hover:text-primary hover:underline underline-offset-2">
+                  {{ trend_page.link_text }}
+                </a>
+              </li>
+            {% else %}
+              <li class="list-none pl-0 text-sm text-base-content/50">{{ 'generic.empty' | t }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+  </main>
+</div>
 
 {% schema %}
 {
@@ -51,24 +224,49 @@
   "sub_page_templates": ["page"],
   "settings": [
     {
+      "id": "show_hero_section",
+      "type": "checkbox",
+      "label": "t:schema.templates.index.portal.settings.show_hero_section.label",
+      "default": true
+    },
+    {
       "id": "hero_image_url",
       "type": "image_picker",
-      "ratio": "19:6",
-      "width": 900,
+      "ratio": "16:9",
+      "width": 320,
       "label": "t:schema.templates.index.portal.settings.hero_image_url.label",
       "info": "t:schema.templates.index.portal.settings.hero_image_url.info"
+    },
+    {
+      "id": "hero_font_color",
+      "type": "color",
+      "label": "t:schema.templates.index.portal.settings.hero_font_color.label",
+      "info": "t:schema.templates.index.portal.settings.hero_font_color.info",
+      "default": "#ffffff"
     },
     {
       "id": "hero_slogan",
       "type": "text",
       "label": "t:schema.templates.index.portal.settings.hero_slogan.label",
-      "default": "Knowledge base site"
+      "default": "Guides"
     },
     {
       "id": "hero_description",
       "type": "text",
       "label": "t:schema.templates.index.portal.settings.hero_description.label",
-      "default": "👋 What Can We Help?"
+      "default": "Find help and learn how to get the most out of our platform."
+    },
+    {
+      "id": "hero_search_placeholder",
+      "type": "text",
+      "label": "t:schema.templates.index.portal.settings.hero_search_placeholder.label",
+      "placeholder": "Ask a question..."
+    },
+    {
+      "id": "show_hero_hot_tags",
+      "type": "checkbox",
+      "label": "t:schema.templates.index.portal.settings.show_hero_hot_tags.label",
+      "default": true
     },
     {
       "id": "hot_tags",
@@ -77,14 +275,76 @@
       "placeholder": "sign in,install,account,how to"
     },
     {
-      "id": "index_card_page_count",
+      "id": "show_featured_section",
+      "type": "checkbox",
+      "label": "t:schema.templates.index.portal.settings.show_featured_section.label",
+      "default": true
+    },
+    {
+      "id": "featured_section_title",
+      "type": "text",
+      "label": "t:schema.templates.index.portal.settings.featured_section_title.label"
+    },
+    {
+      "id": "featured_count",
       "type": "number",
       "min": 1,
-      "max": 20,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "t:schema.templates.index.portal.settings.featured_count.label",
+      "info": "t:schema.templates.index.portal.settings.featured_count.info"
+    },
+    {
+      "id": "show_categories_section",
+      "type": "checkbox",
+      "label": "t:schema.templates.index.portal.settings.show_categories_section.label",
+      "default": true
+    },
+    {
+      "id": "categories_section_title",
+      "type": "text",
+      "label": "t:schema.templates.index.portal.settings.categories_section_title.label"
+    },
+    {
+      "id": "categories_max_count",
+      "type": "number",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 9,
+      "label": "t:schema.templates.index.portal.settings.categories_max_count.label",
+      "info": "t:schema.templates.index.portal.settings.categories_max_count.info"
+    },
+    {
+      "id": "show_trending_section",
+      "type": "checkbox",
+      "label": "t:schema.templates.index.portal.settings.show_trending_section.label",
+      "default": true
+    },
+    {
+      "id": "trending_section_title",
+      "type": "text",
+      "label": "t:schema.templates.index.portal.settings.trending_section_title.label"
+    },
+    {
+      "id": "trending_popular_title",
+      "type": "text",
+      "label": "t:schema.templates.index.portal.settings.trending_popular_title.label"
+    },
+    {
+      "id": "trending_recent_title",
+      "type": "text",
+      "label": "t:schema.templates.index.portal.settings.trending_recent_title.label"
+    },
+    {
+      "id": "trending_list_limit",
+      "type": "number",
+      "min": 1,
+      "max": 10,
       "step": 1,
       "default": 5,
-      "label": "首页列表展示页面数量",
-      "info": ""
+      "label": "t:schema.templates.index.portal.settings.trending_list_limit.label"
     }
   ]
 }

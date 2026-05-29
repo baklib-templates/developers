@@ -12,7 +12,7 @@
 >
   {% assign right_features_block = site.settings.features_one | presence %}
   <div class='w-full group {% if right_features_block | present? %} has-right-feature-block {% endif %}'>
-    <div class='w-full grid grid-cols-[1fr] gap-6 group-[.has-right-feature-block]:lg:grid-cols-[1fr_var(--right-sidebar-width)]'>
+    <div class='w-full grid grid-cols-[1fr] gap-6 group-[.has-right-feature-block]:lg:grid-cols-[1fr_240px]'>
       <!-- 中间内容 -->
       <div class="flex flex-col px-4 lg:px-10 group-[.has-right-feature-block]:md:pr-0 py-6 overflow-x-hidden relative">
         {% comment %} 背景 Hero, 可选 {% endcomment %}
@@ -32,7 +32,7 @@
       <!-- 右侧 feature block -->
       {% if right_features_block | present? %}
         <div class="print:hidden hidden lg:block has-right-feature-block">
-          <div class="sticky top-[calc(var(--header-height)_+_1.5rem)] h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto border-l border-base-200" data-toc-target="menu">
+          <div class="sticky top-[5.5rem] h-[calc(100vh-8rem)] max-w-full w-full overflow-auto border-l border-base-200" data-toc-target="menu">
             {{ right_features_block }}
           </div>
         </div>
@@ -52,18 +52,19 @@
     "sub_page_templates": ["page"],
     "settings": [
       {
-        "id": "icon",
-        "type": "image_picker",
-        "ratio": "1:1",
-        "width": 60,
-        "label": "图标"
+        "id": "nav_lucide_icon",
+        "type": "select",
+        "label": "t:schema.templates.page.settings.nav_lucide_icon.label",
+        "info": "t:schema.templates.page.settings.nav_lucide_icon.info",
+        "default": "folder",
+        "choices_from": "$site.lucide_icons"
       },
       {
         "id": "title",
         "type": "text",
         "readonly": true,
-        "label": "标题",
-        "info": "知识库同步，不可编辑"
+        "label": "t:schema.templates.page.settings.title.label",
+        "info": "t:schema.templates.page.settings.title.info"
       },
       {
         "id": "content",

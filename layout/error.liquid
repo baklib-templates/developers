@@ -1,13 +1,17 @@
 <!doctype html>
-<html lang="{{ site.language }}" class="scroll-smooth">
+<html lang="{{ site.language }}" class="scroll-smooth bg-base-100">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% meta_tags %}
-    {{ 'css/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+
+    {% render 'theme_runtime_colors' %}
+
+    {{ 'baklib/shared/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+    {{ 'stylesheets/application.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
   </head>
-  <body class="" id="js-body" data-controller="theme">
-      <div class="mt-20">{{ content_for_layout }}</div>
-      {% render 'footer' %}
+  <body class="grid min-h-screen grid-rows-[auto_1fr_auto] bg-base-100 tracking-wide text-base-content antialiased">
+    <div class="mt-20">{{ content_for_layout }}</div>
+    {% render 'footer' %}
   </body>
 </html>

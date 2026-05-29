@@ -1,7 +1,7 @@
 {
   "generic": {
-    "theme": "thème",
-    "back": "retourner",
+    "back": "Retour",
+    "about": "À propos",
     "popular_search": "Recherches populaires",
     "read_more": "Lire plus",
     "empty": "Le contenu est vide",
@@ -10,10 +10,59 @@
     "hot_pages": "Sujets populaires",
     "feedback_created_at": "Dernier Feedback en"
   },
+  "accessibility": {
+    "search": "Rechercher",
+    "close_sidebar": "Fermer la barre latérale"
+  },
+  "statics": {
+    "about": {
+      "title": "À propos du thème Developers Wiki",
+      "intro": "Le thème Developers Wiki est un modèle de base de connaissances avec plusieurs styles d’interface, une mise en page responsive et une apparence personnalisable.",
+      "section1_title": "1. Créer un site",
+      "section1_workspace": "Dans l’espace de travail Baklib",
+      "section1_market_badge": "Marketplace",
+      "section1_find_theme": "trouvez le thème",
+      "section1_theme_badge": "Developers",
+      "section1_after_theme": "et créez votre site. Le thème inclut",
+      "section1_tailwind": "Tailwind CSS",
+      "section1_and": "et",
+      "section1_daisyui": "DaisyUI",
+      "section1_built_in": ".",
+      "section1_download_label": "Téléchargement public :",
+      "section2_title": "2. Construire les pages",
+      "section2_p1": "Dans l’éditeur de thème, placez les pages statiques dans",
+      "section2_statics_folder": "/statics",
+      "section2_p1_mid": "et les modèles dynamiques dans",
+      "section2_templates_folder": "/templates",
+      "section2_p1_end": ".",
+      "section2_quote": "Pour les tutoriels de développement de thème, consultez le",
+      "section2_dev_center": "Centre développeurs Baklib",
+      "section3_title": "3. Gérer le contenu dans l’admin",
+      "section3_p1": "Le thème inclut le modèle de documentation",
+      "section3_page_template": "page",
+      "section3_p1_mid": ". Liez une",
+      "section3_knowledge_base": "base de connaissances",
+      "section3_p1_end": "et le contenu se synchronise avec le site wiki.",
+      "daisyui_title": "Qu’est-ce que DaisyUI ?",
+      "daisyui_body": "DaisyUI est une bibliothèque de composants qui s’intègre à Tailwind CSS. Tailwind CSS est un framework CSS utility-first très utilisé. Il fournit des classes utilitaires pour construire rapidement des designs personnalisés en HTML.",
+      "baklib_title": "Qu’est-ce que Baklib ?",
+      "baklib_body": "Baklib est une plateforme cloud prête à l’emploi. Elle vous évite serveurs, domaines, SEO, déploiement et exploitation — les modèles structurent le site pour que vous vous concentriez sur le contenu et le design."
+    }
+  },
   "placeholders": {
     "search": "Rechercher dans la station"
   },
   "templates": {
+    "index_portal": {
+      "featured_title": "Guides en vedette",
+      "categories_title": "Catégories",
+      "trending_title": "Guides tendance",
+      "trending_popular_title": "Les plus populaires",
+      "trending_recent_title": "Ajoutés récemment"
+    },
+    "page_api": {
+      "loading": "Chargement…"
+    },
     "page": {
       "copy_success": "Le lien a été copié",
       "llm_prompt_template": "Lis %{url} pour que je puisse poser des questions à son sujet.",
@@ -34,16 +83,25 @@
       "title_posted": "Merci pour votre feedback",
       "title_unposted": "Soumettre un feedback"
     },
+    "paginate": {
+      "previous": "Précédent",
+      "next": "Suivant"
+    },
     "page": {
       "prev_page": "Page précédente",
       "next_page": "Page suivante"
+    },
+    "plugins": {
+      "online_support": "Support en ligne",
+      "presales": "Avant-vente",
+      "ticket": "Ticket support",
+      "demo": "Réserver une démo"
     },
     "page_tools": {
       "copy_page_label": "Copier la page",
       "copy_page_description": "Copier cette page au format Markdown pour les LLM",
       "open_in_chatgpt": "Ouvrir dans ChatGPT",
       "open_in_claude": "Ouvrir dans Claude",
-      "open_in_doubao": "Ouvrir dans Doubao",
       "open_in_deepseek": "Ouvrir dans DeepSeek",
       "ask_about_page": "Poser une question sur cette page",
       "copy_mcp_label": "Copier la commande d’installation MCP",

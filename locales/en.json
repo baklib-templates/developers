@@ -1,19 +1,68 @@
 {
   "generic": {
-    "theme": "Theme",
-    "back": "return",
+    "back": "Back",
+    "about": "About",
     "popular_search": "Trending searches",
     "read_more": "Read more",
-    "empty": "The content is empty.",
+    "empty": "No content yet.",
     "copyright": "Copyright",
     "published_at": "Posted on",
-    "hot_pages": "hot topic",
+    "hot_pages": "Popular pages",
     "feedback_created_at": "Last feedback on"
+  },
+  "accessibility": {
+    "search": "Search",
+    "close_sidebar": "Close sidebar"
+  },
+  "statics": {
+    "about": {
+      "title": "About the Developers Wiki theme",
+      "intro": "The Developers Wiki theme is a documentation knowledge base template with multi-theme UI, responsive layouts, and a customizable site appearance.",
+      "section1_title": "1. Create a site",
+      "section1_workspace": "In the Baklib workspace",
+      "section1_market_badge": "Marketplace",
+      "section1_find_theme": "find the",
+      "section1_theme_badge": "Developers",
+      "section1_after_theme": "theme and create your site. The theme ships with",
+      "section1_tailwind": "Tailwind CSS",
+      "section1_and": "and",
+      "section1_daisyui": "DaisyUI",
+      "section1_built_in": "built in.",
+      "section1_download_label": "Public download:",
+      "section2_title": "2. Build site pages",
+      "section2_p1": "In the theme editor, place static pages under",
+      "section2_statics_folder": "/statics",
+      "section2_p1_mid": "and dynamic templates under",
+      "section2_templates_folder": "/templates",
+      "section2_p1_end": ".",
+      "section2_quote": "For theme development tutorials, see the",
+      "section2_dev_center": "Baklib Developer Center",
+      "section3_title": "3. Manage content in the admin",
+      "section3_p1": "The theme includes a documentation template",
+      "section3_page_template": "page",
+      "section3_p1_mid": ". Bind a",
+      "section3_knowledge_base": "knowledge base",
+      "section3_p1_end": "and content syncs to your wiki site.",
+      "daisyui_title": "What is DaisyUI?",
+      "daisyui_body": "DaisyUI is a component library that works seamlessly with Tailwind CSS. Tailwind CSS is a utility-first CSS framework popular with front-end developers. It provides low-level utility classes so you can build custom designs quickly in HTML.",
+      "baklib_title": "What is Baklib?",
+      "baklib_body": "Baklib is a ready-to-use cloud platform. It saves you from buying servers, configuring domains, SEO, deployment, and operations—while templates help you structure the site so you can focus on content and page design."
+    }
   },
   "placeholders": {
     "search": "Search within the website"
   },
   "templates": {
+    "index_portal": {
+      "featured_title": "Featured guides",
+      "categories_title": "Categories",
+      "trending_title": "Trending guides",
+      "trending_popular_title": "Most popular",
+      "trending_recent_title": "Recently added"
+    },
+    "page_api": {
+      "loading": "Loading..."
+    },
     "page": {
       "copy_success": "Link copied",
       "llm_prompt_template": "Read from %{url} so I can ask questions about it.",
@@ -34,16 +83,25 @@
       "title_posted": "Thank you for your feedback",
       "title_unposted": "Submit feedback"
     },
+    "paginate": {
+      "previous": "Previous",
+      "next": "Next"
+    },
     "page": {
       "prev_page": "Previous Page",
       "next_page": "Next page"
+    },
+    "plugins": {
+      "online_support": "Online support",
+      "presales": "Pre-sales",
+      "ticket": "Support ticket",
+      "demo": "Book a demo"
     },
     "page_tools": {
       "copy_page_label": "Copy page",
       "copy_page_description": "Copy this page as Markdown for LLMs",
       "open_in_chatgpt": "Open in ChatGPT",
       "open_in_claude": "Open in Claude",
-      "open_in_doubao": "Open in Doubao",
       "open_in_deepseek": "Open in DeepSeek",
       "ask_about_page": "Ask a question about this page",
       "copy_mcp_label": "Copy MCP install command",

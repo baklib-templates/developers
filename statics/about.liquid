@@ -1,37 +1,32 @@
-<!-- the custom static page example -->
-<!-- code from https://tailwindui.com/components/marketing/page-examples/landing-pages -->
+<!-- Custom static page example -->
 
 <main class="isolate relative px-4">
-  <!-- Hero section -->
   <div class="absolute inset-x-0 overflow-hidden -top-40 -z-10 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
     <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
   </div>
 
-  <!-- Feature section -->
-  <div class="m-auto max-w-[var(--max-content-width)] py-10 text-base-content space-y-8">
-    <!-- Header -->
+  <div class="m-auto max-w-7xl py-10 text-base-content space-y-8">
     <header class="text-center space-y-3 pb-8">
-      <h1 class="text-4xl font-bold">Daisy Wiki 模板介绍</h1>
+      <h1 class="text-4xl font-bold">{{ 'statics.about.title' | t }}</h1>
       <p class="text-base opacity-80">
-        Daisy Wiki 模板是一个通用的文档知识库网站模板，具有多主题 UI 风格、多终端适配，以及可个性化定义网站界面。
+        {{ 'statics.about.intro' | t }}
       </p>
     </header>
 
-    <!-- Section 1 -->
     <section class="space-y-4">
-      <h3 class="text-2xl font-bold">1. 创建站点</h3>
+      <h3 class="text-2xl font-bold">{{ 'statics.about.section1_title' | t }}</h3>
       <p>
-        在 Baklib 工作台的
-        <span class="badge badge-ghost badge-secondary">市场</span>
-        中找到
-        <span class="badge badge-ghost badge-secondary">Daisy Wiki</span>
-        模板，创建站点。站点创建好以后，模板自动内置了
-        <code class="bg-base-200 px-1 rounded">TailwindCSS</code>
-        和
-        <code class="bg-base-200 px-1 rounded">DaisyUI</code>。
+        {{ 'statics.about.section1_workspace' | t }}
+        <span class="badge badge-ghost badge-secondary">{{ 'statics.about.section1_market_badge' | t }}</span>
+        {{ 'statics.about.section1_find_theme' | t }}
+        <span class="badge badge-ghost badge-secondary">{{ 'statics.about.section1_theme_badge' | t }}</span>
+        {{ 'statics.about.section1_after_theme' | t }}
+        <code class="bg-base-200 px-1 rounded">{{ 'statics.about.section1_tailwind' | t }}</code>
+        {{ 'statics.about.section1_and' | t }}
+        <code class="bg-base-200 px-1 rounded">{{ 'statics.about.section1_daisyui' | t }}</code>{{ 'statics.about.section1_built_in' | t }}
       </p>
       <p>
-        模板公开下载地址：
+        {{ 'statics.about.section1_download_label' | t }}
         <a
           href="https://gitlab.com/baklib/themes/developers"
           target="_blank"
@@ -42,55 +37,45 @@
       </p>
     </section>
 
-    <!-- Section 2 -->
     <section class="space-y-4">
-      <h3 class="text-2xl font-bold">2. 构建网站页面</h3>
+      <h3 class="text-2xl font-bold">{{ 'statics.about.section2_title' | t }}</h3>
       <p>
-        打开模板编辑器，将创建的静态网页放在文件夹
-        <code class="bg-base-200 px-1 rounded">/statics</code> 下，
-        创建的动态模板网页放在文件夹
-        <code class="bg-base-200 px-1 rounded">/templates</code> 下。
+        {{ 'statics.about.section2_p1' | t }}
+        <code class="bg-base-200 px-1 rounded">{{ 'statics.about.section2_statics_folder' | t }}</code>
+        {{ 'statics.about.section2_p1_mid' | t }}
+        <code class="bg-base-200 px-1 rounded">{{ 'statics.about.section2_templates_folder' | t }}</code>{{ 'statics.about.section2_p1_end' | t }}
       </p>
 
       <blockquote class="border-l-4 border-primary pl-4 italic bg-base-200 py-3 rounded">
-        关于模板开发教程请参考：
+        {{ 'statics.about.section2_quote' | t }}
         <a href="https://dev.baklib.cn" class="link link-primary" target="_blank">
-          Baklib 开发者中心
+          {{ 'statics.about.section2_dev_center' | t }}
         </a>
       </blockquote>
     </section>
 
-    <!-- Section 3 -->
     <section class="space-y-4">
-      <h3 class="text-2xl font-bold">3. 后台管理内容</h3>
+      <h3 class="text-2xl font-bold">{{ 'statics.about.section3_title' | t }}</h3>
       <p>
-        系统已预设了针对文档知识库的模板
-        <code class="bg-base-200 px-1 rounded">page</code>，
-        你只需要绑定一个
-        <code class="bg-base-200 px-1 rounded">知识库</code>，
-        所有内容都会同步到 Wiki 站点。
+        {{ 'statics.about.section3_p1' | t }}
+        <code class="bg-base-200 px-1 rounded">{{ 'statics.about.section3_page_template' | t }}</code>{{ 'statics.about.section3_p1_mid' | t }}
+        <code class="bg-base-200 px-1 rounded">{{ 'statics.about.section3_knowledge_base' | t }}</code>{{ 'statics.about.section3_p1_end' | t }}
       </p>
     </section>
 
     <div class="divider my-10"></div>
 
-    <!-- What is DaisyUI -->
     <section class="space-y-3">
-      <h2 class="text-3xl font-light">什么是 Daisy UI?</h2>
+      <h2 class="text-3xl font-light">{{ 'statics.about.daisyui_title' | t }}</h2>
       <p>
-        DaisyUI 是一个功能强大的组件库，可与 Tailwind CSS 无缝协作。
-        Tailwind CSS 是一个实用类优先的 CSS 框架，在前端开发人员中广受欢迎。
-        它提供低级实用程序类，让你可以直接在 HTML 中快速构建自定义设计。
+        {{ 'statics.about.daisyui_body' | t }}
       </p>
     </section>
 
-    <!-- What is Baklib -->
     <section class="space-y-3">
-      <h2 class="text-3xl font-light">什么是 Baklib?</h2>
+      <h2 class="text-3xl font-light">{{ 'statics.about.baklib_title' | t }}</h2>
       <p>
-        Baklib 是一个基础云平台，开箱即用。
-        它可以帮助你省去购买服务器、配置域名、SEO、部署和运维等繁琐的工作；
-        同时，通过模板机制构建网站结构，让你专注于内容创作和页面设计。
+        {{ 'statics.about.baklib_body' | t }}
       </p>
     </section>
   </div>

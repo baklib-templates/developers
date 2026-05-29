@@ -2,8 +2,8 @@
 <div
   class="join shrink-0 rounded-md border border-base-300 bg-base-100"
   data-controller="copy-page page-tools"
-  data-copy-page-copying-text-value="{{ "templates.page.llm_copying"  | t: '复制中...'  }}"
-  data-copy-page-success-text-value="{{ 'templates.page.llm_copied' | t: '已复制' }}"
+  data-copy-page-copying-text-value="{{ 'templates.page.llm_copying' | t }}"
+  data-copy-page-success-text-value="{{ 'templates.page.llm_copied' | t }}"
   data-copy-page-markdown-url-value="{{ page_markdown_url }}"
   data-page-tools-markdown-url-value="{{ page_markdown_url }}"
   data-page-tools-llm-prompt-value="{{ 'templates.page.llm_prompt_template' | t, url: page_markdown_url }}"

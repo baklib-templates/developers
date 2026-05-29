@@ -14,6 +14,7 @@
 
 import { Controller } from "@hotwired/stimulus"
 import Mustache from "mustache"
+import { initLucideIcons } from "../lucide_init"
 
 export default class extends Controller {
   static values = {
@@ -30,7 +31,8 @@ export default class extends Controller {
     linkTurboFrame: String,
     linkTurboFrameAction: String,
     linkTurbo: Boolean, // 新增参数
-    expand: { type: Boolean, default: false } // 是否默认展开下级
+    expand: { type: Boolean, default: false }, // 是否默认展开下级
+    icons: { type: String, default: "{}" }, // JSON: path => lucide icon name (level-1 sections)
   }
 
   static targets = [
@@ -38,6 +40,7 @@ export default class extends Controller {
   ]
 
   connect() {
+    this.iconsMap = this.parseIconsValue()
     this.currentPath = this.hasCurrentPathValue ? this.currentPathValue : window.location.pathname;
     this.menuContainer = this.rootContainer();
     if (!this.menuContainer) {
@@ -59,6 +62,18 @@ export default class extends Controller {
 
   disconnect() {
 
+  }
+
+  parseIconsValue() {
+    if (!this.hasIconsValue || !this.iconsValue) return {}
+
+    try {
+      const parsed = JSON.parse(this.iconsValue)
+      return parsed && typeof parsed === "object" ? parsed : {}
+    } catch (error) {
+      console.warn("turbo_nav_tree_controller: invalid icons JSON", error)
+      return {}
+    }
   }
 
   refreshActiveState = () => {
@@ -129,6 +144,7 @@ export default class extends Controller {
       })
 
       container.appendChild(ul)
+      initLucideIcons(ul)
     })
     container.rendered = true
   }
@@ -210,7 +226,9 @@ export default class extends Controller {
 
   // 单个 item 渲染
   renderItem(node, depth, open = false, isActive = false) {
-    const hasChildren = this.hasUrlValue ? node.children_count : node.children?.length > 0
+    const hasChildren = this.hasUrlValue ? node.children_count > 0 : node.children?.length > 0
+    const isSectionHeader = depth === 0
+    const icon = this.iconsMap?.[node.path] || "folder"
 
     // 动态拼接 a 标签属性
     let aAttrs = []
@@ -266,6 +284,9 @@ export default class extends Controller {
       hasChildren,
       open,
       isActive,
+      isSectionHeader,
+      icon,
+      chevronRotateClass: open ? "rotate-90" : "",
     })
   }
 

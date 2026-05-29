@@ -1,8 +1,41 @@
 {
   "theme_label": "Developers",
-  "theme_description": "Thème de documentation pour les développeurs et les équipes techniques — idéal pour les références API, les manuels produit et les guides techniques. Construit sur DaisyUI avec prise en charge multi-thème et personnalisation flexible.",
+  "theme_description": "Thème de documentation pour les développeurs et les équipes techniques — idéal pour les références API, les manuels produit et les guides techniques. Construit sur DaisyUI avec couleurs de thème en temps réel et personnalisation flexible.",
+  "theme_languages": {
+    "zh_cn": "Chinois simplifié",
+    "en": "Anglais",
+    "de": "Allemand",
+    "fr": "Français"
+  },
+  "recommendations": {
+    "baklib": {
+      "name": "Marque Baklib"
+    },
+    "fashion": {
+      "name": "Mode"
+    },
+    "old_school": {
+      "name": "Rétro"
+    }
+  },
   "generic": {
-    "name": "Paramètres des informations de base du site"
+    "name": "Paramètres des informations de base du site",
+    "settings": {
+      "logo_url": {
+        "label": "Image du logo",
+        "info": "Si définie, seul ce logo s’affiche dans l’en-tête ; sinon, favicon du site et nom du site."
+      },
+      "is_allow_published_at": {
+        "label": "Afficher la date de publication sur les articles"
+      },
+      "is_allow_author": {
+        "label": "Afficher l'auteur sur les articles"
+      },
+      "left_sidebar_width": {
+        "label": "Largeur de la barre latérale gauche",
+        "info": "Pour les pages doc avec barre latérale. Valeur par défaut : 300px."
+      }
+    }
   },
   "custom_html": {
     "settings": {
@@ -17,12 +50,36 @@
         "placeholder": "Insérez généralement ici des liens de navigation vers d'autres sites Web de la société"
       },
       "head_html": {
-        "label": "Head Meta code HTML pour",
-        "info": "Cette partie du contenu est implantée dans la balise < Head > de votre site, utilisez le format HTML standard.",
-        "placeholder": "Par exemple: < META NAME = 'author' Content = 'baklib' / >"
+        "label": "Code HTML meta Head",
+        "info": "Ce contenu sera inséré dans la balise <head> du site. Utilisez le format HTML standard.",
+        "placeholder": "Par exemple : <meta name='author' content='Baklib' />"
+      },
+      "features_one": {
+        "label": "Bloc fonctionnalités un",
+        "placeholder": "Extrait HTML",
+        "info": "Bloc HTML prédéfini. Front-end : site.settings.features_one"
+      },
+      "features_two": {
+        "label": "Bloc fonctionnalités deux",
+        "placeholder": "Extrait HTML",
+        "info": "Bloc HTML prédéfini. Front-end : site.settings.features_two"
+      },
+      "features_three": {
+        "label": "Bloc fonctionnalités trois",
+        "placeholder": "Extrait HTML",
+        "info": "Bloc HTML prédéfini. Front-end : site.settings.features_three"
       }
     },
     "name": "Code HTML personnalisé"
+  },
+  "lucide_icons": {
+    "name": "Icônes Lucide",
+    "settings": {
+      "lucide_icons": {
+        "label": "Noms d'icônes Lucide autorisés",
+        "info": "Un nom kebab-case par ligne (ex. folder, book-open). Les modèles page et canal utilisent cette liste pour l'icône de la barre latérale. Les noms doivent correspondre au bundle JS du thème ; sans mise à jour du bundle, l'icône ne s'affichera pas."
+      }
+    }
   },
   "templates": {
     "index": {
@@ -32,6 +89,10 @@
             "label": "Diagramme de fond",
             "info": "Le diagramme d'arrière - plan est automatiquement recadré en fonction de la largeur de la page et de la hauteur de l'arrière - plan"
           },
+          "hero_font_color": {
+            "label": "Couleur du texte du hero",
+            "info": "S’applique au titre, au sous-titre et aux tags de recherche populaires (ex. #ffffff sur fond sombre)"
+          },
           "hot_tags": {
             "label": "Mots - clés de recherche chaude (veuillez les séparer par une virgule anglaise «, »)"
           },
@@ -40,23 +101,75 @@
           },
           "hero_description": {
             "label": "Description du slogan"
+          },
+          "index_card_page_count": {
+            "label": "Pages listées par carte guide",
+            "info": "Nombre de sous-pages affichées sous chaque guide sur l’accueil documentation"
           }
         }
       },
       "portal": {
         "settings": {
           "hero_image_url": {
-            "label": "Diagramme de fond",
-            "info": "Le diagramme d'arrière - plan est automatiquement recadré en fonction de la largeur de la page et de la hauteur de l'arrière - plan"
+            "label": "Image de fond du hero",
+            "info": "Format 16:9 ; pleine largeur à hauteur naturelle, dégradé jusqu’à la transparence totale en bas"
           },
-          "hot_tags": {
-            "label": "Mots - clés de recherche chaude (veuillez les séparer par une virgule anglaise «, »)"
+          "hero_font_color": {
+            "label": "Couleur du texte du hero",
+            "info": "S’applique au titre, au sous-titre et aux tags de recherche populaires (ex. #ffffff sur fond sombre)"
           },
           "hero_slogan": {
-            "label": "Titre du slogan"
+            "label": "Titre principal"
           },
           "hero_description": {
-            "label": "Description du slogan"
+            "label": "Sous-titre"
+          },
+          "hot_tags": {
+            "label": "Mots-clés de recherche populaires (séparés par des virgules)"
+          },
+          "show_hero_section": {
+            "label": "Afficher la section hero"
+          },
+          "show_hero_hot_tags": {
+            "label": "Afficher les tags de recherche populaires"
+          },
+          "hero_search_placeholder": {
+            "label": "Texte du champ de recherche"
+          },
+          "show_featured_section": {
+            "label": "Afficher les guides en vedette"
+          },
+          "featured_section_title": {
+            "label": "Titre de la section vedette"
+          },
+          "featured_count": {
+            "label": "Nombre de guides en vedette",
+            "info": "Premiers éléments du menu de navigation"
+          },
+          "show_categories_section": {
+            "label": "Afficher les catégories"
+          },
+          "categories_section_title": {
+            "label": "Titre de la section catégories"
+          },
+          "categories_max_count": {
+            "label": "Nombre max. de catégories",
+            "info": "Éléments de navigation après les guides en vedette"
+          },
+          "show_trending_section": {
+            "label": "Afficher les guides tendance"
+          },
+          "trending_section_title": {
+            "label": "Titre de la section tendance"
+          },
+          "trending_popular_title": {
+            "label": "Titre colonne « Populaires »"
+          },
+          "trending_recent_title": {
+            "label": "Titre colonne « Récents »"
+          },
+          "trending_list_limit": {
+            "label": "Liens par colonne tendance"
           }
         }
       }
@@ -79,7 +192,16 @@
           "info": "Synchronisation à partir de sources de données, non modifiable"
         },
         "title": {
-          "label": "Titre"
+          "label": "Titre",
+          "info": "Synchronisé depuis la base de connaissances ; non modifiable ici"
+        },
+        "description": {
+          "label": "Description",
+          "info": "Résumé de page optionnel pour l'en-tête de l'article"
+        },
+        "nav_lucide_icon": {
+          "label": "Icône de section latérale",
+          "info": "Icône Lucide lorsque cette page apparaît comme groupe de premier niveau dans la barre latérale"
         },
         "api_document": {
           "label": "Documentation openapi"

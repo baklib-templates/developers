@@ -1,0 +1,52 @@
+{% comment %}
+  Brand-aligned search input (statics/brand.liquid tokens via .site-search-* classes).
+  @param name {string} form keywords field name (required)
+  @param placeholder {string}
+  @param value {string} optional escaped keywords
+  @param id {string} optional input id
+  @param input_type {string} search|text — default search
+  @param size {string} default|lg — lg adds responsive height/text scale
+  @param autocomplete {string} optional, e.g. off
+  @param icon {string} search|none — left search icon (default search)
+  @param submit_icon {string} search|arrow|none — right submit affordance (default none)
+  @param form_class {string} optional extra classes on control wrapper
+  @param input_class {string} optional extra classes on input
+{% endcomment %}
+{% assign _input_type = input_type | default: 'search' %}
+{% assign _icon = icon | default: 'search' %}
+{% assign _submit_icon = submit_icon | default: 'none' %}
+{% assign _size = size | default: 'default' %}
+
+<div class="site-search-control {{ form_class }}">
+  {% if _icon == 'search' %}
+    <span class="site-search-icon-btn site-search-icon-btn--start pointer-events-none" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </span>
+  {% endif %}
+
+  <input
+    type="{{ _input_type }}"
+    name="{{ name }}"
+    {% if id %}id="{{ id }}"{% endif %}
+    {% if value %}value="{{ value }}"{% endif %}
+    placeholder="{{ placeholder }}"
+    {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
+    class="site-search-input{% if _icon == 'search' %} site-search-input--icon-left{% elsif _submit_icon == 'search' %} site-search-input--submit-search-only{% endif %}{% if _submit_icon == 'arrow' %} site-search-input--icon-right{% endif %}{% if _size == 'lg' %} site-search-input--lg{% endif %} {{ input_class }}"
+  >
+
+  {% if _submit_icon == 'search' %}
+    <button type="submit" class="site-search-icon-btn site-search-icon-btn--submit-left-sm">
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+    </button>
+  {% elsif _submit_icon == 'arrow' %}
+    <button type="submit" class="site-search-icon-btn site-search-icon-btn--end transition-colors hover:text-primary/80" aria-label="{{ placeholder }}">
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </button>
+  {% endif %}
+</div>

@@ -6,11 +6,6 @@
           {% render 'header_logo' title_style: 'font-bold md:text-xl text-base-content/80 whitespace-nowrap' %}
         </div>
       </div >
-
-      <div class="my-2 md:my-4">
-        {% render 'search_modal' %}
-      </div>
-
       <ul class="custom-menu w-full px-0 py-0" data-controller="navtree" data-navtree-target="menuList">
         <turbo-frame id="page_nav_tree_frame__" src="/s/page/nav_tree" loading="lazy">
           <div class="flex items-center justify-center h-20 text-base-content/60">

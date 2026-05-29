@@ -1,8 +1,41 @@
 {
   "theme_label": "Developers",
-  "theme_description": "Ein Dokumentationsthema für Entwickler und technische Teams – ideal für API-Referenzen, Produkthandbücher und technische Leitfäden. Auf DaisyUI basierend mit Multi-Theme-Unterstützung und flexibler Anpassung.",
+  "theme_description": "Ein Dokumentationsthema für Entwickler und technische Teams – ideal für API-Referenzen, Produkthandbücher und technische Leitfäden. Auf DaisyUI mit Laufzeit-Themenfarben und flexibler Anpassung.",
+  "theme_languages": {
+    "zh_cn": "Vereinfachtes Chinesisch",
+    "en": "Englisch",
+    "de": "Deutsch",
+    "fr": "Französisch"
+  },
+  "recommendations": {
+    "baklib": {
+      "name": "Baklib Marke"
+    },
+    "fashion": {
+      "name": "Mode"
+    },
+    "old_school": {
+      "name": "Retro"
+    }
+  },
   "generic": {
-    "name": "Grundlagen der Website"
+    "name": "Grundlagen der Website",
+    "settings": {
+      "logo_url": {
+        "label": "Logo-Bild",
+        "info": "Wenn gesetzt, wird im Header nur dieses Logo angezeigt; andernfalls Website-Icon und Seitenname."
+      },
+      "is_allow_published_at": {
+        "label": "Veröffentlichungsdatum in Artikeln anzeigen"
+      },
+      "is_allow_author": {
+        "label": "Autor in Artikeln anzeigen"
+      },
+      "left_sidebar_width": {
+        "label": "Breite der linken Seitenleiste",
+        "info": "Für Dokumentationsseiten mit Seitenleiste. Standard: 300px."
+      }
+    }
   },
   "custom_html": {
     "settings": {
@@ -20,9 +53,33 @@
         "label": "Head Meta HTML-Code",
         "info": "Dieser Teil wird in das <head>-Tag der Website eingefügt. Verwenden Sie bitte das Standard-HTML-Format.",
         "placeholder": "Beispiel: <meta name='author' content='Baklib' />"
+      },
+      "features_one": {
+        "label": "Funktionsblock eins",
+        "placeholder": "HTML-Snippet",
+        "info": "Voreingestellter HTML-Block. Frontend: site.settings.features_one"
+      },
+      "features_two": {
+        "label": "Funktionsblock zwei",
+        "placeholder": "HTML-Snippet",
+        "info": "Voreingestellter HTML-Block. Frontend: site.settings.features_two"
+      },
+      "features_three": {
+        "label": "Funktionsblock drei",
+        "placeholder": "HTML-Snippet",
+        "info": "Voreingestellter HTML-Block. Frontend: site.settings.features_three"
       }
     },
     "name": "Benutzerdefinierter HTML-Code"
+  },
+  "lucide_icons": {
+    "name": "Lucide-Symbole",
+    "settings": {
+      "lucide_icons": {
+        "label": "Erlaubte Lucide-Symbolnamen",
+        "info": "Ein kebab-case-Name pro Zeile (z. B. folder, book-open). Seiten- und Kanalvorlagen nutzen diese Liste für das Seitenleisten-Symbol. Namen müssen zum Theme-JS-Bundle passen; ohne Bundle-Update werden Symbole nicht gerendert."
+      }
+    }
   },
   "templates": {
     "index": {
@@ -32,6 +89,10 @@
             "label": "Hintergrundbild",
             "info": "Hintergrundbild wird automatisch auf Seitenbreite und Hintergrundhöhe geschnitten"
           },
+          "hero_font_color": {
+            "label": "Hero-Textfarbe",
+            "info": "Gilt für Titel, Untertitel und beliebte Such-Tags im Hero (z. B. #ffffff auf dunklem Hintergrund)"
+          },
           "hot_tags": {
             "label": "Hot Search Keywords (bitte durch ein Komma getrennt)"
           },
@@ -40,23 +101,75 @@
           },
           "hero_description": {
             "label": "Slogan Beschreibung"
+          },
+          "index_card_page_count": {
+            "label": "Seiten pro Leitfaden-Karte",
+            "info": "Anzahl der Unterseiten unter jeder Leitfaden-Karte auf der Dokumentations-Startseite"
           }
         }
       },
       "portal": {
         "settings": {
           "hero_image_url": {
-            "label": "Hintergrundbild",
-            "info": "Hintergrundbild wird automatisch auf Seitenbreite und Hintergrundhöhe geschnitten"
+            "label": "Hero-Hintergrundbild",
+            "info": "16:9; volle Breite mit natürlicher Höhe, nach unten vollständig transparent verlaufend"
           },
-          "hot_tags": {
-            "label": "Hot Search Keywords (bitte durch ein Komma getrennt)"
+          "hero_font_color": {
+            "label": "Hero-Textfarbe",
+            "info": "Gilt für Titel, Untertitel und beliebte Such-Tags im Hero (z. B. #ffffff auf dunklem Hintergrund)"
           },
           "hero_slogan": {
-            "label": "Schlagworttitel"
+            "label": "Hero-Titel"
           },
           "hero_description": {
-            "label": "Slogan Beschreibung"
+            "label": "Hero-Untertitel"
+          },
+          "hot_tags": {
+            "label": "Beliebte Suchbegriffe (kommagetrennt)"
+          },
+          "show_hero_section": {
+            "label": "Hero-Bereich anzeigen"
+          },
+          "show_hero_hot_tags": {
+            "label": "Beliebte Such-Tags anzeigen"
+          },
+          "hero_search_placeholder": {
+            "label": "Suchfeld-Platzhalter"
+          },
+          "show_featured_section": {
+            "label": "Empfohlene Anleitungen anzeigen"
+          },
+          "featured_section_title": {
+            "label": "Titel des Featured-Bereichs"
+          },
+          "featured_count": {
+            "label": "Anzahl empfohlener Anleitungen",
+            "info": "Erste Einträge im Navigationsmenü"
+          },
+          "show_categories_section": {
+            "label": "Kategorien anzeigen"
+          },
+          "categories_section_title": {
+            "label": "Titel des Kategorie-Bereichs"
+          },
+          "categories_max_count": {
+            "label": "Maximale Kategorien",
+            "info": "Weitere Nav-Einträge nach den Featured-Anleitungen"
+          },
+          "show_trending_section": {
+            "label": "Trend-Anleitungen anzeigen"
+          },
+          "trending_section_title": {
+            "label": "Titel des Trend-Bereichs"
+          },
+          "trending_popular_title": {
+            "label": "Titel Spalte „Beliebt“"
+          },
+          "trending_recent_title": {
+            "label": "Titel Spalte „Neu“"
+          },
+          "trending_list_limit": {
+            "label": "Links pro Trend-Spalte"
           }
         }
       }
@@ -79,7 +192,16 @@
           "info": "Synchronisierung von Datenquellen, nicht bearbeitbar"
         },
         "title": {
-          "label": "Titel"
+          "label": "Titel",
+          "info": "Aus der Wissensbasis synchronisiert; hier nicht bearbeitbar"
+        },
+        "description": {
+          "label": "Beschreibung",
+          "info": "Optionale Seitenzusammenfassung für den Artikelkopf"
+        },
+        "nav_lucide_icon": {
+          "label": "Symbol für Seitenleisten-Gruppe",
+          "info": "Lucide-Symbol, wenn diese Seite als Gruppe der obersten Ebene in der Seitenleiste erscheint"
         },
         "api_document": {
           "label": "OpenAPI Dokumentation"

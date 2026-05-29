@@ -4,9 +4,9 @@
     href="{{ page.feedback_path }}"
     class="flex items-center justify-center border-2 rounded-full cursor-pointer w-14 h-14 transition-all duration-300 hover:-translate-y-2
     {% if page.visitor_posted_feedback %}
-    border-primary text-primary bg-white dark:bg-base-100 dark:border-base-content dark:text-base-content
+    border-primary text-primary bg-base-100
     {% else %}
-    border-slate-300 hover:border-slate-500 dark:border-slate-400 text-slate-400 hover:text-slate-500 dark:text-slate-400 dark:hover:text-slate-50
+    border-base-300 text-base-content/50 hover:border-primary hover:text-primary
     {% endif %}
     "
   >
@@ -19,4 +19,4 @@
   {% else %}
       <span class="w-full text-center text-sm">{{ 'snippets.feedback_button.title_unposted' | t}}</span>
   {% endif %}
-</section>
+</div>

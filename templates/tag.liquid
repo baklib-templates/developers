@@ -19,8 +19,8 @@
           </button>
         </a>
 
-        <div>
-          {% render 'search_modal' %}
+        <div class="max-w-xs min-w-[12rem]">
+          {% render 'search_trigger' %}
         </div>
       </div>
 
@@ -54,9 +54,9 @@
             <div class="space-y-3">
               {% paginate_tag tag.pages, as: 'pages' %}
                 {% for page in pages %}
-                  <div class="space-y-4 rounded-md bg-accent-100 hover:bg-accent-200 p-2 md:p-4 ">
-                    <a class="text-lg font-bold md:text-xl text-slate-700" href="{{ page.path }}">{{ page.link_text | highlight: tag.name }}</a>
-                    <p class="text-sm line-clamp-3 text-slate-400">{{ page.settings.content | strip_html | highlight: tag.name }}</p>
+                  <div class="space-y-4 rounded-md bg-base-200 p-2 hover:bg-base-300 md:p-4">
+                    <a class="text-lg font-bold text-base-content md:text-xl" href="{{ page.path }}">{{ page.link_text | highlight: tag.name }}</a>
+                    <p class="line-clamp-3 text-sm text-base-content/60">{{ page.settings.content | strip_html | highlight: tag.name }}</p>
                     <div class="flex items-center justify-between">
                       <div class="breadcrumbs hidden overflow-x-auto md:block text-sm">
                         {% render 'breadcrumb', breadcrumb: page.breadcrumb, page: page %}

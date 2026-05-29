@@ -1,8 +1,41 @@
 {
   "theme_label": "Developers",
-  "theme_description": "面向开发者与技术团队的文档主题，适用于 API 参考、产品手册、技术指南等场景。基于 DaisyUI 构建，支持多主题风格与灵活定制。",
+  "theme_description": "面向开发者与技术团队的文档主题，适用于 API 参考、产品手册、技术指南等场景。",
+  "theme_languages": {
+    "zh_cn": "中文简体",
+    "en": "English",
+    "de": "German",
+    "fr": "French"
+  },
+  "recommendations": {
+    "baklib": {
+      "name": "Baklib 品牌"
+    },
+    "fashion": {
+      "name": "时尚"
+    },
+    "old_school": {
+      "name": "复古"
+    }
+  },
   "generic": {
-    "name": "站点基本信息设置"
+    "name": "站点基本信息设置",
+    "settings": {
+      "logo_url": {
+        "label": "Logo 图片",
+        "info": "设置后页头仅显示该 Logo；未设置时显示网站图标与站点名称。"
+      },
+      "is_allow_published_at": {
+        "label": "文章内是否展示发布日期"
+      },
+      "is_allow_author": {
+        "label": "文章内是否展示作者"
+      },
+      "left_sidebar_width": {
+        "label": "左侧边栏宽度",
+        "info": "用于带侧栏的文档页布局，默认 300px"
+      }
+    }
   },
   "custom_html": {
     "settings": {
@@ -20,9 +53,33 @@
         "label": "Head Meta HTML代码",
         "info": "这部分内容会植入到站点的<head>标签内，请使用标准的 HTML 格式",
         "placeholder": "例如: <meta name='author' content='Baklib' />"
+      },
+      "features_one": {
+        "label": "功能区块一",
+        "placeholder": "HTML 代码",
+        "info": "预设 HTML 代码块，前台：site.settings.features_one"
+      },
+      "features_two": {
+        "label": "功能区块二",
+        "placeholder": "HTML 代码",
+        "info": "预设 HTML 代码块，前台：site.settings.features_two"
+      },
+      "features_three": {
+        "label": "功能区块三",
+        "placeholder": "HTML 代码",
+        "info": "预设 HTML 代码块，前台：site.settings.features_three"
       }
     },
     "name": "自定义 HTML 代码"
+  },
+  "lucide_icons": {
+    "name": "Lucide 图标",
+    "settings": {
+      "lucide_icons": {
+        "label": "可用 Lucide 图标名称",
+        "info": "每行一个 kebab-case 名称（如 folder、book-open）。页面与频道模板的侧栏图标下拉从此读取。名称须与主题 JS bundle 一致；仅在此添加而未更新 bundle 的图标前台不会显示。"
+      }
+    }
   },
   "templates": {
     "index": {
@@ -32,6 +89,10 @@
             "label": "背景图",
             "info": "背景图会根据页面宽度和背景高度自动裁剪"
           },
+          "hero_font_color": {
+            "label": "Hero 文字颜色",
+            "info": "作用于主标题、副标题与热搜标签（深色背景建议 #ffffff）"
+          },
           "hero_slogan": {
             "label": "标语标题"
           },
@@ -40,23 +101,75 @@
           },
           "hot_tags": {
             "label": "热搜关键词（请用英文逗号「,」分隔）"
+          },
+          "index_card_page_count": {
+            "label": "首页列表展示页面数量",
+            "info": "文档首页每个指南卡片下展示的子页面数量"
           }
         }
       },
       "portal": {
         "settings": {
           "hero_image_url": {
-            "label": "背景图",
-            "info": "背景图会根据页面宽度和背景高度自动裁剪"
+            "label": "Hero 背景图",
+            "info": "建议 16:9；宽度 100% 按图片比例显示高度，自上而下渐隐至完全透明"
+          },
+          "hero_font_color": {
+            "label": "Hero 文字颜色",
+            "info": "作用于主标题、副标题与热搜标签（深色背景建议 #ffffff）"
           },
           "hero_slogan": {
-            "label": "标语标题"
+            "label": "主标题"
           },
           "hero_description": {
-            "label": "标语描述"
+            "label": "副标题"
           },
           "hot_tags": {
             "label": "热搜关键词（请用英文逗号「,」分隔）"
+          },
+          "show_hero_section": {
+            "label": "显示 Hero 区域"
+          },
+          "show_hero_hot_tags": {
+            "label": "显示热搜标签"
+          },
+          "hero_search_placeholder": {
+            "label": "搜索框占位文案"
+          },
+          "show_featured_section": {
+            "label": "显示精选指南"
+          },
+          "featured_section_title": {
+            "label": "精选区块标题"
+          },
+          "featured_count": {
+            "label": "精选指南数量",
+            "info": "从站点导航菜单前几项自动选取"
+          },
+          "show_categories_section": {
+            "label": "显示分类"
+          },
+          "categories_section_title": {
+            "label": "分类区块标题"
+          },
+          "categories_max_count": {
+            "label": "最多显示分类数",
+            "info": "精选之后的导航子页；顺序与导航一致"
+          },
+          "show_trending_section": {
+            "label": "显示热门指南"
+          },
+          "trending_section_title": {
+            "label": "热门区块标题"
+          },
+          "trending_popular_title": {
+            "label": "最受欢迎栏目标题"
+          },
+          "trending_recent_title": {
+            "label": "最近更新栏目标题"
+          },
+          "trending_list_limit": {
+            "label": "每栏链接数量"
           }
         }
       }
@@ -71,7 +184,16 @@
           "info": "同步自数据源，不可编辑"
         },
         "title": {
-          "label": "标题"
+          "label": "标题",
+          "info": "同步自知识库，不可在此编辑"
+        },
+        "description": {
+          "label": "描述",
+          "info": "可选，用于文章页头部的页面摘要"
+        },
+        "nav_lucide_icon": {
+          "label": "侧栏分组图标",
+          "info": "当该页面作为侧栏一级分组时显示的 Lucide 图标（一级分组仅展开/折叠，不可点击跳转）"
         },
         "api_document": {
           "label": "OpenAPI文档"

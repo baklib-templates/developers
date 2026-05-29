@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.language }}" class="scroll-smooth">
+<html lang="{{ site.language }}" class="scroll-smooth bg-base-100">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="Baklib">
@@ -7,43 +7,31 @@
     <meta name="turbo-prefetch" content="false">
     {% meta_tags %}
 
+    {% render 'theme_runtime_colors' %}
+
     {{ 'baklib/shared/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
     {{ 'baklib/shared/main.js' | asset_url | script_tag: data-turbo-track: 'reload' }}
 
     {{ 'stylesheets/application.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
     {{ 'javascripts/application.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
 
-    {%# TIPS：在低代码平台开发时，请打开下一行代码注释 %}
+    {%- comment -%} Dev-only: enable CDN daisyUI / Tailwind below {%- endcomment -%}
     {% if false %}
       <link href="https://unpkg.com/daisyui@latest/dist/full.css" rel="stylesheet">
     {% endif %}
     {% if false %}
-      {%# <script src="https://cdn.tailwindcss.com"></script> %}
       {{ 'javascripts/cdn.tailwindcss.js' | asset_url | script_tag: data-turbo-track: 'reload' }}
     {% endif %}
 
-    <style>
-      {%- assign screen_width = site.settings.screen_width.value | presence | default: '1200px' -%}
-      {%- assign left_sidebar_width = site.settings.left_sidebar_width | presence | default: '300' | append: 'px' -%}
-      {%- assign right_sidebar_width = site.settings.right_sidebar_width | presence | default: '240' | append: 'px' -%}
-      {%- assign header_height = site.settings.header_height | presence | default: '64' | append: 'px' -%}
-
-      :root {
-        --max-content-width: {{ screen_width }};
-        --left-sidebar-width: {{ left_sidebar_width }};
-        --right-sidebar-width: {{ right_sidebar_width  }};
-        --header-height: {{ header_height }};
-      }
-    </style>
-
     {{ site.settings.head_html }}
   </head>
-  <body id="js--body" class="grid grid-rows-[auto_1fr_auto] min-h-screen tracking-wide" x-data="{ isHomePage: false, showScrollBar: false }" x-init="isHomePage = location.pathname === '{{ site.index_path }}';  window.addEventListener('scroll', () => {
+  <body id="js--body" class="grid min-h-screen grid-rows-[auto_1fr_auto] bg-base-100 tracking-wide text-base-content antialiased" x-data="{ isHomePage: false, showScrollBar: false }" x-init="isHomePage = location.pathname === '{{ site.index_path }}';  window.addEventListener('scroll', () => {
           showScrollBar = window.scrollY > window.innerHeight;
         });">
     {% render 'header' %}
     {{ content_for_layout }}
     {% render 'footer' %}
     {% render 'scroll_bar' %}
+    {% render 'search_modal' %}
   </body>
 </html>

@@ -20,26 +20,26 @@
   <div class="drawer-side z-[999]">
     <label
       for="header-drawer-left"
-      aria-label="close sidebar"
+      aria-label="{{ 'accessibility.close_sidebar' | t }}"
       class="drawer-overlay"
     ></label>
     <div class="bg-base-200 text-base-content min-h-full w-90">
-      <div class='card flex flex-col px-4 py-4 h-dvh rounded-l-none dark:bg-slate-800 dark:text-slate-200'>
+      <div class="card flex h-dvh flex-col rounded-l-none bg-base-200 px-4 py-4 text-base-content">
         <div class="flex-0 flex mt-2">
           {% render 'header_logo' %}
         </div>
 
         {% if header_menu_html %}
-          <div class="space-y-2 flex flex-col pt-4 underline dark:border-slate-700">
+          <div class="flex flex-col space-y-2 border-base-300 pt-4 underline">
             {{ header_menu_html }}
           </div>
         {% endif %}
 
         <div class="my-2 md:my-4">
-          {% render 'search_modal' %}
+          {% render 'search_trigger' %}
         </div>
 
-        <div class='flex-1 overflow-y-auto min-h-0 dark:border-slate-700 pt-2 custom-menu' @click="if($event.target.closest('a')) $event.target.closest('.drawer').querySelector('#header-drawer-left').checked = false">
+        <div class="custom-menu min-h-0 flex-1 overflow-y-auto border-base-300 pt-2" @click="if($event.target.closest('a')) $event.target.closest('.drawer').querySelector('#header-drawer-left').checked = false">
           <turbo-frame id="page_nav_tree_frame__" src="/s/page/nav_tree" loading="lazy">
             <div class="flex items-center justify-center h-20 text-base-content/60">
               <span class="loading loading-spinner loading-md"></span>

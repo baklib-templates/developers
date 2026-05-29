@@ -4104,10 +4104,6 @@ html:has(.drawer-toggle:checked) {
   top: 5rem;
 }
 
-.top-\[calc\(var\(--header-height\)_\+_1rem\)\] {
-  top: calc(var(--header-height) + 1rem);
-}
-
 .top-px {
   top: 1px;
 }
@@ -4421,10 +4417,6 @@ html:has(.drawer-toggle:checked) {
   max-height: calc(100vh - 10rem);
 }
 
-.max-h-\[calc\(100vh-var\(--header-height\)-4rem\)\] {
-  max-height: calc(100vh - var(--header-height) - 4rem);
-}
-
 .max-h-full {
   max-height: 100%;
 }
@@ -4623,8 +4615,8 @@ html:has(.drawer-toggle:checked) {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-.grid-cols-\[1fr_var\(--right-sidebar-width\)\] {
-  grid-template-columns: 1fr var(--right-sidebar-width);
+.grid-cols-\[1fr_240px\] {
+  grid-template-columns: 1fr 240px;
 }
 
 .grid-rows-3 {
@@ -6157,8 +6149,8 @@ body {
     line-height: 2.5rem;
   }
 
-  .group.has-toc .group-\[\.has-toc\]\:lg\:grid-cols-\[1fr_var\(--right-sidebar-width\)\] {
-    grid-template-columns: 1fr var(--right-sidebar-width);
+  .group.has-toc .group-\[\.has-toc\]\:lg\:grid-cols-\[1fr_240px\] {
+    grid-template-columns: 1fr 240px;
   }
 }
 

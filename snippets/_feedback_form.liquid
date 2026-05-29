@@ -20,7 +20,7 @@
         {% for useful_type in useful_types %}
           <label
             class="badge badge-soft inline-flex py-4 cursor-pointer"
-            :class="{ '!bg-primary-200 dark:!bg-primary-700 !border-primary-200 dark:!border-primary-700': selected === '{{ useful_type.emoji |  escape_once }}' }"
+            :class="{ '!bg-primary/20 !border-primary': selected === '{{ useful_type.emoji |  escape_once }}' }"
           >
             <input
               type="radio"
@@ -34,7 +34,7 @@
         {% endfor %}
       {% else %}
         {% for useful_type in useful_types %}
-          <button class="badge badge-soft inline-flex py-4" name="{{ form.feedback_emoji_field_name }}" value="{{ useful_type.emoji |  escape_once }}" :class="{ 'bg-gray-200': selected === '{{ useful_type.emoji | escape_once }}' }">
+          <button class="badge badge-soft inline-flex py-4" name="{{ form.feedback_emoji_field_name }}" value="{{ useful_type.emoji |  escape_once }}" :class="{ '!bg-primary/20 !border-primary': selected === '{{ useful_type.emoji | escape_once }}' }">
             <span class="text-2xl">{{ useful_type.emoji }}</span>
             <span>{{ useful_type.label }}</span>
           </button>

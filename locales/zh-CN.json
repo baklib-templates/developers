@@ -1,7 +1,7 @@
 {
   "generic": {
-    "theme": "主题",
     "back": "返回",
+    "about": "关于",
     "popular_search": "热门搜索",
     "read_more": "阅读更多",
     "empty": "内容为空",
@@ -10,10 +10,59 @@
     "hot_pages": "热门话题",
     "feedback_created_at": "上次反馈于"
   },
+  "accessibility": {
+    "search": "搜索",
+    "close_sidebar": "关闭侧栏"
+  },
+  "statics": {
+    "about": {
+      "title": "Daisy Wiki 模板介绍",
+      "intro": "Daisy Wiki 模板是一个通用的文档知识库网站模板，具有多主题 UI 风格、多终端适配，以及可个性化定义网站界面。",
+      "section1_title": "1. 创建站点",
+      "section1_workspace": "在 Baklib 工作台的",
+      "section1_market_badge": "市场",
+      "section1_find_theme": "中找到",
+      "section1_theme_badge": "Daisy Wiki",
+      "section1_after_theme": "模板，创建站点。站点创建好以后，模板自动内置了",
+      "section1_tailwind": "TailwindCSS",
+      "section1_and": "和",
+      "section1_daisyui": "DaisyUI",
+      "section1_built_in": "。",
+      "section1_download_label": "模板公开下载地址：",
+      "section2_title": "2. 构建网站页面",
+      "section2_p1": "打开模板编辑器，将创建的静态网页放在文件夹",
+      "section2_statics_folder": "/statics",
+      "section2_p1_mid": "下，创建的动态模板网页放在文件夹",
+      "section2_templates_folder": "/templates",
+      "section2_p1_end": "下。",
+      "section2_quote": "关于模板开发教程请参考：",
+      "section2_dev_center": "Baklib 开发者中心",
+      "section3_title": "3. 后台管理内容",
+      "section3_p1": "系统已预设了针对文档知识库的模板",
+      "section3_page_template": "page",
+      "section3_p1_mid": "，你只需要绑定一个",
+      "section3_knowledge_base": "知识库",
+      "section3_p1_end": "，所有内容都会同步到 Wiki 站点。",
+      "daisyui_title": "什么是 Daisy UI?",
+      "daisyui_body": "DaisyUI 是一个功能强大的组件库，可与 Tailwind CSS 无缝协作。Tailwind CSS 是一个实用类优先的 CSS 框架，在前端开发人员中广受欢迎。它提供低级实用程序类，让你可以直接在 HTML 中快速构建自定义设计。",
+      "baklib_title": "什么是 Baklib?",
+      "baklib_body": "Baklib 是一个基础云平台，开箱即用。它可以帮助你省去购买服务器、配置域名、SEO、部署和运维等繁琐的工作；同时，通过模板机制构建网站结构，让你专注于内容创作和页面设计。"
+    }
+  },
   "placeholders": {
     "search": "在站内搜索"
   },
   "templates": {
+    "index_portal": {
+      "featured_title": "精选指南",
+      "categories_title": "分类",
+      "trending_title": "热门指南",
+      "trending_popular_title": "最受欢迎",
+      "trending_recent_title": "最近更新"
+    },
+    "page_api": {
+      "loading": "加载中..."
+    },
     "page": {
       "copy_success": "链接已复制",
       "llm_prompt_template": "读取 %{url} 的内容，以便我可以询问关于它的问题。",
@@ -34,16 +83,25 @@
       "title_posted": "感谢您的反馈",
       "title_unposted": "提交反馈"
     },
+    "paginate": {
+      "previous": "上一页",
+      "next": "下一页"
+    },
     "page": {
       "prev_page": "上一页",
       "next_page": "下一页"
+    },
+    "plugins": {
+      "online_support": "在线支持",
+      "presales": "售前咨询",
+      "ticket": "工单咨询",
+      "demo": "预约演示"
     },
     "page_tools": {
       "copy_page_label": "复制",
       "copy_page_description": "将页面以 Markdown 格式复制给 LLMs",
       "open_in_chatgpt": "在 ChatGPT 中打开",
       "open_in_claude": "在 Claude 中打开",
-      "open_in_doubao": "在豆包中打开",
       "open_in_deepseek": "在 DeepSeek 中打开",
       "ask_about_page": "询问有关此页面的问题",
       "copy_mcp_label": "复制 MCP 安装命令",
