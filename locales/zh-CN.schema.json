@@ -2,17 +2,7 @@
   "theme_label": "Developers",
   "theme_description": "面向开发者与技术团队的文档主题，适用于 API 参考、产品手册、技术指南等场景。基于 DaisyUI 构建，支持多主题风格与灵活定制。",
   "generic": {
-    "name": "站点基本信息设置",
-    "settings": {
-      "company_name": {
-        "label": "公司名称",
-        "default": "Baklib.cn"
-      },
-      "copyright_info": {
-        "label": "备案/版权信息",
-        "default": "蜀ICP备15035023号"
-      }
-    }
+    "name": "站点基本信息设置"
   },
   "custom_html": {
     "settings": {

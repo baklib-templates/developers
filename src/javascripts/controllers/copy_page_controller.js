@@ -4,10 +4,10 @@ import { copyToClipboard } from "../utils/copyToClipboard";
 export default class extends Controller {
   static targets = ["buttonLabel"];
   static values = {
-    defaultText: { type: String, default: "复制页面" },
-    copyingText: { type: String, default: "复制中、、、" },
-    successText: { type: String, default: "已复制" },
-    failedText: { type: String, default: "复制失败" },
+    defaultText: { type: String, default: "Copy Page" },
+    copyingText: { type: String, default: "Copying..." },
+    successText: { type: String, default: "Copied" },
+    failedText: { type: String, default: "Copy Failed" },
     resetDelay: { type: Number, default: 2400 },
     markdownUrl: String,
   };

@@ -2,17 +2,7 @@
   "theme_label": "Developers",
   "theme_description": "Thème de documentation pour les développeurs et les équipes techniques — idéal pour les références API, les manuels produit et les guides techniques. Construit sur DaisyUI avec prise en charge multi-thème et personnalisation flexible.",
   "generic": {
-    "name": "Paramètres des informations de base du site",
-    "settings": {
-      "company_name": {
-        "label": "Nom de l'entreprise",
-        "default": "Baklib.cn"
-      },
-      "copyright_info": {
-        "label": "Dépôt / informations de copyright",
-        "default": "Shu ICP réserve no.15035023"
-      }
-    }
+    "name": "Paramètres des informations de base du site"
   },
   "custom_html": {
     "settings": {

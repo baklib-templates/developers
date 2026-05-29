@@ -2,17 +2,7 @@
   "theme_label": "Developers",
   "theme_description": "Ein Dokumentationsthema für Entwickler und technische Teams – ideal für API-Referenzen, Produkthandbücher und technische Leitfäden. Auf DaisyUI basierend mit Multi-Theme-Unterstützung und flexibler Anpassung.",
   "generic": {
-    "name": "Grundlagen der Website",
-    "settings": {
-      "company_name": {
-        "label": "Firmenname",
-        "default": "Baklib.cn"
-      },
-      "copyright_info": {
-        "label": "Archivierung/Urheberrechtsinformationen",
-        "default": "ICP Nr. 15035023"
-      }
-    }
+    "name": "Grundlagen der Website"
   },
   "custom_html": {
     "settings": {

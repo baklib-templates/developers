@@ -25,7 +25,7 @@
       },
       {
         "name": "English",
-        "value": "en-US"
+        "value": "en"
       },
       {
         "name": "Germany",
@@ -67,18 +67,6 @@
     "name": "t:schema.generic.name",
     "settings": [
       {
-        "id": "company_name",
-        "label": "t:schema.generic.settings.company_name.label",
-        "type": "text",
-        "default": "t:schema.generic.settings.company_name.default"
-      },
-      {
-        "id": "copyright_info",
-        "type": "text",
-        "label": "t:schema.generic.settings.copyright_info.label",
-        "default": "t:schema.generic.settings.copyright_info.default"
-      },
-      {
         "id": "is_allow_published_at",
         "type": "checkbox",
         "label": "文章内是否展示发布日期",
@@ -96,19 +84,6 @@
         "choices": [{"label":"tree:多层级折叠下拉","value":"tree"},{"label":"tree2:第一层级作为栏目展开","value":"tree2"}],
         "label": "选择导航菜单样式",
         "info": "影响前台站点左侧导航菜单的展示样式"
-      },
-      {
-        "id": "daisy_theme",
-        "type": "select",
-        "choices": [{"label":"light","value":"light"},{"label":"dark","value":"dark"},{"label":"cupcake","value":"cupcake"},{"label":"bumblebee","value":"bumblebee"},{"label":"emerald","value":"emerald"},{"label":"corporate","value":"corporate"},{"label":"synthwave","value":"synthwave"},{"label":"retro","value":"retro"},{"label":"cyberpunk","value":"cyberpunk"},{"label":"valentine","value":"valentine"},{"label":"halloween","value":"halloween"},{"label":"garden","value":"garden"},{"label":"forest","value":"forest"},{"label":"aqua","value":"aqua"},{"label":"lofi","value":"lofi"},{"label":"pastel","value":"pastel"},{"label":"fantasy","value":"fantasy"},{"label":"wireframe","value":"wireframe"},{"label":"black","value":"black"},{"label":"luxury","value":"luxury"},{"label":"dracula","value":"dracula"},{"label":"cmyk","value":"cmyk"},{"label":"autumn","value":"autumn"},{"label":"business","value":"business"},{"label":"acid","value":"acid"},{"label":"lemonade","value":"lemonade"},{"label":"night","value":"night"},{"label":"coffee","value":"coffee"},{"label":"winter","value":"winter"},{"label":"dim","value":"dim"},{"label":"nord","value":"nord"},{"label":"sunset","value":"sunset"}],
-        "label": "选择主题风格",
-        "info": "默认主题预览见：https://daisyui.com/docs/themes/"
-      },
-      {
-        "id": "is_close_theme_select",
-        "type": "checkbox",
-        "label": "去掉前台的主题选择下拉菜单",
-        "default": false
       }
     ]
   },
