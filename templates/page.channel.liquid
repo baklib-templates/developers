@@ -22,8 +22,8 @@
           </div>
         {% endif %}
         {% comment %} 面包屑导航 {% endcomment %}
-        <div class="text-sm breadcrumbs pt-0 pb-6">
-          {% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
+        <div class="pt-0 pb-6">
+          {% render 'breadcrumb', breadcrumb: page.breadcrumb, page: page %}
         </div>
         {% comment %} 页面正文 {% endcomment %}
         {% render 'page_list', page: page, sub_pages: sub_pages %}

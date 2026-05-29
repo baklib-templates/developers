@@ -1,6 +1,6 @@
 {
-  "theme_label": "Daisy Wiki",
-  "theme_description": "基于DaisyUI构建的内容驱动型知识库门户。多主题风格，多组件样式，适合定制化系统。",
+  "theme_label": "Developers",
+  "theme_description": "面向开发者与技术团队的文档主题，适用于 API 参考、产品手册、技术指南等场景。基于 DaisyUI 构建，支持多主题风格与灵活定制。",
   "generic": {
     "name": "站点基本信息设置",
     "settings": {

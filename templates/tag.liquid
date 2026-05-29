@@ -59,7 +59,7 @@
                     <p class="text-sm line-clamp-3 text-slate-400">{{ page.settings.content | strip_html | highlight: tag.name }}</p>
                     <div class="flex items-center justify-between">
                       <div class="breadcrumbs hidden overflow-x-auto md:block text-sm">
-                        {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
+                        {% render 'breadcrumb', breadcrumb: page.breadcrumb, page: page %}
                       </div>
                     </div>
                   </div>

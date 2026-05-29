@@ -10,6 +10,8 @@ import NavtreeController from "./navtree_controller"
 // import Dropdown from 'stimulus-dropdown'
 import Daisyui from "daisyui"
 import ElementDoc from "./element_doc_controller"
+import CopyPageController from "./copy_page_controller"
+import PageToolsController from "./page_tools_controller"
 
 if (!window.Stimulus) {
   window.Stimulus = Application.start()
@@ -26,3 +28,5 @@ application.register('turbo-nav-tree', TurboNavTreeController)
 // application.register('dropdown', Dropdown)
 application.register('daisyui', Daisyui)
 application.register('element-doc', ElementDoc)
+application.register("copy-page", CopyPageController)
+application.register("page-tools", PageToolsController)

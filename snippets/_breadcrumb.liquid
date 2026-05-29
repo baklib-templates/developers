@@ -3,11 +3,20 @@
     array of objects with keys:
       link_text: string
       path: string
+  @params page (optional)
+    current page object — when present, shows page tools dropdown
 {% endcomment %}
-<ul>
-  {% for crumb in breadcrumb %}
-    <li>
-        <a href="{{ crumb.path }}" data-turbo-frame="_top">{{ crumb.link_text }}</a>
-    </li>
-  {% endfor %}
-</ul>
+<div class="flex flex-wrap items-center justify-between gap-3 w-full">
+  <div class="breadcrumbs text-sm min-w-0 flex-1 overflow-x-auto">
+    <ul>
+      {% for crumb in breadcrumb %}
+        <li>
+          <a href="{{ crumb.path }}" data-turbo-frame="_top">{{ crumb.link_text }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% if page %}
+    {% render 'page_tools_dropdown', page: page %}
+  {% endif %}
+</div>

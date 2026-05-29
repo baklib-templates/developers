@@ -1,6 +1,6 @@
 {
-  "theme_label": "Daisy Wiki",
-  "theme_description": "A content driven knowledge base portal built on DaisyUI. Multi theme style, multi component style, suitable for customized systems.",
+  "theme_label": "Developers",
+  "theme_description": "A documentation theme for developers and technical teams — ideal for API references, product manuals, and technical guides. Built on DaisyUI with multi-theme support and flexible customization.",
   "generic": {
     "name": "Basic information settings for the site",
     "settings": {

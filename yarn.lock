@@ -1575,6 +1575,11 @@ lowdb@^7.0.1:
   dependencies:
     steno "^4.0.2"
 
+lucide@^1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/lucide/-/lucide-1.17.0.tgz#6b6a098af755c7e8d55115b274b77997e6f383a5"
+  integrity sha512-icbHK+hG15rWoacjNi3aw+UXHRmZ9Ee1fJ6ZSu7lbC4GOig7evVEXYCfK77FvjQHusPgi0D/QN7zTO+5wZ8PwQ==
+
 magic-string@^0.30.19:
   version "0.30.19"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.19.tgz#cebe9f104e565602e5d2098c5f2e79a77cc86da9"

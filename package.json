@@ -27,6 +27,7 @@
     "autoprefixer": "^10.4.21",
     "baklib-theme-i18n-cli": "^1.0.4",
     "js-yaml": "^4.1.0",
+    "lucide": "^1.17.0",
     "marked": "^16.4.0",
     "mustache": "^4.2.0",
     "postcss": "^8.5.6",

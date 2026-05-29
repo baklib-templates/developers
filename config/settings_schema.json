@@ -1,7 +1,7 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "daisy_wiki",
+    "theme_name": "developers",
     "theme_label": "t:schema.theme_label",
     "theme_version": "2.1.0",
     "theme_scope": "wiki",

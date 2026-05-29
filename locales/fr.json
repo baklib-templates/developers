@@ -15,7 +15,10 @@
   },
   "templates": {
     "page": {
-      "copy_success": "Le lien a été copié"
+      "copy_success": "Le lien a été copié",
+      "llm_prompt_template": "Lis %{url} pour que je puisse poser des questions à son sujet.",
+      "llm_copying": "Copie en cours…",
+      "llm_copied": "Copié"
     }
   },
   "snippets": {
@@ -34,6 +37,21 @@
     "page": {
       "prev_page": "Page précédente",
       "next_page": "Page suivante"
+    },
+    "page_tools": {
+      "copy_page_label": "Copier la page",
+      "copy_page_description": "Copier cette page au format Markdown pour les LLM",
+      "open_in_chatgpt": "Ouvrir dans ChatGPT",
+      "open_in_claude": "Ouvrir dans Claude",
+      "open_in_doubao": "Ouvrir dans Doubao",
+      "open_in_deepseek": "Ouvrir dans DeepSeek",
+      "ask_about_page": "Poser une question sur cette page",
+      "copy_mcp_label": "Copier la commande d’installation MCP",
+      "copy_mcp_description": "Copier la commande npx pour installer le serveur MCP",
+      "connect_to_cursor": "Connecter à Cursor",
+      "connect_to_cursor_description": "Installer le serveur MCP dans Cursor",
+      "connect_to_vscode": "Connecter à VS Code",
+      "connect_to_vscode_description": "Installer le serveur MCP dans VS Code"
     }
   }
 }
