@@ -10,13 +10,12 @@
     "theme_description": "t:schema.theme_description",
     "theme_documentation_url": "https://help.baklib.cn/themes/daisy-wiki",
     "theme_support_url": "https://help.baklib.cn/themes/daisy-wiki/settings",
-    "theme_thumb_url": "images/theme/thumb.png",
+    "theme_thumb_url": "images/theme/${lang}/thumb.png",
     "theme_preview_images": [
-      "images/theme/daisy-wiki.png",
-      "images/theme/index.png",
-      "images/theme/examples.png",
-      "images/theme/page-channel.png",
-      "images/theme/page.png"
+      "images/theme/${lang}/cover.png",
+      "images/theme/${lang}/index.documentation.png",
+      "images/theme/${lang}/page.png"
+
     ],
     "theme_languages": [
       {
