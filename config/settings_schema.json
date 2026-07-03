@@ -14,8 +14,9 @@
     "theme_preview_images": [
       "images/theme/${lang}/cover.png",
       "images/theme/${lang}/index.documentation.png",
+      "images/theme/${lang}/index.portal.png",
+      "images/theme/${lang}/page.channel.png",
       "images/theme/${lang}/page.png"
-
     ],
     "theme_languages": [
       {
