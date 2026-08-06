@@ -42,7 +42,8 @@
       "section3_page_template": "page",
       "section3_p1_mid": ". Bind a",
       "section3_knowledge_base": "knowledge base",
-      "section3_p1_end": "and content syncs to your wiki site.",
+      "section3_p1_end": ", and content syncs to your developer docs site.",
+      "section3_llm": "Pages support Copy for LLM, Open in ChatGPT / Claude, and MCP connections to Cursor / VS Code — so you can plug this site into your workflow.",
       "daisyui_title": "What is DaisyUI?",
       "daisyui_body": "DaisyUI is a component library that works seamlessly with Tailwind CSS. Tailwind CSS is a utility-first CSS framework popular with front-end developers. It provides low-level utility classes so you can build custom designs quickly in HTML.",
       "baklib_title": "What is Baklib?",
@@ -53,15 +54,42 @@
     "search": "Search within the website"
   },
   "templates": {
+    "index_book": {
+      "title": "Contents",
+      "chapter_prefix": "Chapter",
+      "empty": "No pages in the navigation menu yet."
+    },
+    "index_documentation": {
+      "featured_title": "Featured Articles"
+    },
     "index_portal": {
       "featured_title": "Featured guides",
       "categories_title": "Categories",
       "trending_title": "Trending guides",
       "trending_popular_title": "Most popular",
-      "trending_recent_title": "Recently added"
+      "trending_recent_title": "Recently added",
+      "paths_label": "Developer paths",
+      "path_get_started": "Get started",
+      "path_guides": "Guides",
+      "path_api_reference": "API Reference",
+      "llm_tools_title": "Built for developers and AI tools",
+      "llm_tools_body": "Copy for LLM, Open in ChatGPT, and MCP — integrate this site into your workflow."
+    },
+    "search": {
+      "title": "Search",
+      "placeholder": "Search guides, API, and integration docs…",
+      "no_results": "No results found",
+      "featured_label": "Featured",
+      "results_for": "Results for",
+      "back_home": "Back to developer home",
+      "badge_guide": "Guide",
+      "badge_api": "API",
+      "ai_input_placeholder": "Ask a follow-up…"
     },
     "page_api": {
-      "loading": "Loading..."
+      "loading": "Loading…",
+      "section_label": "API Reference",
+      "base_url_label": "Base URL"
     },
     "page": {
       "copy_success": "Link copied",
@@ -91,11 +119,18 @@
       "prev_page": "Previous Page",
       "next_page": "Next page"
     },
-    "plugins": {
-      "online_support": "Online support",
-      "presales": "Pre-sales",
-      "ticket": "Support ticket",
-      "demo": "Book a demo"
+    "cross_links": {
+      "view_guide": "View guide",
+      "view_api_reference": "View API reference"
+    },
+    "sidebar_user_account": {
+      "user_center": "Account",
+      "profile": "Profile",
+      "signout": "Log out",
+      "signout_loading": "Signing out...",
+      "signin_loading": "Signing in...",
+      "signin": "Sign in",
+      "create_account": "Create account"
     },
     "page_tools": {
       "copy_page_label": "Copy page",

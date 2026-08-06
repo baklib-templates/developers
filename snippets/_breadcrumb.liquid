@@ -39,8 +39,10 @@
     </ul>
   </div>
   {% if page %}
-    <div class="shrink-0 self-end sm:self-auto">
-      {% render 'page_tools_dropdown', page: page %}
-    </div>
+    {% if site.settings.show_page_tools_dropdown %}
+      <div class="shrink-0 self-end sm:self-auto">
+        {% render 'page_tools_dropdown', page: page %}
+      </div>
+    {% endif %}
   {% endif %}
 </div>

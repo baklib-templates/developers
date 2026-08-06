@@ -29,6 +29,8 @@
       </figure>
     {% endif %}
 
+    {% render 'content_cross_links', page: page %}
+
     {% if page.settings.tags.size > 0 %}
       <div class="flex flex-wrap items-center gap-4 text-sm">
         {% for tag in page.settings.tags %}

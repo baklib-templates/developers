@@ -8,8 +8,8 @@
     "theme_author": "Baklib",
     "theme_syntax_version": "v2",
     "theme_description": "t:schema.theme_description",
-    "theme_documentation_url": "https://help.baklib.cn/themes/daisy-wiki",
-    "theme_support_url": "https://help.baklib.cn/themes/daisy-wiki/settings",
+    "theme_documentation_url": "https://help.baklib.cn/themes/developers",
+    "theme_support_url": "https://help.baklib.cn/themes/developers/settings",
     "theme_thumb_url": "images/theme/thumb.png",
     "theme_preview_images": [
       "images/theme/${lang}/cover.png",
@@ -20,19 +20,19 @@
     ],
     "theme_languages": [
       {
-        "name": "t:schema.theme_languages.zh_cn",
+        "name": "中文简体",
         "value": "zh-CN"
       },
       {
-        "name": "t:schema.theme_languages.en",
+        "name": "English",
         "value": "en"
       },
       {
-        "name": "t:schema.theme_languages.de",
+        "name": "Deutsch",
         "value": "de"
       },
       {
-        "name": "t:schema.theme_languages.fr",
+        "name": "Français",
         "value": "fr"
       }
     ],
@@ -47,6 +47,17 @@
             "--theme-color-info": "#60A5FA",
             "--theme-color-success": "#14B8A6",
             "--theme-color-warning": "#FDBA74"
+          }
+        },
+        "developer": {
+          "name": "t:schema.recommendations.developer.name",
+          "colors": {
+            "--theme-color-primary": "#2563EB",
+            "--theme-color-secondary": "#0F172A",
+            "--theme-color-accent": "#64748B",
+            "--theme-color-info": "#38BDF8",
+            "--theme-color-success": "#10B981",
+            "--theme-color-warning": "#F59E0B"
           }
         },
         "fashion": {
@@ -106,6 +117,37 @@
         "step": 1,
         "default": 300,
         "info": "t:schema.generic.settings.left_sidebar_width.info"
+      },
+      {
+        "id": "api_base_url_hint",
+        "type": "text",
+        "label": "t:schema.generic.settings.api_base_url_hint.label",
+        "info": "t:schema.generic.settings.api_base_url_hint.info",
+        "placeholder": "https://api.example.com/v1"
+      },
+      {
+        "id": "enable_ai_chat_search",
+        "type": "checkbox",
+        "label": "t:schema.generic.settings.enable_ai_chat_search.label",
+        "info": "t:schema.generic.settings.enable_ai_chat_search.info",
+        "default": true
+      },
+      {
+        "id": "ai_search_completed_text",
+        "type": "text",
+        "label": "t:schema.generic.settings.ai_search_completed_text.label",
+        "info": "t:schema.generic.settings.ai_search_completed_text.info"
+      }
+    ]
+  },
+  {
+    "name": "t:schema.page_config.name",
+    "settings": [
+      {
+        "id": "show_page_tools_dropdown",
+        "type": "checkbox",
+        "label": "t:schema.page_config.settings.show_page_tools_dropdown.label",
+        "default": true
       }
     ]
   },
@@ -119,7 +161,7 @@
         "rows": 10,
         "info": "t:schema.custom_html.settings.header_menu_html.info",
         "placeholder": "t:schema.custom_html.settings.header_menu_html.placeholder",
-        "default": "preset:header_menus.html"
+        "default": "preset:header_menu_html.html"
       },
       {
         "id": "footer_menu_html",
@@ -127,7 +169,8 @@
         "label": "t:schema.custom_html.settings.footer_menu_html.label",
         "info": "t:schema.custom_html.settings.footer_menu_html.info",
         "rows": 6,
-        "placeholder": "t:schema.custom_html.settings.footer_menu_html.placeholder"
+        "placeholder": "t:schema.custom_html.settings.footer_menu_html.placeholder",
+        "default": "preset:footer_menu_html.html"
       },
       {
         "id": "head_html",
@@ -144,22 +187,6 @@
         "rows": 10,
         "placeholder": "t:schema.custom_html.settings.features_one.placeholder",
         "info": "t:schema.custom_html.settings.features_one.info"
-      },
-      {
-        "id": "features_two",
-        "type": "html",
-        "label": "t:schema.custom_html.settings.features_two.label",
-        "rows": 10,
-        "placeholder": "t:schema.custom_html.settings.features_two.placeholder",
-        "info": "t:schema.custom_html.settings.features_two.info"
-      },
-      {
-        "id": "features_three",
-        "type": "html",
-        "label": "t:schema.custom_html.settings.features_three.label",
-        "rows": 10,
-        "placeholder": "t:schema.custom_html.settings.features_three.placeholder",
-        "info": "t:schema.custom_html.settings.features_three.info"
       }
     ]
   },
@@ -173,6 +200,37 @@
         "info": "t:schema.lucide_icons.settings.lucide_icons.info",
         "rows": 12,
         "default": "folder\nbook-open\nfile-text\nfile-code\nfile-json\nbox\narchive\nfolder-open\nlibrary\nbookmark\nlayers\ncode\nterminal\ngit-branch\ngit-merge\ngit-pull-request\nbraces\nwebhook\nserver\ndatabase\nhard-drive\ncpu\ncloud\ncloud-upload\ncloud-download\nlayout-grid\nlayout-dashboard\napp-window\npanel-left\nsidebar\nmonitor\nlaptop\nsmartphone\ntablet\nsparkles\nzap\nbrain\nbot\nbot-message-square\nwand-2\nlightbulb\ncircuit-board\nusers\nuser\nuser-plus\nuser-cog\nbuilding\nlock\nshield\nshield-check\nkey\nfingerprint\nmail\nmessage-square\nbell\nsend\nshare-2\nlink\nexternal-link\nchart-bar\nchart-line\nchart-pie\ntrending-up\nactivity\ngauge\nsearch\nsettings\npalette\nfilter\nsliders-horizontal\nglobe\npencil\nedit\ntrash-2\ncopy\ncheck\nplus\nx\nalert-circle\ninfo\nhelp-circle\nnetwork\nwifi\ndownload\nupload\nrefresh-cw\ncredit-card\ntag\ncalendar\nclock\nplay\nvideo\nhome\nmenu\nlist\nlanguages\neye\nrocket\nmap\npackage"
+      }
+    ]
+  },
+  {
+    "name": "t:schema.settings.weixin_share.title",
+    "settings": [
+      {
+        "id": "weixin_app_id",
+        "type": "text",
+        "label": "t:schema.settings.weixin_share.weixin_app_id.label",
+        "info": "t:schema.settings.weixin_share.weixin_app_id.info"
+      },
+      {
+        "id": "weixin_app_secret",
+        "type": "text",
+        "label": "t:schema.settings.weixin_share.weixin_app_secret.label",
+        "info": "t:schema.settings.weixin_share.weixin_app_secret.info"
+      },
+      {
+        "id": "weixin_enabled",
+        "type": "checkbox",
+        "label": "t:schema.settings.weixin_share.weixin_enabled.label",
+        "default": false,
+        "info": "t:schema.settings.weixin_share.weixin_enabled.info"
+      },
+      {
+        "id": "weixin_debug",
+        "type": "checkbox",
+        "label": "t:schema.settings.weixin_share.weixin_debug.label",
+        "default": false,
+        "info": "t:schema.settings.weixin_share.weixin_debug.info"
       }
     ]
   }

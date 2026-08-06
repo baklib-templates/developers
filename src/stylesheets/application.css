@@ -283,6 +283,64 @@
   .site-search-trigger__shortcut {
     @apply ml-3 flex size-5 shrink-0 items-center justify-center rounded-field border-2 border-primary/30 p-1 text-xs font-medium text-primary/60;
   }
+
+  /* Book TOC home (index.book) */
+  .book-toc-root {
+    counter-reset: book-page;
+  }
+
+  .book-toc-entry {
+    counter-increment: book-page;
+  }
+
+  .book-toc-entry--level-1 {
+    @apply mt-10 border-t border-base-300 pt-8 first:mt-0 first:border-t-0 first:pt-0;
+  }
+
+  .book-toc-section-label {
+    @apply mb-2 text-base font-bold uppercase tracking-[0.2em] text-primary md:text-lg;
+  }
+
+  .book-toc-row {
+    @apply grid items-baseline gap-x-3;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .book-toc-row--level-1 {
+    @apply py-1;
+  }
+
+  .book-toc-title--level-1 {
+    @apply text-lg font-bold uppercase leading-snug tracking-wide text-primary md:text-xl;
+  }
+
+  .book-toc-row--level-1:has(.book-toc-leader) {
+    grid-template-columns: minmax(0, 1fr) minmax(1.5rem, 1fr) auto;
+  }
+
+  .book-toc-row:has(.book-toc-leader):not(.book-toc-row--level-1) {
+    grid-template-columns: minmax(0, 1fr) minmax(1.5rem, 1fr) auto;
+  }
+
+  .book-toc-leader {
+    @apply min-h-[0.65em] self-end border-b border-dotted border-base-content/45;
+  }
+
+  .book-toc-leader--level-1 {
+    @apply border-primary/40;
+  }
+
+  .book-toc-number::before {
+    content: counter(book-page);
+  }
+
+  .book-toc-number--level-1 {
+    @apply font-bold text-primary;
+  }
+
+  .book-toc-list--section-children {
+    @apply space-y-0.5;
+  }
 }
 
 @layer utilities {

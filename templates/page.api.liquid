@@ -1,44 +1,72 @@
 {% layout 'api_doc' %}
 
+{% assign api_title = page.settings.title | presence | default: page.link_text %}
+{% assign api_base_hint = site.settings.api_base_url_hint | presence %}
+
+<header class="border-b border-base-300 bg-base-100 px-4 py-3 md:px-6">
+  <div class="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+    <div class="min-w-0">
+      <p class="text-[0.7rem] font-semibold uppercase tracking-widest text-primary">{{ 'templates.page_api.section_label' | t: 'API Reference' }}</p>
+      <h1 class="truncate text-lg font-bold text-base-content sm:text-xl">{{ api_title }}</h1>
+    </div>
+    {% if api_base_hint %}
+      <div class="shrink-0 rounded-lg border border-base-300 bg-base-200/50 px-3 py-2 text-sm">
+        <span class="text-base-content/50">{{ 'templates.page_api.base_url_label' | t: 'Base URL' }}</span>
+        <code class="ml-1 font-mono text-base-content/80">{{ api_base_hint }}</code>
+      </div>
+    {% endif %}
+  </div>
+</header>
+
 <div id="main-content" class="elements-wrapper not-prose min-h-[calc(100vh-4rem)]">
   <div
     data-controller="element-doc"
     data-element-doc-url-value="{{ page.settings.api_document_url }}"
     data-element-doc-content-value="{{ page.settings.api_document }}"
-    class='h-full'
+    class="h-full"
   >
-    <div class='flex justify-center items-center w-full h-full' data-element-doc-target="loading">
+    <div class="flex h-full w-full items-center justify-center" data-element-doc-target="loading">
       <div class="loading text-base-content/60">{{ 'templates.page_api.loading' | t }}</div>
     </div>
   </div>
 </div>
 
 {% schema %}
-  {
-    "name": "api-doc",
-    "description": "openapi doc",
-    "thumb_url": "images/theme/${lang}/page.png",
-    "preview_image_urls": [
-      "images/theme/${lang}/page.png"
-    ],
-    "sub_page_templates": ["page"],
-    "settings": [
-      {
-        "id": "title",
-        "type": "text",
-        "label": "t:schema.templates.page.settings.title.label",
-        "default": "Knowledge base site"
-      },
-      {
-        "id": "api_document",
-        "type": "textarea",
-        "label": "t:schema.templates.page.settings.api_document.label"
-      },
-      {
-        "id": "api_document_url",
-        "type": "text",
-        "label": "t:schema.templates.page.settings.api_document_url.label"
-      }
-    ]
-  }
+{
+  "name": "api-doc",
+  "description": "OpenAPI reference page",
+  "thumb_url": "images/theme/${lang}/page.png",
+  "preview_image_urls": [
+    "images/theme/${lang}/page.png"
+  ],
+  "sub_page_templates": ["page"],
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "t:schema.templates.page.settings.title.label",
+      "default": "API"
+    },
+    {
+      "id": "nav_lucide_icon",
+      "type": "select",
+      "label": "t:schema.templates.page.settings.nav_lucide_icon.label",
+      "info": "t:schema.templates.page.settings.nav_lucide_icon.info",
+      "default": "braces",
+      "choices_from": "$site.lucide_icons"
+    },
+    {
+      "id": "api_document",
+      "type": "textarea",
+      "label": "t:schema.templates.page.settings.api_document.label",
+      "info": "t:schema.templates.page.settings.api_document.info"
+    },
+    {
+      "id": "api_document_url",
+      "type": "text",
+      "label": "t:schema.templates.page.settings.api_document_url.label",
+      "info": "t:schema.templates.page.settings.api_document_url.info"
+    }
+  ]
+}
 {% endschema %}

@@ -91,11 +91,14 @@
       "prev_page": "Page précédente",
       "next_page": "Page suivante"
     },
-    "plugins": {
-      "online_support": "Support en ligne",
-      "presales": "Avant-vente",
-      "ticket": "Ticket support",
-      "demo": "Réserver une démo"
+    "sidebar_user_account": {
+      "user_center": "Compte",
+      "profile": "Profil",
+      "signout": "Se déconnecter",
+      "signout_loading": "Déconnexion...",
+      "signin_loading": "Connexion...",
+      "signin": "Se connecter",
+      "create_account": "Créer un compte"
     },
     "page_tools": {
       "copy_page_label": "Copier la page",

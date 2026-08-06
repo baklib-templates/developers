@@ -11,6 +11,9 @@
     "baklib": {
       "name": "Marque Baklib"
     },
+    "developer": {
+      "name": "Référence développeur"
+    },
     "fashion": {
       "name": "Mode"
     },
@@ -34,15 +37,35 @@
       "left_sidebar_width": {
         "label": "Largeur de la barre latérale gauche",
         "info": "Pour les pages doc avec barre latérale. Valeur par défaut : 300px."
+      },
+      "api_base_url_hint": {
+        "label": "Indication Base URL API",
+        "info": "Affiché dans l'en-tête de la page de référence OpenAPI, ex. https://api.example.com/v1"
+      },
+      "enable_ai_chat_search": {
+        "label": "Activer la recherche AI Chat",
+        "info": "Affiche l’assistant IA sur la page de recherche. Décochez pour le masquer. La capacité de recherche IA du site doit aussi être activée."
+      },
+      "ai_search_completed_text": {
+        "label": "Texte de fin IA",
+        "info": "Ajoute une phrase après la réponse de l’IA"
+      }
+    }
+  },
+  "page_config": {
+    "name": "Configuration de page",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "Afficher le menu Copy for LLM / MCP"
       }
     }
   },
   "custom_html": {
     "settings": {
       "footer_menu_html": {
-        "label": "La zone inférieure insère le code HTML (dans footer, footer_menu_html)",
-        "info": "Prise en charge des balises HTML et du Code de style tailwindcss limité",
-        "placeholder": "Insérez généralement ici des liens de navigation externes vers d'autres sites Web de l'entreprise, des liens amicaux, des liens optimisés pour le référencement, etc."
+        "label": "HTML du pied de page",
+        "info": "Tout le contenu du pied de page (copyright, ICP, etc.). Prend en charge HTML et TailwindCSS limité.",
+        "placeholder": "Souvent utilisé pour la navigation du pied de page, liens, copyright et mention ICP"
       },
       "header_menu_html": {
         "label": "Zone de navigation supérieure insérer le code HTML",
@@ -55,19 +78,9 @@
         "placeholder": "Par exemple : <meta name='author' content='Baklib' />"
       },
       "features_one": {
-        "label": "Bloc fonctionnalités un",
+        "label": "HTML barre latérale droite du canal",
         "placeholder": "Extrait HTML",
-        "info": "Bloc HTML prédéfini. Front-end : site.settings.features_one"
-      },
-      "features_two": {
-        "label": "Bloc fonctionnalités deux",
-        "placeholder": "Extrait HTML",
-        "info": "Bloc HTML prédéfini. Front-end : site.settings.features_two"
-      },
-      "features_three": {
-        "label": "Bloc fonctionnalités trois",
-        "placeholder": "Extrait HTML",
-        "info": "Bloc HTML prédéfini. Front-end : site.settings.features_three"
+        "info": "Colonne droite sur page.channel — ex. téléchargements SDK ou liens"
       }
     },
     "name": "Code HTML personnalisé"
@@ -209,6 +222,27 @@
         "api_document_url": {
           "label": "URL du document openapi"
         }
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "Configuration WeChat",
+      "weixin_app_id": {
+        "label": "ID développeur (AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>Compte officiel WeChat / Paramètres & développement / Gestion des interfaces</a>"
+      },
+      "weixin_app_secret": {
+        "label": "Mot de passe développeur (AppSecret)",
+        "info": "Obtenir sur <a href='https://mp.weixin.qq.com/cgi-bin/frame'>Compte officiel WeChat / Paramètres et développement / Gestion des interfaces</a>"
+      },
+      "weixin_enabled": {
+        "label": "Activer le partage WeChat ?",
+        "info": "Permet de partager les pages du site sur WeChat.</br>Veuillez configurer la liste blanche d’IP (ip: ${service_ip}) dans le compte WeChat. Un délai de prise d’effet peut s’appliquer.</br>Vérifiez l’autorisation de partage WeChat dans Compte officiel / Paramètres & développement / Gestion des interfaces : <a href='https://mp.weixin.qq.com/cgi-bin/frame'>Service web / Interface de partage</a>."
+      },
+      "weixin_debug": {
+        "label": "Activer les invites de debug ?",
+        "info": "À activer uniquement pendant la configuration ; en cas d’activation, des messages d’erreur seront affichés si le partage WeChat n’est pas correctement configuré."
       }
     }
   }

@@ -1,147 +1,147 @@
+{% layout 'page_layout' %}
 
-<section class="relative bg-base">
-  <!-- Hero Section -->
-  {% render 'hero', page: page %}
-  <!-- Pages Section -->
-  <section class="bg-transparent px-4">
-    <div class="mx-auto max-w-6xl">
-      {% # 列表指南- Guide %}
-      {% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 9 %}
-      <div class="items-start lg:max-w-none grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-12 mt-12">
-        {% for card_page in card_pages %}
-          <!-- Card -->
-          <div class="card flex flex-col h-full bg-base-100 bg-opacity-50 border shadow-md shadow-base-200 overflow-hidden">
-            <!-- Image -->
-            <!-- Card Content -->
-            <div class="card-body flex-1 flex flex-col p-6">
-                <!-- Card body -->
-                <div class="flex-1">
-                    <!-- Header -->
-                    <header class="mb-2 card-title">
-                      <div class="flex items-center justify-start">
-                        <span class="mr-2">
-                          {% render 'page_nav_icon', page: card_page, class: 'size-6 text-base-content/80' %}
-                        </span>
-                        <a class="text-xl font-semibold no-underline hover:text-primary hover:no-underline" href="{{ card_page.path }}">
-                          <h3 class="line-clamp-1">{{ card_page.link_text }}</h3>
-                        </a>
-                      </div>
-                    </header>
-                    <!-- Content -->
-                    <div class="my-4">
-                      <ul>
-                        {% assign limit_page_count = page.settings.index_card_page_count | default: 5 %}
-                        {% assign sub_pages = card_page.children_in_list | limit: limit_page_count %}
-                        {% for sub_page in sub_pages %}
-                          <li class="mt-2 truncate">
-                            <a
-                              href="{{ sub_page.path }}"
-                              class="group relative text-tiny text-base-content/70 transition duration-500 hover:text-primary"
-                            >
-                              <span
-                                class="absolute top-2 inline-block h-1.5 w-1.5 rounded-full border-0 bg-base-content/40 transition duration-500 group-hover:bg-primary"
-                              ></span>
-                              <span class="ml-4 line-clamp-1">{{ sub_page.link_text }}</span>
-                            </a>
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    </div>
-                </div>
-                <!-- Card footer -->
-                <div class="flex justify-end space-x-2 border-t border-base-300 pt-3 md:pt-5">
-                  <a href="{{ card_page.path }}" class="cursor-pointer text-primary">{{ 'generic.read_more' | t}}</a>
-                </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
+{% assign default_hero_image = 'images/hero-1.webp' | asset_url %}
+{% assign hero_bg_image = page.settings.hero_image_url | presence | default: default_hero_image %}
+{% assign hero_font_color = page.settings.hero_font_color | presence | default: '#000000' %}
+{% assign hero_slogan = page.settings.hero_slogan | presence %}
+{% assign hero_description = page.settings.hero_description | presence %}
+{% assign featured_title = page.settings.featured_section_title | presence | default: 'templates.index_documentation.featured_title' | t %}
+{% assign featured_count = page.settings.featured_count | default: 6 %}
+{% assign card_pages = site.pages['/'].children_in_nav_menu | limit: featured_count %}
 
-      {% # 常见问题 - FAQ %}
-      {% assign faq_pages = site.pages['/'].pages_in_list | order_by: '-visits_count' | limit: 10 %}
-      <div class="pt-4 pb-8 mt-8 lg:mt-14 lg:pb-12">
-        {% # 标题 %}
-        <div class="flex items-center h-8 mb-8 text-2xl font-bold">
-          <div class="w-1 h-full mr-3 bg-primary"></div>
-          <span>{{ 'generic.hot_pages' | t }}</span>
-        </div>
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 gap-y-4">
-          {% for faq_page in faq_pages %}
-            <a class="flex items-center justify-between transition transform group"
-              href="{{ faq_page.path }}">
-              <div class="flex">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/50 transition group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-                <h6 class="ml-2 text-base-content transition group-hover:text-primary">
-                  {{ faq_page.link_text }}
-                </h6>
-              </div>
+<main class="relative flex min-h-0 flex-1 flex-col bg-base-100">
+  {% comment %} Hero band: transparent header overlays background image {% endcomment %}
+  <section class="relative overflow-hidden border-b border-base-200" style="color: {{ hero_font_color }};">
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <img
+        src="{{ hero_bg_image }}"
+        alt=""
+        width="1920"
+        height="640"
+        decoding="async"
+        class="h-full w-full object-cover object-center opacity-50"
+        style="-webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 100%);"
+      >
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-base-100/30 to-base-100"></div>
+    </div>
 
-              <svg xmlns="http://www.w3.org/2000/svg" class="mr-4 h-5 w-5 shrink-0 text-base-content/60 transition group-hover:translate-x-3 group-hover:text-primary md:transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          {% endfor %}
+    <div class="relative z-10">
+      {% render 'docs_home_header' %}
+
+      <div class="px-4 pb-10 pt-2 md:px-10 md:pb-12">
+        <div class="max-w-3xl">
+          {% if hero_slogan | present? %}
+            <h1 class="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+              {{ hero_slogan }}
+            </h1>
+          {% endif %}
+          {% if hero_description | present? %}
+            <p class="mt-3 max-w-2xl text-base opacity-70 md:text-lg">
+              {{ hero_description }}
+            </p>
+          {% endif %}
         </div>
       </div>
     </div>
   </section>
-</section>
+
+  {% comment %} Featured cards {% endcomment %}
+  <section class="relative z-10 px-4 py-8 md:px-10 md:py-10" aria-labelledby="docs-featured-title">
+    <h2 id="docs-featured-title" class="mb-6 text-xl font-bold text-base-content md:text-2xl">
+      {{ featured_title }}
+    </h2>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      {% for card_page in card_pages %}
+        {% assign card_desc = card_page.settings.description | strip_html | strip %}
+        {% if card_desc == blank %}
+          {% assign card_desc = card_page.settings.content | strip_html | truncate: 100 %}
+        {% endif %}
+        <a
+          href="{{ card_page.path }}"
+          class="group flex flex-col overflow-hidden rounded-2xl border border-base-300 bg-base-100 no-underline shadow-sm transition-all duration-200 hover:border-primary/40 hover:shadow-md hover:no-underline focus:no-underline [&_*]:no-underline"
+        >
+          <div class="relative h-14 shrink-0 bg-gradient-to-br from-primary/25 to-secondary/25 sm:h-16">
+            <div class="absolute -bottom-5 left-5 flex size-11 items-center justify-center rounded-xl bg-neutral text-neutral-content shadow-md ring-4 ring-base-100 transition-transform group-hover:scale-105">
+              {% render 'page_nav_icon', page: card_page, class: 'size-5' %}
+            </div>
+          </div>
+          <div class="flex flex-1 flex-col items-start px-5 pb-5 pt-8 text-left">
+            <h3 class="text-base font-bold text-base-content transition-colors group-hover:text-primary line-clamp-2">
+              {{ card_page.link_text }}
+            </h3>
+            {% if card_desc != blank %}
+              <p class="mt-2 text-sm leading-relaxed text-base-content/60 line-clamp-3">
+                {{ card_desc }}
+              </p>
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</main>
 
 {% schema %}
-  {
-    "name": "Documentation",
-    "description": "Ideal for documentation site",
-    "thumb_url": "images/theme/${lang}/index.documentation.png",
-    "preview_image_urls": [
-      "images/theme/${lang}/index.documentation.png"
-    ],
-    "sub_page_templates": ["page"],
-    "settings": [
-        {
-          "id": "hero_image_url",
-          "type": "image_picker",
-          "ratio": "19:6",
-          "width": 900,
-          "label": "t:schema.templates.index.documentation.settings.hero_image_url.label",
-          "info": "t:schema.templates.index.documentation.settings.hero_image_url.info"
-        },
-        {
-          "id": "hero_font_color",
-          "type": "color",
-          "label": "t:schema.templates.index.documentation.settings.hero_font_color.label",
-          "info": "t:schema.templates.index.documentation.settings.hero_font_color.info",
-          "default": "#ffffff"
-        },
-        {
-          "id": "hero_slogan",
-          "type": "text",
-          "label": "t:schema.templates.index.documentation.settings.hero_slogan.label",
-          "default": "Knowledge base site"
-        },
-        {
-          "id": "hero_description",
-          "type": "text",
-          "label": "t:schema.templates.index.documentation.settings.hero_description.label",
-          "default": "👋 What Can We Help?"
-        },
-        {
-          "id": "hot_tags",
-          "label": "t:schema.templates.index.documentation.settings.hot_tags.label",
-          "type": "text",
-          "placeholder": "sign in,install,account,how to"
-        },
-        {
-          "id": "index_card_page_count",
-          "type": "number",
-          "min": 1,
-          "max": 20,
-          "step": 1,
-          "default": 5,
-          "label": "t:schema.templates.index.documentation.settings.index_card_page_count.label",
-          "info": "t:schema.templates.index.documentation.settings.index_card_page_count.info"
-        }
-      ]
-  }
+{
+  "name": "Reference",
+  "description": "Documentation home with sidebar nav and featured guide cards",
+  "thumb_url": "images/theme/${lang}/index.documentation.png",
+  "preview_image_urls": [
+    "images/theme/${lang}/index.documentation.png"
+  ],
+  "sub_page_templates": ["page"],
+  "settings": [
+    {
+      "id": "hero_image_url",
+      "type": "image_picker",
+      "ratio": "19:6",
+      "width": 900,
+      "label": "t:schema.templates.index.documentation.settings.hero_image_url.label",
+      "info": "t:schema.templates.index.documentation.settings.hero_image_url.info"
+    },
+    {
+      "id": "hero_font_color",
+      "type": "color",
+      "label": "t:schema.templates.index.documentation.settings.hero_font_color.label",
+      "info": "t:schema.templates.index.documentation.settings.hero_font_color.info",
+      "default": "#000000"
+    },
+    {
+      "id": "hero_slogan",
+      "type": "text",
+      "label": "t:schema.templates.index.documentation.settings.hero_slogan.label",
+      "default": "Developer Handbook"
+    },
+    {
+      "id": "hero_description",
+      "type": "text",
+      "label": "t:schema.templates.index.documentation.settings.hero_description.label",
+      "default": "Explore guides, API reference, and integration docs."
+    },
+    {
+      "id": "search_hot_keywords",
+      "type": "textarea",
+      "label": "t:schema.templates.index.shared.settings.search_hot_keywords.label",
+      "info": "t:schema.templates.index.shared.settings.search_hot_keywords.info",
+      "default": "authentication\nAPI reference\nwebhooks"
+    },
+    {
+      "id": "featured_section_title",
+      "type": "text",
+      "label": "t:schema.templates.index.documentation.settings.featured_section_title.label",
+      "default": "Featured Articles"
+    },
+    {
+      "id": "featured_count",
+      "type": "number",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 6,
+      "label": "t:schema.templates.index.documentation.settings.featured_count.label",
+      "info": "t:schema.templates.index.documentation.settings.featured_count.info"
+    }
+  ]
+}
 {% endschema %}

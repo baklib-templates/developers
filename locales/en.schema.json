@@ -11,6 +11,9 @@
     "baklib": {
       "name": "Baklib Brand"
     },
+    "developer": {
+      "name": "Developer reference"
+    },
     "fashion": {
       "name": "Fashion"
     },
@@ -34,15 +37,35 @@
       "left_sidebar_width": {
         "label": "Left sidebar width",
         "info": "Used on documentation pages with a sidebar. Default: 300px."
+      },
+      "api_base_url_hint": {
+        "label": "API Base URL hint",
+        "info": "Shown in the OpenAPI reference page header, e.g. https://api.example.com/v1"
+      },
+      "enable_ai_chat_search": {
+        "label": "Enable AI Chat Search",
+        "info": "When enabled, the search page shows the AI assistant. Uncheck to hide it. The site must still have AI search capability enabled."
+      },
+      "ai_search_completed_text": {
+        "label": "AI Completion Text",
+        "info": "Add a sentence after AI completes the answer"
+      }
+    }
+  },
+  "page_config": {
+    "name": "Page settings",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "Show Copy for LLM / MCP tools dropdown"
       }
     }
   },
   "custom_html": {
     "settings": {
       "footer_menu_html": {
-        "label": "Insert HTML code into the bottom area (footer, footer_menu_html)",
-        "info": "Support HTML tags and limited TailwindCSS style code",
-        "placeholder": "Usually, external navigation links, friendship links, SEO optimization links, etc. of other company websites are inserted here"
+        "label": "Footer HTML",
+        "info": "The entire footer content (copyright, ICP, etc.). Supports HTML and limited TailwindCSS.",
+        "placeholder": "Usually used for footer nav, friendly links, copyright and ICP notice"
       },
       "header_menu_html": {
         "label": "Insert HTML code into the top navigation area",
@@ -55,19 +78,9 @@
         "placeholder": "For example:<meta name='author 'content=' Baklib '/>"
       },
       "features_one": {
-        "label": "Features block one",
+        "label": "Channel right sidebar HTML",
         "placeholder": "HTML snippet",
-        "info": "Preset HTML block. Front-end: site.settings.features_one"
-      },
-      "features_two": {
-        "label": "Features block two",
-        "placeholder": "HTML snippet",
-        "info": "Preset HTML block. Front-end: site.settings.features_two"
-      },
-      "features_three": {
-        "label": "Features block three",
-        "placeholder": "HTML snippet",
-        "info": "Preset HTML block. Front-end: site.settings.features_three"
+        "info": "Right column on page.channel — e.g. SDK downloads or related links"
       }
     },
     "name": "Customize HTML code"
@@ -83,18 +96,23 @@
   },
   "templates": {
     "index": {
+      "shared": {
+        "settings": {
+          "search_hot_keywords": {
+            "label": "Popular searches",
+            "info": "Used on home hero and site search page. One keyword per line."
+          }
+        }
+      },
       "documentation": {
         "settings": {
           "hero_image_url": {
-            "label": "background image",
-            "info": "The background image will be automatically cropped based on the page width and background height"
+            "label": "Background image",
+            "info": "Hero background in the content area; falls back to the theme default"
           },
           "hero_font_color": {
             "label": "Hero text color",
-            "info": "Applies to the title, subtitle, and popular search tags in the hero section (e.g. #ffffff on a dark background)"
-          },
-          "hot_tags": {
-            "label": "Hot search keywords (please separate them with commas)"
+            "info": "Defaults to black; use #ffffff on a dark hero image"
           },
           "hero_slogan": {
             "label": "Slogan Title"
@@ -102,9 +120,34 @@
           "hero_description": {
             "label": "Slogan description"
           },
-          "index_card_page_count": {
-            "label": "Pages listed per guide card",
-            "info": "Number of child pages shown under each guide on the documentation home page"
+          "featured_section_title": {
+            "label": "Featured cards section title"
+          },
+          "featured_count": {
+            "label": "Number of featured cards",
+            "info": "Taken from top-level items in the site navigation menu"
+          }
+        }
+      },
+      "book": {
+        "settings": {
+          "toc_title": {
+            "label": "Contents page title"
+          },
+          "toc_max_depth": {
+            "label": "Maximum TOC depth",
+            "info": "Navigation tree depth to list (1–20)"
+          },
+          "show_chapter_prefix": {
+            "label": "Show “Chapter N —” prefix on top-level items"
+          },
+          "chapter_prefix": {
+            "label": "Chapter prefix label",
+            "info": "Shown as the level-1 block label (e.g. SECTION 1). Use words like Section or Chapter."
+          },
+          "show_page_numbers": {
+            "label": "Show page numbers",
+            "info": "Sequential numbers in TOC order (not print page numbers)"
           }
         }
       },
@@ -136,18 +179,12 @@
           "hero_search_placeholder": {
             "label": "Search placeholder"
           },
-          "show_featured_section": {
-            "label": "Show featured guides"
-          },
           "featured_section_title": {
             "label": "Featured section title"
           },
           "featured_count": {
             "label": "Number of featured guides",
             "info": "Taken from the first items in the site navigation menu"
-          },
-          "show_categories_section": {
-            "label": "Show categories"
           },
           "categories_section_title": {
             "label": "Categories section title"
@@ -156,17 +193,8 @@
             "label": "Maximum categories to show",
             "info": "Remaining nav menu items after featured guides; order follows navigation"
           },
-          "show_trending_section": {
-            "label": "Show trending guides"
-          },
           "trending_section_title": {
             "label": "Trending section title"
-          },
-          "trending_popular_title": {
-            "label": "Most popular column title"
-          },
-          "trending_recent_title": {
-            "label": "Recently added column title"
           },
           "trending_list_limit": {
             "label": "Links per trending column"
@@ -204,11 +232,34 @@
           "info": "Lucide icon for this page when it appears as a top-level sidebar group (no link, expand/collapse only)"
         },
         "api_document": {
-          "label": "OpenAPI documentation"
+          "label": "OpenAPI document",
+          "info": "Inline OpenAPI 3.x JSON/YAML — use either this or OpenAPI document URL"
         },
         "api_document_url": {
-          "label": "OpenAPI document URL"
+          "label": "OpenAPI document URL",
+          "info": "Remote OpenAPI spec URL — use either this or inline OpenAPI document"
         }
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "WeChat configuration",
+      "weixin_app_id": {
+        "label": "Developer ID (AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat official account/setting and development/development interface management</a>"
+      },
+      "weixin_app_secret": {
+        "label": "Developer Password (AppSecret)",
+        "info": "Obtain from <a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat Official Account / Settings & Development / Development Interface Management</a>"
+      },
+      "weixin_enabled": {
+        "label": "Do you want to enable WeChat sharing",
+        "info": "Provide the ability to share site pages on WeChat</br>Please configure the IP whitelist (ip: ${service_ip}) in the WeChat official account. After configuration, there will be a period of delay in effectiveness. </br>Check whether WeChat sharing permission is enabled, WeChat official account/setting and development/development interface management:<a href='https://mp.weixin.qq.com/cgi-bin/frame> Web service/sharing interface</a>.</br>Whether the sharing link is a card: enter the sharing card form from the card form, and enter the sharing link form from the link form; The initial link sharing on the webpage can be done through the company's service account or by bookmarking and sharing cards (this rule is a WeChat sharing restriction)."
+      },
+      "weixin_debug": {
+        "label": "Do you want to enable debug prompt",
+        "info": "Please only enable this option during the configuration phase; If WeChat sharing is not configured correctly when accessing the front-end site after activation, an error message will be automatically prompted"
       }
     }
   }

@@ -11,6 +11,9 @@
     "baklib": {
       "name": "Baklib 品牌"
     },
+    "developer": {
+      "name": "开发者参考"
+    },
     "fashion": {
       "name": "时尚"
     },
@@ -34,15 +37,35 @@
       "left_sidebar_width": {
         "label": "左侧边栏宽度",
         "info": "用于带侧栏的文档页布局，默认 300px"
+      },
+      "api_base_url_hint": {
+        "label": "API Base URL 提示",
+        "info": "在 OpenAPI 参考页顶栏展示，例如 https://api.example.com/v1"
+      },
+      "enable_ai_chat_search": {
+        "label": "启用 AI Chat 搜索",
+        "info": "开启后，搜索页显示 AI 助手；取消勾选则隐藏。仍需站点已开通 AI 搜索能力。"
+      },
+      "ai_search_completed_text": {
+        "label": "AI回答结束语",
+        "info": "AI回答结束后添加一句话"
+      }
+    }
+  },
+  "page_config": {
+    "name": "页面配置",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "显示 Copy for LLM / MCP 工具下拉菜单"
       }
     }
   },
   "custom_html": {
     "settings": {
       "footer_menu_html": {
-        "label": "底部区域插入 HTML 代码(footer 内，footer_menu_html)",
-        "info": "支持HTML标签和有限的TailwindCSS样式代码",
-        "placeholder": "通常在这里插入公司其他网站的外部导航链接、友情链接、SEO 优化链接等"
+        "label": "页脚区域 HTML 代码",
+        "info": "页脚全部内容由此填充（版权、备案等）。支持 HTML 标签和有限的 TailwindCSS 样式",
+        "placeholder": "通常在这里插入页脚导航、友情链接、版权与备案信息等"
       },
       "header_menu_html": {
         "label": "顶部导航区域插入 HTML 代码",
@@ -55,19 +78,9 @@
         "placeholder": "例如: <meta name='author' content='Baklib' />"
       },
       "features_one": {
-        "label": "功能区块一",
+        "label": "频道右侧栏 HTML",
         "placeholder": "HTML 代码",
-        "info": "预设 HTML 代码块，前台：site.settings.features_one"
-      },
-      "features_two": {
-        "label": "功能区块二",
-        "placeholder": "HTML 代码",
-        "info": "预设 HTML 代码块，前台：site.settings.features_two"
-      },
-      "features_three": {
-        "label": "功能区块三",
-        "placeholder": "HTML 代码",
-        "info": "预设 HTML 代码块，前台：site.settings.features_three"
+        "info": "用于 page.channel 模板右侧栏；例如 SDK 下载、相关链接"
       }
     },
     "name": "自定义 HTML 代码"
@@ -83,15 +96,23 @@
   },
   "templates": {
     "index": {
+      "shared": {
+        "settings": {
+          "search_hot_keywords": {
+            "label": "热门搜索",
+            "info": "用于首页 Hero 与全站搜索页。换行填写多个关键词。"
+          }
+        }
+      },
       "documentation": {
         "settings": {
           "hero_image_url": {
             "label": "背景图",
-            "info": "背景图会根据页面宽度和背景高度自动裁剪"
+            "info": "内容区 Hero 底部背景，未设置时使用默认图"
           },
           "hero_font_color": {
             "label": "Hero 文字颜色",
-            "info": "作用于主标题、副标题与热搜标签（深色背景建议 #ffffff）"
+            "info": "默认黑色；深色背景图时可改为 #ffffff"
           },
           "hero_slogan": {
             "label": "标语标题"
@@ -99,12 +120,34 @@
           "hero_description": {
             "label": "标语描述"
           },
-          "hot_tags": {
-            "label": "热搜关键词（请用英文逗号「,」分隔）"
+          "featured_section_title": {
+            "label": "精选卡片区标题"
           },
-          "index_card_page_count": {
-            "label": "首页列表展示页面数量",
-            "info": "文档首页每个指南卡片下展示的子页面数量"
+          "featured_count": {
+            "label": "精选卡片数量",
+            "info": "从导航菜单一级页面自动选取"
+          }
+        }
+      },
+      "book": {
+        "settings": {
+          "toc_title": {
+            "label": "目录页标题"
+          },
+          "toc_max_depth": {
+            "label": "目录最大层级",
+            "info": "从导航菜单遍历的层级深度（1–20）"
+          },
+          "show_chapter_prefix": {
+            "label": "一级条目显示「Chapter N —」前缀"
+          },
+      "chapter_prefix": {
+        "label": "章节前缀文案",
+        "info": "显示为一级区块标签（如 SECTION 1），建议英文大写词如 Section、Chapter"
+      },
+          "show_page_numbers": {
+            "label": "显示页码",
+            "info": "按目录顺序自动编号（非印刷页码）"
           }
         }
       },
@@ -127,17 +170,8 @@
           "hot_tags": {
             "label": "热搜关键词（请用英文逗号「,」分隔）"
           },
-          "show_hero_section": {
-            "label": "显示 Hero 区域"
-          },
-          "show_hero_hot_tags": {
-            "label": "显示热搜标签"
-          },
           "hero_search_placeholder": {
             "label": "搜索框占位文案"
-          },
-          "show_featured_section": {
-            "label": "显示精选指南"
           },
           "featured_section_title": {
             "label": "精选区块标题"
@@ -146,9 +180,6 @@
             "label": "精选指南数量",
             "info": "从站点导航菜单前几项自动选取"
           },
-          "show_categories_section": {
-            "label": "显示分类"
-          },
           "categories_section_title": {
             "label": "分类区块标题"
           },
@@ -156,17 +187,8 @@
             "label": "最多显示分类数",
             "info": "精选之后的导航子页；顺序与导航一致"
           },
-          "show_trending_section": {
-            "label": "显示热门指南"
-          },
           "trending_section_title": {
             "label": "热门区块标题"
-          },
-          "trending_popular_title": {
-            "label": "最受欢迎栏目标题"
-          },
-          "trending_recent_title": {
-            "label": "最近更新栏目标题"
           },
           "trending_list_limit": {
             "label": "每栏链接数量"
@@ -196,10 +218,12 @@
           "info": "当该页面作为侧栏一级分组时显示的 Lucide 图标（一级分组仅展开/折叠，不可点击跳转）"
         },
         "api_document": {
-          "label": "OpenAPI文档"
+          "label": "OpenAPI 文档",
+          "info": "粘贴 OpenAPI 3.x JSON/YAML 正文；与「OpenAPI 文档 URL」二选一"
         },
         "api_document_url": {
-          "label": "OpenAPI文档URL"
+          "label": "OpenAPI 文档 URL",
+          "info": "远程 OpenAPI 规范地址；与内联「OpenAPI 文档」二选一"
         }
       },
       "channel": {
@@ -209,6 +233,27 @@
             "info": "同步自数据源，不可编辑"
           }
         }
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "微信配置",
+      "weixin_app_id": {
+        "label": "开发者ID(AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>微信公众号/设置与开发/开发接口管理</a>中获取 "
+      },
+      "weixin_app_secret": {
+        "label": "开发者密码(AppSecret)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>微信公众号/设置与开发/开发接口管理</a>中获取"
+      },
+      "weixin_enabled": {
+        "label": "是否启用微信分享",
+        "info": "提供站点页面微信分享的能力</br>请在微信公众号中配置ip白名单（ip: ${service_ip}）, 配置后将有一段时间的生效延迟。</br>检查是否开启微信分享权限，微信公众号/设置与开发/开发接口管理: <a href='https://mp.weixin.qq.com/cgi-bin/frame'>网页服务/分享接口</a>。</br>分享链接是否为卡片：从卡片形式进入分享卡片形式，链接形式进入分享链接形式；网页初始链接分享可由公司的服务号中或收藏后进行卡片分享（此规则为微信分享限制）。"
+      },
+      "weixin_debug": {
+        "label": "是否开启debug提示",
+        "info": "请仅在配置阶段开启此选项；开启后在访问前端站点时若未正确配置微信分享将自动提示错误信息"
       }
     }
   }

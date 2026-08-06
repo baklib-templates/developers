@@ -11,6 +11,9 @@
     "baklib": {
       "name": "Baklib Marke"
     },
+    "developer": {
+      "name": "Developer-Referenz"
+    },
     "fashion": {
       "name": "Mode"
     },
@@ -34,15 +37,35 @@
       "left_sidebar_width": {
         "label": "Breite der linken Seitenleiste",
         "info": "Für Dokumentationsseiten mit Seitenleiste. Standard: 300px."
+      },
+      "api_base_url_hint": {
+        "label": "API Base URL Hinweis",
+        "info": "Wird in der OpenAPI-Referenzseite angezeigt, z. B. https://api.example.com/v1"
+      },
+      "enable_ai_chat_search": {
+        "label": "AI-Chat-Suche aktivieren",
+        "info": "Zeigt den KI-Assistenten auf der Suchseite. Deaktivieren, um ihn auszublenden. Die KI-Suche der Site muss ebenfalls aktiviert sein."
+      },
+      "ai_search_completed_text": {
+        "label": "KI-Abschlusstext",
+        "info": "Fügt nach der KI-Antwort einen Satz hinzu"
+      }
+    }
+  },
+  "page_config": {
+    "name": "Seitenkonfiguration",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "Copy for LLM / MCP-Dropdown anzeigen"
       }
     }
   },
   "custom_html": {
     "settings": {
       "footer_menu_html": {
-        "label": "Fügen Sie den HTML-Code in den unteren Bereich ein (Footer, footer_menu_html)",
-        "info": "Unterstützung für HTML-Tags und begrenzten TailwindCSS-Style-Code",
-        "placeholder": "In der Regel werden hier externe Navigationslinks, Freundschaftslinks, SEO-Optimierungslinks usw. zu anderen Websites des Unternehmens eingefügt."
+        "label": "Footer-HTML",
+        "info": "Der gesamte Footer-Inhalt (Copyright, ICP usw.). Unterstützt HTML und eingeschränktes TailwindCSS.",
+        "placeholder": "Üblich für Footer-Navigation, Partner-Links, Copyright und ICP-Hinweis"
       },
       "header_menu_html": {
         "label": "HTML-Code im oberen Navigationsbereich einfügen",
@@ -55,19 +78,9 @@
         "placeholder": "Beispiel: <meta name='author' content='Baklib' />"
       },
       "features_one": {
-        "label": "Funktionsblock eins",
+        "label": "Kanal-Rechte-Seitenleiste HTML",
         "placeholder": "HTML-Snippet",
-        "info": "Voreingestellter HTML-Block. Frontend: site.settings.features_one"
-      },
-      "features_two": {
-        "label": "Funktionsblock zwei",
-        "placeholder": "HTML-Snippet",
-        "info": "Voreingestellter HTML-Block. Frontend: site.settings.features_two"
-      },
-      "features_three": {
-        "label": "Funktionsblock drei",
-        "placeholder": "HTML-Snippet",
-        "info": "Voreingestellter HTML-Block. Frontend: site.settings.features_three"
+        "info": "Rechte Spalte auf page.channel — z. B. SDK-Downloads oder Links"
       }
     },
     "name": "Benutzerdefinierter HTML-Code"
@@ -209,6 +222,27 @@
         "api_document_url": {
           "label": "OpenAPI Dokumentation URL"
         }
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "WeChat-Konfiguration",
+      "weixin_app_id": {
+        "label": "Entwickler-ID (AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat-Konto / Einstellungen & Entwicklung / Entwicklungsschnittstelle</a>"
+      },
+      "weixin_app_secret": {
+        "label": "Entwicklerschlüssel (AppSecret)",
+        "info": "Erhältlich unter <a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat Official Account / Einstellungen & Entwicklung / Entwicklungsschnittstellen</a>"
+      },
+      "weixin_enabled": {
+        "label": "WeChat-Sharing aktivieren?",
+        "info": "Stellt die Möglichkeit bereit, Seiten in WeChat zu teilen.</br>Bitte tragen Sie die IP-Whitelist (ip: ${service_ip}) im WeChat-Konto ein. Änderungen können verzögert wirksam werden.</br>Prüfen Sie die Sharing-Berechtigung im WeChat-Konto / Einstellungen & Entwicklung / Entwicklungsschnittstelle: <a href='https://mp.weixin.qq.com/cgi-bin/frame'>Webdienst / Sharing-Schnittstelle</a>."
+      },
+      "weixin_debug": {
+        "label": "Debug-Hinweise aktivieren?",
+        "info": "Bitte nur während der Konfigurationsphase aktivieren; bei aktivierter Debug-Anzeige werden Konfigurationsfehler beim Aufruf der Seite gemeldet."
       }
     }
   }

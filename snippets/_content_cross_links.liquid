@@ -1,0 +1,33 @@
+{% comment %}
+  Cross-links between Guides and API Reference pages within the same nav group.
+  @param page {object} current page
+{% endcomment %}
+{% assign cross_link_page = nil %}
+{% assign cross_link_label = nil %}
+
+{% if page.parent %}
+  {% for sibling in page.parent.children_in_nav_menu %}
+    {% if sibling.path != page.path %}
+      {% if page.template_name == 'page.api' and sibling.template_name != 'page.api' %}
+        {% assign cross_link_page = sibling %}
+        {% assign cross_link_label = 'snippets.cross_links.view_guide' | t: '查看指南' %}
+        {% break %}
+      {% elsif page.template_name != 'page.api' and sibling.template_name == 'page.api' %}
+        {% assign cross_link_page = sibling %}
+        {% assign cross_link_label = 'snippets.cross_links.view_api_reference' | t: '查看 API 参考' %}
+        {% break %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if cross_link_page %}
+  <aside class="not-prose my-6 rounded-lg border border-base-300 bg-base-200/40 px-4 py-3">
+    <a href="{{ cross_link_page.path }}" class="flex items-center gap-2 text-sm font-medium text-primary hover:underline" data-turbo-frame="_top">
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+      </svg>
+      <span>{{ cross_link_label }}: {{ cross_link_page.link_text }}</span>
+    </a>
+  </aside>
+{% endif %}

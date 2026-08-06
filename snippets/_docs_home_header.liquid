@@ -1,0 +1,22 @@
+{% comment %}
+  Documentation home content bar: transparent over Hero.
+  Custom header menu only (site icon lives in the left sidebar).
+{% endcomment %}
+{% assign header_menu_html = site.settings.header_menu_html | presence %}
+
+<header
+  class="js--header relative z-20 flex min-h-14 w-full flex-col justify-center bg-transparent px-4 text-base-content print:hidden md:min-h-16 md:px-10"
+>
+    <nav class="navbar flex w-full px-0 py-0">
+      <div class="flex w-full min-w-0 items-center justify-end gap-2 lg:gap-4">
+        {% if header_menu_html %}
+          <div class="hidden min-w-0 items-center gap-4 md:flex [&_a]:text-sm [&_a]:font-medium [&_a]:text-base-content/80 [&_a]:no-underline [&_a]:transition-colors [&_a]:hover:text-primary [&_a]:hover:no-underline">
+            {{ header_menu_html }}
+          </div>
+        {% endif %}
+        <div class="md:hidden">
+          {% render 'header_drawer' %}
+        </div>
+      </div>
+    </nav>
+  </header>

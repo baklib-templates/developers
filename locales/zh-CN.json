@@ -16,13 +16,13 @@
   },
   "statics": {
     "about": {
-      "title": "Daisy Wiki 模板介绍",
-      "intro": "Daisy Wiki 模板是一个通用的文档知识库网站模板，具有多主题 UI 风格、多终端适配，以及可个性化定义网站界面。",
+      "title": "Developers 主题介绍",
+      "intro": "Developers 是面向开发者与技术团队的文档主题：API 参考（OpenAPI）、集成指南，以及 Copy for LLM / MCP 工具支持。",
       "section1_title": "1. 创建站点",
       "section1_workspace": "在 Baklib 工作台的",
       "section1_market_badge": "市场",
       "section1_find_theme": "中找到",
-      "section1_theme_badge": "Daisy Wiki",
+      "section1_theme_badge": "Developers",
       "section1_after_theme": "模板，创建站点。站点创建好以后，模板自动内置了",
       "section1_tailwind": "TailwindCSS",
       "section1_and": "和",
@@ -42,7 +42,8 @@
       "section3_page_template": "page",
       "section3_p1_mid": "，你只需要绑定一个",
       "section3_knowledge_base": "知识库",
-      "section3_p1_end": "，所有内容都会同步到 Wiki 站点。",
+      "section3_p1_end": "，内容同步到开发者文档站。",
+      "section3_llm": "文档页支持 Copy for LLM、在 ChatGPT / Claude 中打开，以及 MCP 连接 Cursor / VS Code — 便于将本站接入你的开发工作流。",
       "daisyui_title": "什么是 Daisy UI?",
       "daisyui_body": "DaisyUI 是一个功能强大的组件库，可与 Tailwind CSS 无缝协作。Tailwind CSS 是一个实用类优先的 CSS 框架，在前端开发人员中广受欢迎。它提供低级实用程序类，让你可以直接在 HTML 中快速构建自定义设计。",
       "baklib_title": "什么是 Baklib?",
@@ -53,15 +54,42 @@
     "search": "在站内搜索"
   },
   "templates": {
+    "index_book": {
+      "title": "目录",
+      "chapter_prefix": "Section",
+      "empty": "导航中暂无页面"
+    },
+    "index_documentation": {
+      "featured_title": "精选文章"
+    },
     "index_portal": {
       "featured_title": "精选指南",
       "categories_title": "分类",
       "trending_title": "热门指南",
       "trending_popular_title": "最受欢迎",
-      "trending_recent_title": "最近更新"
+      "trending_recent_title": "最近更新",
+      "paths_label": "开发者路径",
+      "path_get_started": "快速开始",
+      "path_guides": "指南",
+      "path_api_reference": "API 参考",
+      "llm_tools_title": "面向开发者与 AI 工具",
+      "llm_tools_body": "文档页支持 Copy for LLM、在 ChatGPT 中打开，以及 MCP 连接 — 便于集成到你的工作流。"
+    },
+    "search": {
+      "title": "搜索",
+      "placeholder": "搜索指南、API 与集成文档…",
+      "no_results": "没有找到相关结果",
+      "featured_label": "精选",
+      "results_for": "搜索结果",
+      "back_home": "返回开发者首页",
+      "badge_guide": "指南",
+      "badge_api": "API",
+      "ai_input_placeholder": "继续提问…"
     },
     "page_api": {
-      "loading": "加载中..."
+      "loading": "加载中…",
+      "section_label": "API Reference",
+      "base_url_label": "Base URL"
     },
     "page": {
       "copy_success": "链接已复制",
@@ -91,11 +119,18 @@
       "prev_page": "上一页",
       "next_page": "下一页"
     },
-    "plugins": {
-      "online_support": "在线支持",
-      "presales": "售前咨询",
-      "ticket": "工单咨询",
-      "demo": "预约演示"
+    "cross_links": {
+      "view_guide": "查看指南",
+      "view_api_reference": "查看 API 参考"
+    },
+    "sidebar_user_account": {
+      "user_center": "个人中心",
+      "profile": "个人信息",
+      "signout": "退出登录",
+      "signout_loading": "退出中...",
+      "signin_loading": "登录中...",
+      "signin": "登录",
+      "create_account": "创建账户"
     },
     "page_tools": {
       "copy_page_label": "复制",

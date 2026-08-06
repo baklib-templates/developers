@@ -39,12 +39,19 @@
           {% render 'search_trigger' %}
         </div>
 
-        <div class="custom-menu min-h-0 flex-1 overflow-y-auto border-base-300 pt-2" @click="if($event.target.closest('a')) $event.target.closest('.drawer').querySelector('#header-drawer-left').checked = false">
+        <div
+          class="custom-menu min-h-0 flex-1 overflow-y-auto border-base-300 pt-2"
+          @click="if($event.target.closest('a')) $event.target.closest('.drawer').querySelector('#header-drawer-left').checked = false"
+        >
           <turbo-frame id="page_nav_tree_frame__" src="/s/page/nav_tree" loading="lazy">
             <div class="flex items-center justify-center h-20 text-base-content/60">
               <span class="loading loading-spinner loading-md"></span>
             </div>
           </turbo-frame>
+        </div>
+
+        <div class="flex-none border-t border-base-300 pt-3 pb-2">
+          {% render 'page/sidebar_user_account' %}
         </div>
       </div>
     </div>

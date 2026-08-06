@@ -16,14 +16,19 @@
     {{ 'javascripts/application.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
 
     {{ site.settings.head_html }}
+    {% weixin_share_tag app_id: site.settings.weixin_app_id, app_secret: site.settings.weixin_app_secret, debug: site.settings.weixin_debug, enabled: site.settings.weixin_enabled %}
+
   </head>
   <body id="js--body" class="grid min-h-screen grid-rows-[auto_1fr_auto] bg-base-100 tracking-wide text-base-content antialiased" x-data="{ isHomePage: false, showScrollBar: false }" x-init="isHomePage = location.pathname === '{{ site.index_path }}';  window.addEventListener('scroll', () => {
           showScrollBar = window.scrollY > window.innerHeight;
         });">
     <div class='grid md:grid-cols-[var(--left-sidebar-width)_1fr] grid-cols-1'>
       {% render 'page/sidebar', settings: site.settings, page: page %}
-      <div class='flex flex-col'>
-        {% render 'page/header' %}
+      <div class='flex flex-col min-w-0'>
+        {% comment %} Docs home renders its own transparent header over Hero; other pages use site_header {% endcomment %}
+        {% unless page.template_name == 'index' %}
+          {% render 'site_header', show_search: true %}
+        {% endunless %}
         {{ content_for_layout }}
         {% render 'footer' %}
       </div>
