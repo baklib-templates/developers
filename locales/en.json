@@ -1,4 +1,21 @@
 {
+  "layout": {
+    "theme": {
+      "search_tags_label": "Popular Tags",
+      "search_keywords_label": "Popular Searches"
+    }
+  },
+  "ai": {
+    "title": "AI Assistant",
+    "thinking": "Thinking...",
+    "completed": "AI response completed.",
+    "canceled": "Response canceled",
+    "disclaimer": "Content is AI-generated and may contain errors. Please verify.",
+    "widen": "Widen panel (2/3)",
+    "narrow": "Narrow panel (1/3)",
+    "collapse": "Collapse panel",
+    "expand": "Open AI Assistant"
+  },
   "generic": {
     "back": "Back",
     "about": "About",
@@ -57,6 +74,7 @@
     "index_book": {
       "title": "Contents",
       "chapter_prefix": "Chapter",
+      "page_label": "Page",
       "empty": "No pages in the navigation menu yet."
     },
     "index_documentation": {
@@ -95,7 +113,12 @@
       "copy_success": "Link copied",
       "llm_prompt_template": "Read from %{url} so I can ask questions about it.",
       "llm_copying": "Copying...",
-      "llm_copied": "Copied"
+      "llm_copied": "Copied",
+      "pagination_status_prefix": "Viewing ",
+      "pagination_status_middle": " of ",
+      "pagination_status_suffix": "",
+      "pagination_prev": "Previous",
+      "pagination_next": "Next"
     }
   },
   "snippets": {
@@ -119,6 +142,12 @@
       "prev_page": "Previous Page",
       "next_page": "Next page"
     },
+    "page_list": {
+      "heading": "In this section",
+      "empty": "No pages in this section yet.",
+      "count_prefix": "",
+      "count_suffix": "pages"
+    },
     "cross_links": {
       "view_guide": "View guide",
       "view_api_reference": "View API reference"
@@ -130,7 +159,7 @@
       "signout_loading": "Signing out...",
       "signin_loading": "Signing in...",
       "signin": "Sign in",
-      "create_account": "Create account"
+      "create_account": "Register"
     },
     "page_tools": {
       "copy_page_label": "Copy page",

@@ -1,0 +1,86 @@
+{%- comment -%}
+  Stripe-style search / tag results list with highlighted snippets and optional promoted links.
+  Optionally shows Guide/API badges for developers docs.
+  On tag pages (no search highlight drops), falls back to link_text + description.
+  @param items {Array} search/tag result pages (required)
+  @param extends {Array} promoted links on first page (optional)
+  @param show_extends {Boolean} whether to render extends block (optional)
+{%- endcomment -%}
+{% assign extends_size = extends | size %}
+{% assign items_size = items | size %}
+{% assign total_size = extends_size | plus: items_size %}
+{% assign guide_badge = 'templates.search.badge_guide' | t: '指南' %}
+{% assign api_badge = 'templates.search.badge_api' | t: 'API' %}
+
+{% if total_size > 0 %}
+  <ul class="flex flex-col gap-8">
+    {% if show_extends and extends_size > 0 %}
+      {% for link in extends %}
+        <li class="rounded-lg border border-primary/20 bg-primary/10 p-4 dark:border-primary/30 dark:bg-primary/20">
+          <a
+            href="{{ link.url }}"
+            class="search-highlight-block text-base font-medium text-base-content hover:underline md:text-lg"
+            data-turbo-frame="_top"
+          >
+            {{ link.link_text }}
+          </a>
+          <a
+            href="{{ link.url }}"
+            class="mt-1 block text-xs text-base-content/60"
+            data-turbo-frame="_top"
+          >
+            {{ link.url }}
+          </a>
+        </li>
+      {% endfor %}
+    {% endif %}
+
+    {% for page in items %}
+      {% assign type_badge = guide_badge %}
+      {% if page.template_name == 'page.api' %}
+        {% assign type_badge = api_badge %}
+      {% endif %}
+
+      {% assign result_title = page.highlighted_search_title %}
+      {% if result_title == blank %}
+        {% assign result_title = page.link_text %}
+      {% endif %}
+
+      {% assign result_snippet = page.highlighted_search_content %}
+      {% if result_snippet == blank or result_snippet == empty %}
+        {% assign result_snippet = page.settings.description %}
+      {% endif %}
+
+      <li class="flex gap-4 border-b border-base-300 pb-8 last:border-0 last:pb-0 dark:border-base-300">
+        <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm text-primary-content" aria-hidden="true">
+          {{ forloop.index }}
+        </span>
+        <div class="min-w-0 flex-1">
+          <div class="mb-1 flex flex-wrap items-center gap-2">
+            <span class="inline-flex rounded bg-base-200 px-1.5 py-0.5 text-[0.65rem] font-bold uppercase tracking-wide text-base-content/50">
+              {{ type_badge }}
+            </span>
+          </div>
+          <a
+            href="{{ page.path }}"
+            class="search-highlight-block text-base font-medium text-primary hover:underline md:text-lg"
+            data-turbo-frame="_top"
+          >
+            {{ result_title }}
+          </a>
+          {% if result_snippet != blank and result_snippet != empty %}
+            <p class="search-highlight-block mt-2 line-clamp-2 text-sm leading-relaxed text-base-content/70 dark:text-base-content/50">
+              {{ result_snippet }}
+            </p>
+          {% endif %}
+          {% assign bc = page.breadcrumb %}
+          {% if bc and bc.size > 1 %}
+            <div class="mt-3 hidden overflow-x-auto text-sm md:block">
+              {% render 'breadcrumb', breadcrumb: bc %}
+            </div>
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

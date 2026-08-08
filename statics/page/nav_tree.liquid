@@ -26,6 +26,7 @@
     data-turbo-nav-tree-parent-path-value='{{ parent_path }}'
     data-turbo-nav-tree-url-value='/s/page/nav_tree'
     data-turbo-nav-tree-id-prefix-value='page_nav_tree_frame_'
+    data-turbo-nav-tree-expand-value="{% if site.settings.nav_tree_expand_by_default %}true{% else %}false{% endif %}"
   >
     <template data-turbo-nav-tree-target="itemTemplate">
       {% raw %}

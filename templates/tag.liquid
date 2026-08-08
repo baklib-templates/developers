@@ -1,21 +1,18 @@
-<!-- locals: pages: 搜索返回结果, keywords: 搜索关键词 -->
+{% assign empty_message = 'templates.search.no_results' | t: '没有找到相关结果' %}
+{% assign tag_pages = tag.pages %}
+{% assign tag_pages_size = tag_pages | size %}
 
-<main class="grow">
-
-  <div class="relative px-4 mx-auto max-w-7xl sm:px-6">
-
-    <!-- Main content -->
-    <div class="pb-8 w-5xl">
-
-      <!-- Page header -->
-      <div class="flex justify-between my-2 md:my-4">
+<div class="relative min-h-[60vh] bg-base-100 dark:bg-base-100">
+  <div class="mx-auto max-w-7xl bg-base-100 px-4 pb-16 pt-8 md:pt-12 dark:bg-base-100" data-controller="link-target">
+    <main class="min-w-0 bg-base-100 dark:bg-base-100">
+      <div class="flex items-center justify-between gap-4">
         <a class="mr-auto flex" href="javascript: history.back();">
-          <button class="btn btn-sm rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+          <button type="button" class="btn btn-sm rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true">
               <path fill="currentColor"
                 d="M16.707 19.293 9.414 12l7.293-7.293-1.414-1.414L6.586 12l8.707 8.707 1.414-1.414z"></path>
             </svg>
-            <span class="text-xs md:text-sm font-medium">{{ "generic.back" | t }}</span>
+            <span class="text-xs font-medium md:text-sm">{{ 'generic.back' | t }}</span>
           </button>
         </a>
 
@@ -24,63 +21,49 @@
         </div>
       </div>
 
-      <!-- Tag Cloud -->
-      <div class="my-4 md:my-8 max-h-36 overflow-y-auto">
-        <nav class="flex gap-3 flex-wrap justify-center text-lg">
-          {% for tag in site.tags %}
-            <a href="{{ tag.path }}" class="">
-              {% render 'tag', tag: tag %}
-            </a>
+      <div class="my-4 md:my-8">
+        <nav
+          class="mx-auto flex max-w-3xl flex-wrap justify-center gap-3"
+          aria-label="{{ 'layout.theme.search_tags_label' | t: '热门标签' }}"
+        >
+          {% for cloud_tag in site.tags %}
+            {% if cloud_tag.path == tag.path %}
+              <span
+                class="rounded-full border border-primary bg-primary px-3 py-2 text-sm text-primary-content"
+                aria-current="page"
+              >
+                {{ cloud_tag.name }}
+              </span>
+            {% else %}
+              <a
+                href="{{ cloud_tag.path }}"
+                class="rounded-full border border-base-300 bg-base-100 px-3 py-2 text-sm text-base-content/70 transition hover:border-primary hover:bg-primary hover:text-primary-content"
+              >
+                {{ cloud_tag.name }}
+              </a>
+            {% endif %}
           {% endfor %}
         </nav>
       </div>
 
-      <article class="flex xl:space-x-12">
+      <header class="pt-2">
+        <h1 class="text-2xl font-semibold tracking-tight text-primary md:text-3xl lg:text-4xl">
+          # {{ tag.name }}
+        </h1>
+      </header>
 
-        <!-- Main area -->
-        <div class="min-w-0">
-
-          <!-- Article content -->
-          <div>
-            <header class="mb-6">
-              <h1 class="mb-4 text-2xl lg:text-4xl">
-                <span class="text-primary">
-                  # {{ tag.name }}
-                </span>
-              </h1>
-              <hr class=""/>
-            </header>
-
-            <div class="space-y-3">
-              {% paginate_tag tag.pages, as: 'pages' %}
-                {% for page in pages %}
-                  <div class="space-y-4 rounded-md bg-base-200 p-2 hover:bg-base-300 md:p-4">
-                    <a class="text-lg font-bold text-base-content md:text-xl" href="{{ page.path }}">{{ page.link_text | highlight: tag.name }}</a>
-                    <p class="line-clamp-3 text-sm text-base-content/60">{{ page.settings.content | strip_html | highlight: tag.name }}</p>
-                    <div class="flex items-center justify-between">
-                      <div class="breadcrumbs hidden overflow-x-auto md:block text-sm">
-                        {% render 'breadcrumb', breadcrumb: page.breadcrumb, page: page %}
-                      </div>
-                    </div>
-                  </div>
-                {% else %}
-                  {{ 'generic.empty' | t }}
-                {% endfor %}
-                {% render 'paginate', paginate: paginate %}
-              {% endpaginate_tag %}
-            </div>
-
+      <section class="mt-8">
+        {% if tag_pages_size > 0 %}
+          {% paginate_tag tag.pages, as: 'items', per: 20 %}
+            {% render 'support_search_list', items: items %}
+            {% render 'support_paginate', paginate: paginate %}
+          {% endpaginate_tag %}
+        {% else %}
+          <div class="py-8">
+            {% render 'empty', message: empty_message %}
           </div>
-
-        </div>
-
-        <!-- Secondary navigation -->
-
-      </article>
-
-    </div>
-
-
+        {% endif %}
+      </section>
+    </main>
   </div>
-
-</main>
+</div>

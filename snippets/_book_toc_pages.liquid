@@ -1,11 +1,12 @@
 {% comment %}
-  Recursive book-style TOC from navigation menu pages.
+  Recursive book TOC (CSS-Tricks perfect TOC markup).
   @param parent_page {object}
   @param current_depth {number}
   @param max_depth {number}
   @param show_chapter_prefix {boolean}
   @param show_page_numbers {boolean}
   @param chapter_prefix {string}
+  @param page_label {string} visually-hidden prefix before page number
 {% endcomment %}
 {% for child in parent_page.children_in_nav_menu %}
   {% assign child_nav_count = child.children_in_nav_menu | size %}
@@ -14,57 +15,29 @@
     {% assign is_level_1 = true %}
   {% endif %}
 
-  {% assign indent_class = 'pl-0' %}
-  {% if current_depth == 2 %}
-    {% assign indent_class = 'pl-0 sm:pl-1' %}
-  {% elsif current_depth == 3 %}
-    {% assign indent_class = 'pl-6 sm:pl-8' %}
-  {% elsif current_depth > 3 %}
-    {% assign indent_class = 'pl-10 sm:pl-12' %}
-  {% endif %}
+  {% capture entry_title %}
+    {% if is_level_1 and show_chapter_prefix %}{{ chapter_prefix }} {{ forloop.index }}. {% endif %}{{ child.link_text }}
+  {% endcapture %}
+  {% assign entry_title = entry_title | strip %}
 
-  <li class="book-toc-entry {{ indent_class }}{% if is_level_1 %} book-toc-entry--level-1{% endif %}">
-    {% if is_level_1 %}
-      {% if show_chapter_prefix %}
-        <p class="book-toc-section-label">
-          {{ chapter_prefix }} {{ forloop.index }}
-        </p>
-      {% endif %}
-
-      {% if child_nav_count > 0 %}
-        <div class="book-toc-row book-toc-row--level-1 book-toc-row--section-head">
-          <a href="{{ child.path }}" class="book-toc-title book-toc-title--level-1 min-w-0 hover:underline underline-offset-2">
-            {{ child.link_text }}
-          </a>
-        </div>
-      {% else %}
-        <div class="book-toc-row book-toc-row--level-1 group">
-          <a href="{{ child.path }}" class="book-toc-title book-toc-title--level-1 min-w-0 hover:underline underline-offset-2">
-            {{ child.link_text }}
-          </a>
-          {% if show_page_numbers %}
-            <span class="book-toc-leader book-toc-leader--level-1" aria-hidden="true"></span>
-            <span class="book-toc-number book-toc-number--level-1 tabular-nums"></span>
-          {% endif %}
-        </div>
-      {% endif %}
-    {% else %}
-      <div class="book-toc-row group py-1.5 font-normal text-base-content">
-        <a
-          href="{{ child.path }}"
-          class="book-toc-title min-w-0 truncate hover:text-primary hover:underline underline-offset-2{% if current_depth == 2 %} uppercase tracking-wide text-sm{% endif %}"
-        >
-          {{ child.link_text }}
-        </a>
+  <li>
+    <a href="{{ child.path }}">
+      <span class="title">
+        {{ entry_title }}
         {% if show_page_numbers %}
-          <span class="book-toc-leader" aria-hidden="true"></span>
-          <span class="book-toc-number tabular-nums text-base-content/80 group-hover:text-primary"></span>
+          <span class="leaders" aria-hidden="true"></span>
         {% endif %}
-      </div>
-    {% endif %}
+      </span>
+      {% if show_page_numbers %}
+        <span class="page" data-href="{{ child.path }}">
+          <span class="visually-hidden">{{ page_label }}&nbsp;</span>
+          <span class="page-num"></span>
+        </span>
+      {% endif %}
+    </a>
 
     {% if current_depth < max_depth and child_nav_count > 0 %}
-      <ul class="book-toc-list list-none m-0 p-0{% if is_level_1 %} book-toc-list--section-children mt-2{% endif %}">
+      <ol role="list">
         {% assign next_depth = current_depth | plus: 1 %}
         {% render 'book_toc_pages',
           parent_page: child,
@@ -72,9 +45,10 @@
           max_depth: max_depth,
           show_chapter_prefix: show_chapter_prefix,
           show_page_numbers: show_page_numbers,
-          chapter_prefix: chapter_prefix
+          chapter_prefix: chapter_prefix,
+          page_label: page_label
         %}
-      </ul>
+      </ol>
     {% endif %}
   </li>
 {% endfor %}

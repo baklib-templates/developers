@@ -5,7 +5,7 @@
 {% endcomment %}
 {% assign _variant = variant | default: 'documentation' %}
 {% assign default_hero_image = 'images/hero-1.webp' | asset_url %}
-{% assign hot_tags = page.settings.hot_tags | split: ',' %}
+{% assign hot_tags = site.settings.hot_tags | newline_to_br | split: '<br />' %}
 {% assign hero_font_color = page.settings.hero_font_color | presence %}
 {% assign search_placeholder = page.settings.hero_search_placeholder | presence | default: 'placeholders.search' | t %}
 {% assign hero_bg_image = page.settings.hero_image_url | presence | default: default_hero_image %}
@@ -50,7 +50,7 @@
             {% assign hot_key = search_hot_key | strip %}
             {% if hot_key != blank %}
               <a
-                href="{{ site.index_path }}-/search?q={{ hot_key }}"
+                href="{{ site.search_path }}?q={{ hot_key | url_encode }}"
                 class="{% if hero_font_color %}opacity-90 hover:opacity-100{% else %}text-base-content/80 hover:text-primary{% endif %} underline-offset-2 hover:underline"
               >
                 {{ hot_key }}
@@ -96,12 +96,15 @@
             <div class="items-center justify-start hidden w-full mt-4 md:flex">
               <span class="mr-3{% if hero_font_color %} opacity-70{% else %} text-base-content/60{% endif %}">{{ 'generic.popular_search' | t }}:</span>
               {% for search_hot_key in hot_tags %}
-                <a
-                  href="{{site.index_path}}-/search?q={{ search_hot_key }}"
-                  class="mr-3 hover:underline focus:ring{% if hero_font_color %} opacity-90 hover:opacity-100{% else %} text-base-content/80 hover:text-primary{% endif %}"
-                >
-                  {{ search_hot_key }}
-                </a>
+                {% assign hot_key = search_hot_key | strip %}
+                {% if hot_key != blank %}
+                  <a
+                    href="{{ site.search_path }}?q={{ hot_key | url_encode }}"
+                    class="mr-3 hover:underline focus:ring{% if hero_font_color %} opacity-90 hover:opacity-100{% else %} text-base-content/80 hover:text-primary{% endif %}"
+                  >
+                    {{ hot_key }}
+                  </a>
+                {% endif %}
               {% endfor %}
             </div>
           </div>

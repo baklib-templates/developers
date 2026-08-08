@@ -11,7 +11,9 @@ export function initLucideIcons(root = document) {
     attrs: DEFAULT_ATTRS,
     nameAttr: "data-lucide",
     root,
-    inTemplates: true,
+    // Must stay false: nav_tree itemTemplate uses Mustache {{icon}} inside <template>.
+    // Lucide would otherwise warn that "{{icon}}" is missing from the icons object.
+    inTemplates: false,
   })
 }
 

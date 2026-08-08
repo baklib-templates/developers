@@ -22,7 +22,7 @@
     }
   },
   "generic": {
-    "name": "站点基本信息设置",
+    "name": "站点信息配置",
     "settings": {
       "logo_url": {
         "label": "Logo 图片",
@@ -38,9 +38,9 @@
         "label": "左侧边栏宽度",
         "info": "用于带侧栏的文档页布局，默认 300px"
       },
-      "api_base_url_hint": {
-        "label": "API Base URL 提示",
-        "info": "在 OpenAPI 参考页顶栏展示，例如 https://api.example.com/v1"
+      "nav_tree_expand_by_default": {
+        "label": "侧栏导航默认展开",
+        "info": "开启后，侧栏栏目树默认全部展开；关闭则仅展开当前页所在路径。"
       },
       "enable_ai_chat_search": {
         "label": "启用 AI Chat 搜索",
@@ -49,14 +49,26 @@
       "ai_search_completed_text": {
         "label": "AI回答结束语",
         "info": "AI回答结束后添加一句话"
+      },
+      "hot_tags": {
+        "label": "热门搜索关键词",
+        "info": "自定义热门关键词，用于在首页、搜索弹窗与搜索页显示。每行一个关键词。"
       }
     }
   },
   "page_config": {
-    "name": "页面配置",
+    "name": "页面信息配置",
     "settings": {
       "show_page_tools_dropdown": {
-        "label": "显示 Copy for LLM / MCP 工具下拉菜单"
+        "label": "页面显示 Copy 工具下拉菜单"
+      },
+      "show_page_illustration": {
+        "label": "页面显示顶部背景插图",
+        "info": "关闭后，文档详情页与频道页顶部不再显示背景装饰图。"
+      },
+      "page_top_illustration": {
+        "label": "页面顶部背景插图",
+        "info": "用于文档详情页与频道页顶部的宽幅装饰图。"
       }
     }
   },
@@ -78,9 +90,9 @@
         "placeholder": "例如: <meta name='author' content='Baklib' />"
       },
       "features_one": {
-        "label": "频道右侧栏 HTML",
+        "label": "侧栏附加 HTML",
         "placeholder": "HTML 代码",
-        "info": "用于 page.channel 模板右侧栏；例如 SDK 下载、相关链接"
+        "info": "显示在 page 详情页 TOC 下方，以及 page.channel 右侧栏"
       }
     },
     "name": "自定义 HTML 代码"
@@ -96,14 +108,6 @@
   },
   "templates": {
     "index": {
-      "shared": {
-        "settings": {
-          "search_hot_keywords": {
-            "label": "热门搜索",
-            "info": "用于首页 Hero 与全站搜索页。换行填写多个关键词。"
-          }
-        }
-      },
       "documentation": {
         "settings": {
           "hero_image_url": {
@@ -166,9 +170,6 @@
           },
           "hero_description": {
             "label": "副标题"
-          },
-          "hot_tags": {
-            "label": "热搜关键词（请用英文逗号「,」分隔）"
           },
           "hero_search_placeholder": {
             "label": "搜索框占位文案"

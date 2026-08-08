@@ -38,9 +38,9 @@
         "label": "Breite der linken Seitenleiste",
         "info": "Für Dokumentationsseiten mit Seitenleiste. Standard: 300px."
       },
-      "api_base_url_hint": {
-        "label": "API Base URL Hinweis",
-        "info": "Wird in der OpenAPI-Referenzseite angezeigt, z. B. https://api.example.com/v1"
+      "nav_tree_expand_by_default": {
+        "label": "Seitenleisten-Navigation standardmäßig ausklappen",
+        "info": "Wenn aktiv, ist der Navigationsbaum standardmäßig ausgeklappt; sonst nur der Pfad zur aktuellen Seite."
       },
       "enable_ai_chat_search": {
         "label": "AI-Chat-Suche aktivieren",
@@ -49,6 +49,10 @@
       "ai_search_completed_text": {
         "label": "KI-Abschlusstext",
         "info": "Fügt nach der KI-Antwort einen Satz hinzu"
+      },
+      "hot_tags": {
+        "label": "Beliebte Suchbegriffe",
+        "info": "Für Hero, Suchmodal und Suchseite. Ein Begriff pro Zeile."
       }
     }
   },
@@ -57,6 +61,14 @@
     "settings": {
       "show_page_tools_dropdown": {
         "label": "Copy for LLM / MCP-Dropdown anzeigen"
+      },
+      "show_page_illustration": {
+        "label": "Hintergrundillustration oben auf Detailseiten anzeigen",
+        "info": "Wenn deaktiviert, wird die dekorative Hintergrundgrafik auf Dokumentations- und Kanaldetailseiten ausgeblendet."
+      },
+      "page_top_illustration": {
+        "label": "Hintergrundillustration oben auf Detailseiten",
+        "info": "Breites Dekorationsbild hinter dem Titel. Leer = gebündeltes images/hero-illustration.svg."
       }
     }
   },
@@ -106,9 +118,6 @@
             "label": "Hero-Textfarbe",
             "info": "Gilt für Titel, Untertitel und beliebte Such-Tags im Hero (z. B. #ffffff auf dunklem Hintergrund)"
           },
-          "hot_tags": {
-            "label": "Hot Search Keywords (bitte durch ein Komma getrennt)"
-          },
           "hero_slogan": {
             "label": "Schlagworttitel"
           },
@@ -137,14 +146,8 @@
           "hero_description": {
             "label": "Hero-Untertitel"
           },
-          "hot_tags": {
-            "label": "Beliebte Suchbegriffe (kommagetrennt)"
-          },
           "show_hero_section": {
             "label": "Hero-Bereich anzeigen"
-          },
-          "show_hero_hot_tags": {
-            "label": "Beliebte Such-Tags anzeigen"
           },
           "hero_search_placeholder": {
             "label": "Suchfeld-Platzhalter"

@@ -1,0 +1,32 @@
+{% comment %}
+  Site header — liquid-glass sticky bar (see .site-header-glass in application.css).
+  show_brand: true → logo + site name on all breakpoints (theme.liquid / search / tag).
+  Default false → logo only on mobile (page_layout: desktop brand lives in left sidebar).
+  Mobile: hamburger opens header_drawer (nav tree + menu + search + account).
+{% endcomment %}
+{% assign header_menu_html = site.settings.header_menu_html | presence %}
+
+<header
+  class="js--header site-header-glass sticky top-0 z-50 flex h-10 min-h-10 w-full flex-col justify-center px-4 text-base-content print:hidden md:h-11 md:min-h-11 md:px-10 [transform:translate3d(0,0,0)]"
+>
+  <nav class="navbar min-h-0 w-full px-0 py-0" aria-label="{{ 'snippets.header.nav_aria' | t: 'Site' }}">
+    <div class="flex w-full min-w-0 items-center gap-2 sm:gap-3">
+      {%- comment -%} Mobile: open drawer for primary nav (mirrors sidebar) {%- endcomment -%}
+      <div class="shrink-0 md:hidden">
+        {% render 'header_drawer' %}
+      </div>
+
+      <div class="min-w-0 shrink{% unless show_brand %} md:hidden{% endunless %}">
+        {% render 'header_logo', title_style: 'font-semibold text-sm md:text-base text-base-content/90 whitespace-nowrap' %}
+      </div>
+
+      <div class="min-w-0 flex-1" aria-hidden="true"></div>
+
+      {% if header_menu_html %}
+        <div class="hidden min-w-0 items-center gap-6 md:flex [&_a]:text-sm [&_a]:font-medium [&_a]:text-base-content/70 [&_a]:transition-colors [&_a]:hover:text-primary">
+          {{ header_menu_html }}
+        </div>
+      {% endif %}
+    </div>
+  </nav>
+</header>

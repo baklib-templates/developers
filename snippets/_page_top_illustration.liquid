@@ -1,0 +1,20 @@
+{% comment %}
+  Soft page-top background wash behind doc title (Cruip docs pattern).
+  Parent must be `relative isolate overflow-x-hidden` so -z-10 stays visible and the wide SVG stays in the main column (avoid overflow-hidden — it can fight sticky / page scroll).
+  Uses site.settings.page_top_illustration when set; otherwise bundled images/hero-illustration.svg.
+  Hidden when show_page_illustration is false.
+{% endcomment %}
+{% unless site.settings.show_page_illustration == false %}
+  {% assign default_illustration = 'images/hero-illustration.svg' | asset_url %}
+  {% assign illustration_src = site.settings.page_top_illustration | presence | default: default_illustration %}
+  <div class="pointer-events-none absolute top-0 left-1/2 -z-10 -translate-x-1/2" aria-hidden="true">
+    <img
+      alt=""
+      width="1972"
+      height="392"
+      decoding="async"
+      class="max-w-none dark:opacity-50"
+      src="{{ illustration_src }}"
+    >
+  </div>
+{% endunless %}

@@ -1,6 +1,5 @@
-{% assign home_page = site.pages['/'] %}
-{% assign hot_tags = home_page.settings.hot_tags | split: ',' %}
-{% assign hot_pages = site.pages['/'].children | order_by: '-views_count' | limit: 5 %}
+{% assign hot_tags = site.settings.hot_tags | newline_to_br | split: '<br />' %}
+{% assign hot_pages = site.pages_in_list | order_by: '-views_count' | limit: 5 %}
 
 {%- comment -%} 挂在 body 末尾，fixed 相对视口；z-index 需高于 header(z-50) 与 drawer(z-999) {%- endcomment -%}
 <div id="site-search-modal-root">
@@ -39,43 +38,52 @@
     class="w-full max-w-2xl max-h-[min(80vh,calc(100vh-5rem))] overflow-auto rounded-lg bg-base-200 p-4 shadow-lg lg:p-8"
     @click.outside="$store.search.closeSearch()"
     @keydown.escape.window="$store.search.closeSearch()"
+    @submit="$store.search.closeSearch()"
   >
     {% form_tag 'search' %}
       <label for="modal-search" class="sr-only">{{ 'accessibility.search' | t }}</label>
+      {% assign modal_search_placeholder = 'placeholders.search' | t %}
       {% render 'search_field',
         id: 'modal-search',
         name: form.keywords_field_name,
         value: search.keywords | escape_once,
-        placeholder: 'placeholders.search' | t,
+        placeholder: modal_search_placeholder,
         icon: 'search'
       %}
     {% endform_tag %}
     <div class="space-y-4 px-2 py-4">
-      <div>
-        <div class="mb-2 px-2 text-sm font-medium text-base-content/60">{{ 'generic.hot_pages' | t }}:</div>
-        <ul class="list-inside list-disc">
-          {% for hot_page in hot_pages %}
-            <li class="rounded px-2 py-1 text-sm leading-6 outline-none">
-              <a href="{{ hot_page.path }}">
-                <span>{{ hot_page.link_text }}</span>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div>
-        <div class="mb-2 px-2 text-sm font-medium text-base-content/60">{{ 'generic.popular_search' | t }}:</div>
-        <div class="mb-2 gap-4 px-2">
-          {% for search_hot_key in hot_tags %}
-            <a
-              href="{{ site.index_path }}-/search?q={{ search_hot_key }}"
-              class="badge badge-outline text-sm hover:bg-primary hover:text-primary-content"
-            >
-              {{ search_hot_key }}
-            </a>
-          {% endfor %}
+     
+        <div>
+          <div class="mb-2 px-2 text-sm font-medium text-base-content/60">{{ 'generic.hot_pages' | t }}:</div>
+          <ul class="list-inside list-disc">
+            {% for hot_page in hot_pages %}
+              <li class="rounded px-2 py-1 text-sm leading-6 outline-none">
+                <a href="{{ hot_page.path }}">
+                  <span>{{ hot_page.link_text }}</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
-      </div>
+      
+        <div>
+          <div class="mb-2 px-2 text-sm font-medium text-base-content/60">{{ 'generic.popular_search' | t }}:</div>
+          <div class="mb-2 flex flex-wrap gap-2 px-2">
+            {% for search_hot_key in hot_tags %}
+              {% assign hot_key = search_hot_key | strip %}
+              {% if hot_key != blank %}
+                <a
+                  href="{{ site.search_path }}?q={{ hot_key | url_encode }}"
+                  class="rounded-full border border-base-300 bg-base-100 px-3 py-2 text-sm text-base-content/70 transition hover:border-primary hover:bg-primary hover:text-primary-content"
+                  @click="$store.search.closeSearch()"
+                >
+                  {{ hot_key }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+  
     </div>
   </div>
 </div>

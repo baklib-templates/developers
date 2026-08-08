@@ -38,9 +38,9 @@
         "label": "Left sidebar width",
         "info": "Used on documentation pages with a sidebar. Default: 300px."
       },
-      "api_base_url_hint": {
-        "label": "API Base URL hint",
-        "info": "Shown in the OpenAPI reference page header, e.g. https://api.example.com/v1"
+      "nav_tree_expand_by_default": {
+        "label": "Expand sidebar nav by default",
+        "info": "When on, the sidebar nav tree is expanded by default; when off, only the path to the current page is expanded."
       },
       "enable_ai_chat_search": {
         "label": "Enable AI Chat Search",
@@ -49,6 +49,10 @@
       "ai_search_completed_text": {
         "label": "AI Completion Text",
         "info": "Add a sentence after AI completes the answer"
+      },
+      "hot_tags": {
+        "label": "Hot search keywords",
+        "info": "Used on the home hero, search modal, and search page. One keyword per line."
       }
     }
   },
@@ -57,6 +61,14 @@
     "settings": {
       "show_page_tools_dropdown": {
         "label": "Show Copy for LLM / MCP tools dropdown"
+      },
+      "show_page_illustration": {
+        "label": "Show detail-page top illustration",
+        "info": "When off, the decorative background image is hidden on documentation detail and channel pages."
+      },
+      "page_top_illustration": {
+        "label": "Detail-page top illustration",
+        "info": "Wide decorative image behind the title on detail and channel pages. When empty, uses the bundled images/hero-illustration.svg."
       }
     }
   },
@@ -78,9 +90,9 @@
         "placeholder": "For example:<meta name='author 'content=' Baklib '/>"
       },
       "features_one": {
-        "label": "Channel right sidebar HTML",
+        "label": "Right sidebar extra HTML",
         "placeholder": "HTML snippet",
-        "info": "Right column on page.channel — e.g. SDK downloads or related links"
+        "info": "Shown below the TOC on page detail, and in the page.channel right column — e.g. contact information or related links"
       }
     },
     "name": "Customize HTML code"
@@ -96,14 +108,6 @@
   },
   "templates": {
     "index": {
-      "shared": {
-        "settings": {
-          "search_hot_keywords": {
-            "label": "Popular searches",
-            "info": "Used on home hero and site search page. One keyword per line."
-          }
-        }
-      },
       "documentation": {
         "settings": {
           "hero_image_url": {
@@ -167,14 +171,8 @@
           "hero_description": {
             "label": "Hero subtitle"
           },
-          "hot_tags": {
-            "label": "Hot search keywords (comma-separated)"
-          },
           "show_hero_section": {
             "label": "Show hero section"
-          },
-          "show_hero_hot_tags": {
-            "label": "Show popular search tags"
           },
           "hero_search_placeholder": {
             "label": "Search placeholder"

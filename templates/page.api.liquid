@@ -1,22 +1,7 @@
 {% layout 'api_doc' %}
 
 {% assign api_title = page.settings.title | presence | default: page.link_text %}
-{% assign api_base_hint = site.settings.api_base_url_hint | presence %}
 
-<header class="border-b border-base-300 bg-base-100 px-4 py-3 md:px-6">
-  <div class="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-    <div class="min-w-0">
-      <p class="text-[0.7rem] font-semibold uppercase tracking-widest text-primary">{{ 'templates.page_api.section_label' | t: 'API Reference' }}</p>
-      <h1 class="truncate text-lg font-bold text-base-content sm:text-xl">{{ api_title }}</h1>
-    </div>
-    {% if api_base_hint %}
-      <div class="shrink-0 rounded-lg border border-base-300 bg-base-200/50 px-3 py-2 text-sm">
-        <span class="text-base-content/50">{{ 'templates.page_api.base_url_label' | t: 'Base URL' }}</span>
-        <code class="ml-1 font-mono text-base-content/80">{{ api_base_hint }}</code>
-      </div>
-    {% endif %}
-  </div>
-</header>
 
 <div id="main-content" class="elements-wrapper not-prose min-h-[calc(100vh-4rem)]">
   <div
@@ -45,7 +30,8 @@
       "id": "title",
       "type": "text",
       "label": "t:schema.templates.page.settings.title.label",
-      "default": "API"
+      "default": "API",
+      "to_markdown": true
     },
     {
       "id": "nav_lucide_icon",
@@ -59,13 +45,15 @@
       "id": "api_document",
       "type": "textarea",
       "label": "t:schema.templates.page.settings.api_document.label",
-      "info": "t:schema.templates.page.settings.api_document.info"
+      "info": "t:schema.templates.page.settings.api_document.info",
+      "to_markdown": true
     },
     {
       "id": "api_document_url",
       "type": "text",
       "label": "t:schema.templates.page.settings.api_document_url.label",
-      "info": "t:schema.templates.page.settings.api_document_url.info"
+      "info": "t:schema.templates.page.settings.api_document_url.info",
+      "to_markdown": true
     }
   ]
 }

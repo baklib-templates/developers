@@ -30,7 +30,7 @@
   <body id="js--body" class="grid min-h-screen grid-rows-[auto_1fr_auto] bg-base-100 tracking-wide text-base-content antialiased" x-data="{ isHomePage: false, showScrollBar: false }" x-init="isHomePage = location.pathname === '{{ site.index_path }}';  window.addEventListener('scroll', () => {
           showScrollBar = window.scrollY > window.innerHeight;
         });">
-    {% render 'site_header', centered: true %}
+    {% render 'header', show_brand: true %}
     {{ content_for_layout }}
     {% render 'footer' %}
     {% render 'scroll_bar' %}

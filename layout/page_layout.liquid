@@ -24,10 +24,10 @@
         });">
     <div class='grid md:grid-cols-[var(--left-sidebar-width)_1fr] grid-cols-1'>
       {% render 'page/sidebar', settings: site.settings, page: page %}
-      <div class='flex flex-col min-w-0'>
-        {% comment %} Docs home renders its own transparent header over Hero; other pages use site_header {% endcomment %}
+      <div class='flex min-w-0 flex-col bg-base-100'>
+        {% comment %} Docs home uses docs_home_header over Hero; other pages use header without brand (logo in sidebar / mobile drawer). Search/tag use theme.liquid with show_brand. {% endcomment %}
         {% unless page.template_name == 'index' %}
-          {% render 'site_header', show_search: true %}
+          {% render 'header' %}
         {% endunless %}
         {{ content_for_layout }}
         {% render 'footer' %}

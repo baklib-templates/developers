@@ -1,30 +1,32 @@
-{% # Book-style table of contents home page %}
+{% # Book-style table of contents — CSS-Tricks grid + leaders pattern %}
 {% assign toc_title = page.settings.toc_title | presence | default: 'templates.index_book.title' | t %}
 {% assign toc_max_depth = page.settings.toc_max_depth | default: 10 %}
 {% assign show_chapter_prefix = page.settings.show_chapter_prefix != false %}
 {% assign show_page_numbers = page.settings.show_page_numbers != false %}
 {% assign chapter_prefix = page.settings.chapter_prefix | presence | default: 'templates.index_book.chapter_prefix' | t %}
+{% assign page_label = 'templates.index_book.page_label' | t: 'Page' %}
 {% assign root_nav_count = page.children_in_nav_menu | size %}
 
-<main class="bg-base-100 px-4 py-10 md:py-14">
-  <div class="mx-auto max-w-3xl font-serif text-base-content">
-    <header class="mb-8 text-center">
-      <h1 class="text-3xl font-bold tracking-tight md:text-4xl">{{ toc_title }}</h1>
-      <div class="mx-auto mt-6 h-px w-full max-w-md bg-base-content/80" aria-hidden="true"></div>
+<main class="bg-base-100 px-4 py-10 text-base-content md:py-16">
+  <div class="mx-auto max-w-3xl font-serif">
+    <header class="mb-10 text-center md:mb-14">
+      <h1 class="text-3xl font-bold tracking-tight text-base-content md:text-4xl">{{ toc_title }}</h1>
+      <div class="mx-auto mt-6 h-px w-full max-w-sm bg-base-content/20" aria-hidden="true"></div>
     </header>
 
     {% if root_nav_count > 0 %}
-      <nav class="book-toc-root" aria-label="{{ toc_title }}">
-        <ul class="book-toc-list list-none m-0 p-0">
+      <nav aria-label="{{ toc_title | escape_once }}">
+        <ol class="toc-list" role="list">
           {% render 'book_toc_pages',
             parent_page: page,
             current_depth: 1,
             max_depth: toc_max_depth,
             show_chapter_prefix: show_chapter_prefix,
             show_page_numbers: show_page_numbers,
-            chapter_prefix: chapter_prefix
+            chapter_prefix: chapter_prefix,
+            page_label: page_label
           %}
-        </ul>
+        </ol>
       </nav>
     {% else %}
       <p class="text-center text-sm text-base-content/60">{{ 'templates.index_book.empty' | t }}</p>

@@ -15,10 +15,11 @@
     data-toc-header-selector-value=".js--header"
     data-toc-offset-value="10"
     data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t }}"
-    class='w-full group'
+    class="relative isolate w-full overflow-x-hidden group"
   >
+    {% render 'page_top_illustration' %}
     <div class='w-full grid lg:grid-cols-[1fr] gap-6 group-[.has-toc]:lg:grid-cols-[1fr_240px]'>
-      <div class="flex flex-col px-4 lg:px-10 group-[.has-toc]:md:pr-0 py-6 overflow-x-hidden">
+      <div class="relative z-0 flex flex-col px-4 lg:px-10 group-[.has-toc]:md:pr-0 py-6 overflow-x-hidden">
         <div class="pt-0 pb-6">
           {% render 'breadcrumb', breadcrumb: page.breadcrumb, page: page %}
         </div>
@@ -26,10 +27,16 @@
       </div>
 
       <div class="print:hidden hidden lg:block">
-        <div class="sticky top-[5.5rem] h-[calc(100vh-8rem)] max-w-full w-full overflow-auto border-l border-base-200" data-toc-target="menu">
+        <div class="sticky top-14 h-[calc(100vh-4.5rem)] max-w-full w-full overflow-y-auto overscroll-contain border-l border-base-200" data-toc-target="menu">
           <div class="menu w-full">
             <div data-toc-target="links"></div>
           </div>
+          {% assign right_features_block = site.settings.features_one | presence %}
+          {% if right_features_block %}
+            <div class="mt-4 border-t border-base-200 px-3 pt-4 text-sm">
+              {{ right_features_block }}
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -51,7 +58,8 @@
         "id": "tags",
         "type": "tag_picker",
         "multiple": true,
-        "label": "t:schema.templates.page.settings.tags.label"
+        "label": "t:schema.templates.page.settings.tags.label",
+        "to_markdown": true
       },
       {
         "id": "nav_lucide_icon",
@@ -65,20 +73,23 @@
         "id": "description",
         "type": "textarea",
         "label": "t:schema.templates.page.settings.description.label",
-        "info": "t:schema.templates.page.settings.description.info"
+        "info": "t:schema.templates.page.settings.description.info",
+        "to_markdown": true
       },
       {
         "id": "title",
         "type": "text",
         "readonly": true,
         "label": "t:schema.templates.page.settings.title.label",
-        "info": "t:schema.templates.page.settings.title.info"
+        "info": "t:schema.templates.page.settings.title.info",
+        "to_markdown": true
       },
       {
         "id": "content",
         "type": "richtext",
         "label": "t:schema.templates.page.settings.content.label",
         "readonly": true,
+        "to_markdown": true,
         "info": "t:schema.templates.page.settings.content.info"
       }
     ]

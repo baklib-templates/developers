@@ -102,13 +102,13 @@ export default class extends Controller {
 
         liDom.className = this.hasItemStyleValue ? this.itemStyleValue : ""
 
-        const isActive = this.expandValue ? true : this.isPathActive(node)
-        const shouldOpen = isActive || this.hasActiveChild(node)
+        const pathActive = this.isPathActive(node)
+        const shouldOpen = this.expandValue || pathActive || this.hasActiveChild(node)
         const useRenderChildren = node.children?.length > 0
         const useRenderTurboFrame = node.children?.length == 0 && node.children_count > 0 && this.hasUrlValue
 
         // --- item 内容 ---
-        const itemHtml = this.renderItem(node, depth, shouldOpen, isActive)
+        const itemHtml = this.renderItem(node, depth, shouldOpen, pathActive)
         liDom.innerHTML = itemHtml
         const treeItem = liDom.children[0]
         treeItem.setAttribute('turbo-nav-tree-item', '')
@@ -118,7 +118,7 @@ export default class extends Controller {
         childrenContainer.classList.add("transition-all", "duration-300")
         childrenContainer.hidden = !shouldOpen
 
-        if (isActive) {
+        if (pathActive) {
           // const activeClass = this.hasItemActiveClassValue ? this.itemActiveClassValue : ""
           liDom.setAttribute("active", "")
           if (this.isPathActive(node, false)) {

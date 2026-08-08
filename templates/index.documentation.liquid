@@ -61,8 +61,8 @@
           href="{{ card_page.path }}"
           class="group flex flex-col overflow-hidden rounded-2xl border border-base-300 bg-base-100 no-underline shadow-sm transition-all duration-200 hover:border-primary/40 hover:shadow-md hover:no-underline focus:no-underline [&_*]:no-underline"
         >
-          <div class="relative h-14 shrink-0 bg-gradient-to-br from-primary/25 to-secondary/25 sm:h-16">
-            <div class="absolute -bottom-5 left-5 flex size-11 items-center justify-center rounded-xl bg-neutral text-neutral-content shadow-md ring-4 ring-base-100 transition-transform group-hover:scale-105">
+          <div class="relative h-14 shrink-0 bg-gradient-to-br from-primary-100 to-secondary-100 sm:h-16">
+            <div class="absolute -bottom-5 left-5 flex size-11 items-center justify-center rounded-xl bg-accent text-accent-content shadow-md ring-4 ring-base-100 transition-transform group-hover:scale-105">
               {% render 'page_nav_icon', page: card_page, class: 'size-5' %}
             </div>
           </div>
@@ -118,13 +118,6 @@
       "type": "text",
       "label": "t:schema.templates.index.documentation.settings.hero_description.label",
       "default": "Explore guides, API reference, and integration docs."
-    },
-    {
-      "id": "search_hot_keywords",
-      "type": "textarea",
-      "label": "t:schema.templates.index.shared.settings.search_hot_keywords.label",
-      "info": "t:schema.templates.index.shared.settings.search_hot_keywords.info",
-      "default": "authentication\nAPI reference\nwebhooks"
     },
     {
       "id": "featured_section_title",

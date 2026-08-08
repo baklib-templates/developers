@@ -25,6 +25,15 @@ const alpine = window.Alpine || Alpine
 
 registerSearchStore(alpine)
 
+function closeSearchModal() {
+  alpine.store('search')?.closeSearch?.()
+}
+
+// Turbo Drive 保活 Alpine store：提交搜索或站内跳转后必须关掉弹窗
+document.addEventListener('turbo:before-visit', closeSearchModal)
+document.addEventListener('turbo:load', closeSearchModal)
+document.addEventListener('turbo:before-cache', closeSearchModal)
+
 if (!window.Alpine) {
   window.Alpine = Alpine
   Alpine.plugin(collapse)

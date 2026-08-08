@@ -1,22 +1,23 @@
 {% comment %}
   Documentation home content bar: transparent over Hero.
-  Custom header menu only (site icon lives in the left sidebar).
+  Custom header menu only (logo / search / auth / primary nav live in sidebar or mobile drawer).
 {% endcomment %}
 {% assign header_menu_html = site.settings.header_menu_html | presence %}
 
 <header
-  class="js--header relative z-20 flex min-h-14 w-full flex-col justify-center bg-transparent px-4 text-base-content print:hidden md:min-h-16 md:px-10"
+  class="js--header relative z-20 flex h-10 min-h-10 w-full flex-col justify-center bg-transparent px-4 text-base-content print:hidden md:h-11 md:min-h-11 md:px-10"
 >
-    <nav class="navbar flex w-full px-0 py-0">
-      <div class="flex w-full min-w-0 items-center justify-end gap-2 lg:gap-4">
-        {% if header_menu_html %}
-          <div class="hidden min-w-0 items-center gap-4 md:flex [&_a]:text-sm [&_a]:font-medium [&_a]:text-base-content/80 [&_a]:no-underline [&_a]:transition-colors [&_a]:hover:text-primary [&_a]:hover:no-underline">
-            {{ header_menu_html }}
-          </div>
-        {% endif %}
-        <div class="md:hidden">
-          {% render 'header_drawer' %}
-        </div>
+  <nav class="navbar min-h-0 w-full px-0 py-0" aria-label="{{ 'snippets.header.nav_aria' | t: 'Site' }}">
+    <div class="flex w-full min-w-0 items-center gap-2 sm:gap-3">
+      <div class="shrink-0 md:hidden">
+        {% render 'header_drawer' %}
       </div>
-    </nav>
-  </header>
+      <div class="min-w-0 flex-1" aria-hidden="true"></div>
+      {% if header_menu_html %}
+        <div class="hidden min-w-0 items-center gap-6 md:flex [&_a]:text-sm [&_a]:font-medium [&_a]:text-base-content/80 [&_a]:no-underline [&_a]:transition-colors [&_a]:hover:text-primary [&_a]:hover:no-underline">
+          {{ header_menu_html }}
+        </div>
+      {% endif %}
+    </div>
+  </nav>
+</header>

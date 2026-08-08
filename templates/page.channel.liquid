@@ -11,10 +11,11 @@
              "
 >
   {% assign right_features_block = site.settings.features_one | presence %}
-  <div class='w-full group {% if right_features_block | present? %} has-right-feature-block {% endif %}'>
+  <div class="relative isolate w-full overflow-x-hidden group {% if right_features_block | present? %} has-right-feature-block {% endif %}">
+    {% render 'page_top_illustration' %}
     <div class='w-full grid grid-cols-[1fr] gap-6 group-[.has-right-feature-block]:lg:grid-cols-[1fr_240px]'>
       <!-- 中间内容 -->
-      <div class="flex flex-col px-4 lg:px-10 group-[.has-right-feature-block]:md:pr-0 py-6 overflow-x-hidden">
+      <div class="relative z-0 flex flex-col px-4 lg:px-10 group-[.has-right-feature-block]:md:pr-0 py-6 overflow-x-hidden">
         <div class="pt-0 pb-6">
           {% render 'breadcrumb', breadcrumb: page.breadcrumb, page: page %}
         </div>
@@ -25,7 +26,7 @@
       <!-- 右侧 feature block -->
       {% if right_features_block | present? %}
         <div class="print:hidden hidden lg:block has-right-feature-block">
-          <div class="sticky top-[5.5rem] h-[calc(100vh-8rem)] max-w-full w-full overflow-auto border-l border-base-200" data-toc-target="menu">
+          <div class="sticky top-14 h-[calc(100vh-4.5rem)] max-w-full w-full overflow-y-auto overscroll-contain border-l border-base-200" data-toc-target="menu">
             {{ right_features_block }}
           </div>
         </div>
@@ -57,14 +58,16 @@
         "type": "text",
         "readonly": true,
         "label": "t:schema.templates.page.settings.title.label",
-        "info": "t:schema.templates.page.settings.title.info"
+        "info": "t:schema.templates.page.settings.title.info",
+        "to_markdown": true
       },
       {
         "id": "content",
         "type": "richtext",
         "label": "t:schema.templates.page.channel.settings.content.label",
         "readonly": true,
-        "info": "t:schema.templates.page.channel.settings.content.info"
+        "info": "t:schema.templates.page.channel.settings.content.info",
+        "to_markdown": true
       }
     ]
     }

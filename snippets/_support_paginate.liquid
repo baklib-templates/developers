@@ -1,0 +1,41 @@
+{%- comment -%}
+  Stripe-style prev/next pagination with range status.
+  @param paginate {Object} paginate drop from paginate_tag (required)
+  @param turbo_frame {String} turbo-frame target for pagination links (default: _top)
+  @param turbo_action {String} optional turbo action (e.g. advance)
+{%- endcomment -%}
+{% assign frame_target = turbo_frame | default: '_top' %}
+{% assign frame_action = turbo_action | default: '' %}
+{% if paginate.total_pages > 1 %}
+  <div class="mt-10 flex flex-col gap-4 border-t border-base-300 pt-6 sm:flex-row sm:items-center sm:justify-between dark:border-base-300">
+    <p class="text-sm text-base-content/70 dark:text-base-content/50">
+      {{ 'templates.page.pagination_status_prefix' | t: '正在查看第 ' }}{{ paginate.from }}–{{ paginate.to }}{{ 'templates.page.pagination_status_middle' | t: ' 条，共 ' }}{{ paginate.total_count }}{{ 'templates.page.pagination_status_suffix' | t: ' 条' }}
+    </p>
+    <div class="flex gap-2">
+      {% if paginate.prev_page %}
+        <a
+          href="{{ paginate.url_for[paginate.prev_page] }}"
+          class="btn btn-outline btn-sm border-base-300 text-base-content hover:bg-base-200"
+          data-turbo-frame="{{ frame_target }}"
+          {% if frame_action != blank %}data-turbo-action="{{ frame_action }}"{% endif %}
+        >
+          {{ 'templates.page.pagination_prev' | t: '上一页' }}
+        </a>
+      {% else %}
+        <span class="btn btn-outline btn-sm btn-disabled border-base-300 text-base-content/40">{{ 'templates.page.pagination_prev' | t: '上一页' }}</span>
+      {% endif %}
+      {% if paginate.next_page %}
+        <a
+          href="{{ paginate.url_for[paginate.next_page] }}"
+          class="btn btn-outline btn-sm border-base-300 text-base-content hover:bg-base-200"
+          data-turbo-frame="{{ frame_target }}"
+          {% if frame_action != blank %}data-turbo-action="{{ frame_action }}"{% endif %}
+        >
+          {{ 'templates.page.pagination_next' | t: '下一页' }}
+        </a>
+      {% else %}
+        <span class="btn btn-outline btn-sm btn-disabled border-base-300 text-base-content/40">{{ 'templates.page.pagination_next' | t: '下一页' }}</span>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

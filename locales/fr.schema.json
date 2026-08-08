@@ -38,9 +38,9 @@
         "label": "Largeur de la barre latérale gauche",
         "info": "Pour les pages doc avec barre latérale. Valeur par défaut : 300px."
       },
-      "api_base_url_hint": {
-        "label": "Indication Base URL API",
-        "info": "Affiché dans l'en-tête de la page de référence OpenAPI, ex. https://api.example.com/v1"
+      "nav_tree_expand_by_default": {
+        "label": "Développer la navigation latérale par défaut",
+        "info": "Si activé, l’arbre de navigation est développé par défaut ; sinon, seul le chemin vers la page courante l’est."
       },
       "enable_ai_chat_search": {
         "label": "Activer la recherche AI Chat",
@@ -49,6 +49,10 @@
       "ai_search_completed_text": {
         "label": "Texte de fin IA",
         "info": "Ajoute une phrase après la réponse de l’IA"
+      },
+      "hot_tags": {
+        "label": "Mots-clés de recherche populaires",
+        "info": "Utilisés sur le hero, la modale et la page de recherche. Un mot-clé par ligne."
       }
     }
   },
@@ -57,6 +61,14 @@
     "settings": {
       "show_page_tools_dropdown": {
         "label": "Afficher le menu Copy for LLM / MCP"
+      },
+      "show_page_illustration": {
+        "label": "Afficher l’illustration en haut des pages détail",
+        "info": "Si désactivé, l’image décorative de fond est masquée sur les pages détail et canal."
+      },
+      "page_top_illustration": {
+        "label": "Illustration en haut des pages détail",
+        "info": "Image décorative large derrière le titre. Vide = images/hero-illustration.svg du thème."
       }
     }
   },
@@ -106,9 +118,6 @@
             "label": "Couleur du texte du hero",
             "info": "S’applique au titre, au sous-titre et aux tags de recherche populaires (ex. #ffffff sur fond sombre)"
           },
-          "hot_tags": {
-            "label": "Mots - clés de recherche chaude (veuillez les séparer par une virgule anglaise «, »)"
-          },
           "hero_slogan": {
             "label": "Titre du slogan"
           },
@@ -137,14 +146,8 @@
           "hero_description": {
             "label": "Sous-titre"
           },
-          "hot_tags": {
-            "label": "Mots-clés de recherche populaires (séparés par des virgules)"
-          },
           "show_hero_section": {
             "label": "Afficher la section hero"
-          },
-          "show_hero_hot_tags": {
-            "label": "Afficher les tags de recherche populaires"
           },
           "hero_search_placeholder": {
             "label": "Texte du champ de recherche"

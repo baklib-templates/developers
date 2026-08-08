@@ -1,26 +1,101 @@
-<section class="mb-10 min-h-[30vh]">
-  <div>
-    <h1 class="flex items-center mb-2 text-2xl font-bold sm:text-3xl xl:text-4xl">
-      {{ page.settings.title }}
-    </h1>
-    <div class="flow-root mt-8">
-      <div class="overflow-auto">
-        <div data-controller="images-viewer"
-          class="ProseMirror break-words scroll-mt-96 scroll-pt-72">
-          {{ page.settings.content }}
-        </div>
+{%- comment -%}
+  Channel / list page: optional intro content, then accessible child page index.
+  Channel title is omitted here (shown in breadcrumb).
+  @param page {Object}
+  @param sub_pages {Array} children_in_list (required for listing)
+{%- endcomment -%}
+{% assign list_heading = 'snippets.page_list.heading' | t: '本栏目页面' %}
+{% assign list_empty = 'snippets.page_list.empty' | t: '暂无子页面' %}
+{% assign guide_badge = 'templates.search.badge_guide' | t: '指南' %}
+{% assign api_badge = 'templates.search.badge_api' | t: 'API' %}
+
+<section class="mb-10 min-h-[30vh]" aria-labelledby="page-list-children-heading">
+  {% if page.settings.content | present? %}
+    <div class="mb-8 overflow-auto">
+      <div
+        data-controller="images-viewer"
+        class="ProseMirror break-words scroll-mt-96 scroll-pt-72"
+      >
+        {{ page.settings.content }}
       </div>
     </div>
-  </div>
+  {% endif %}
 
-  <div class="divider my-5"></div>
-  {% paginate_tag sub_pages, per: 25 %}
-    <ul class="list-disc list-inside space-y-2">
-      {% for sub_page in sub_pages %}
-        <li><a href="{{ sub_page.path }}" class="text-md text-wrap">{{ sub_page.link_text }}</a></li>
-      {% endfor %}
-    </ul>
-    <!-- Pagination -->
-    {% render 'paginate', paginate: paginate %}
+  {% paginate_tag sub_pages, as: 'items', per: 25 %}
+    {% assign items_size = items | size %}
+    <section {% unless page.settings.content | present? %}class="pt-0"{% else %}class="border-t border-base-300 pt-8"{% endunless %}>
+      <div class="mb-4 flex flex-wrap items-end justify-between gap-2">
+        <h2 id="page-list-children-heading" class="text-base font-semibold tracking-tight text-base-content">
+          {{ list_heading }}
+        </h2>
+        {% if paginate.total_count > 0 %}
+          <p class="text-sm text-base-content/50" aria-live="polite">
+            {{ 'snippets.page_list.count_prefix' | t: '共' }}
+            <span class="font-medium text-base-content/70">{{ paginate.total_count }}</span>
+            {{ 'snippets.page_list.count_suffix' | t: '篇' }}
+          </p>
+        {% endif %}
+      </div>
+
+      {% if items_size > 0 %}
+        <nav aria-label="{{ list_heading | escape_once }}">
+          <ul class="divide-y divide-base-300 border-y border-base-300" role="list">
+            {% for sub_page in items %}
+              {% assign type_badge = guide_badge %}
+              {% if sub_page.template_name == 'page.api' %}
+                {% assign type_badge = api_badge %}
+              {% endif %}
+              {% assign sub_desc = sub_page.settings.description | strip_html | strip %}
+              <li>
+                <a
+                  href="{{ sub_page.path }}"
+                  data-turbo-frame="_top"
+                  class="group flex items-start gap-3 py-3.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30 focus-visible:ring-offset-2 focus-visible:ring-offset-base-100"
+                >
+                  <span
+                    class="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-accent text-[0.65rem] font-semibold text-accent-content"
+                    aria-hidden="true"
+                  >
+                    {% if paginate.from %}
+                      {{ forloop.index | plus: paginate.from | minus: 1 }}
+                    {% else %}
+                      {{ forloop.index }}
+                    {% endif %}
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span class="mb-0.5 flex flex-wrap items-center gap-2">
+                      <span class="inline-flex rounded bg-base-200 px-1.5 py-0.5 text-[0.6rem] font-bold uppercase tracking-wide text-base-content/50">
+                        {{ type_badge }}
+                      </span>
+                    </span>
+                    <span class="block text-sm font-medium text-base-content transition-colors group-hover:text-accent sm:text-[0.9375rem]">
+                      {{ sub_page.link_text }}
+                    </span>
+                    {% if sub_desc != blank %}
+                      <span class="mt-1 line-clamp-2 block text-xs leading-relaxed text-base-content/55 sm:text-sm">
+                        {{ sub_desc }}
+                      </span>
+                    {% endif %}
+                  </span>
+                  <span
+                    class="mt-0.5 shrink-0 text-base-content/30 transition-colors group-hover:text-accent"
+                    aria-hidden="true"
+                  >
+                    <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </nav>
+        {% render 'paginate', paginate: paginate %}
+      {% else %}
+        <p class="rounded-xl border border-dashed border-base-300 bg-base-200/40 px-4 py-8 text-center text-sm text-base-content/60">
+          {{ list_empty }}
+        </p>
+      {% endif %}
+    </section>
   {% endpaginate_tag %}
 </section>
