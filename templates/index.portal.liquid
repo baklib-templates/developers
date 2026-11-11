@@ -2,6 +2,7 @@
 <section class="relative bg-base">
   <!-- Hero Section -->
   {% render 'hero', page: page %}
+  {% render 'source_article', page: page %}
   <!-- Pages Section -->
   <section class="bg-transparent px-4">
     <div class="mx-auto max-w-6xl">
@@ -99,6 +100,8 @@
     ],
     "sub_page_templates": ["page"],
     "settings": [
+      {"id": "title", "type": "text", "readonly": true, "label": "t:schema.templates.page.settings.title.label", "info": "t:schema.templates.page.settings.title.info", "to_markdown": true},
+      {"id": "content", "type": "richtext", "label": "t:schema.templates.page.settings.content.label", "readonly": true, "to_markdown": true, "info": "t:schema.templates.page.settings.content.info"},
         {
           "id": "hero_image_url",
           "type": "image_picker",

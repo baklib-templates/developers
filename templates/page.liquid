@@ -53,6 +53,92 @@
       "images/theme/${lang}/page.png"
     ],
     "sub_page_templates": ["page"],
+    "context_schema": {
+      "key": "developers",
+      "label": "t:schema.context_schema.label",
+      "version": 1,
+      "content_types": [
+        {
+          "key": "guide",
+          "label": "t:schema.context_schema.types.guide.label",
+          "templates": [
+            "page",
+            "page.channel"
+          ],
+          "fields": [
+            {
+              "key": "topics",
+              "label": "t:schema.context_schema.types.guide.fields.topics.label",
+              "type": "tags",
+              "policy": "ai_auto"
+            },
+            {
+              "key": "summary",
+              "label": "t:schema.context_schema.types.guide.fields.summary.label",
+              "type": "textarea",
+              "policy": "ai_suggest"
+            },
+            {
+              "key": "audience",
+              "label": "t:schema.context_schema.types.guide.fields.audience.label",
+              "type": "text",
+              "policy": "ai_suggest"
+            },
+            {
+              "key": "prerequisites",
+              "label": "t:schema.context_schema.types.guide.fields.prerequisites.label",
+              "type": "textarea",
+              "policy": "ai_suggest"
+            }
+          ],
+          "relations": [
+            {
+              "type": "related_to",
+              "label": "t:schema.context_schema.types.guide.relations.related_to.label",
+              "inverse": "related_to",
+              "cardinality": "many",
+              "policy": "suggest"
+            }
+          ]
+        },
+        {
+          "key": "endpoint",
+          "label": "t:schema.context_schema.types.endpoint.label",
+          "templates": [
+            "page.api"
+          ],
+          "fields": [
+            {
+              "key": "topics",
+              "label": "t:schema.context_schema.types.endpoint.fields.topics.label",
+              "type": "tags",
+              "policy": "ai_auto"
+            },
+            {
+              "key": "summary",
+              "label": "t:schema.context_schema.types.endpoint.fields.summary.label",
+              "type": "textarea",
+              "policy": "ai_suggest"
+            },
+            {
+              "key": "parameters",
+              "label": "t:schema.context_schema.types.endpoint.fields.parameters.label",
+              "type": "textarea",
+              "policy": "ai_suggest"
+            }
+          ],
+          "relations": [
+            {
+              "type": "related_to",
+              "label": "t:schema.context_schema.types.endpoint.relations.related_to.label",
+              "inverse": "related_to",
+              "cardinality": "many",
+              "policy": "suggest"
+            }
+          ]
+        }
+      ]
+    },
     "settings": [
       {
         "id": "tags",

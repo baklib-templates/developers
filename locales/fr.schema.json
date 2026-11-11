@@ -1,4 +1,50 @@
 {
+  "context_schema": {
+    "label": "Documentation développeur",
+    "types": {
+      "guide": {
+        "label": "Guide développeur",
+        "fields": {
+          "topics": {
+            "label": "Thèmes de la documentation"
+          },
+          "summary": {
+            "label": "Résumé de la documentation"
+          },
+          "audience": {
+            "label": "Public concerné"
+          },
+          "prerequisites": {
+            "label": "Prérequis"
+          }
+        },
+        "relations": {
+          "related_to": {
+            "label": "Documents associés"
+          }
+        }
+      },
+      "endpoint": {
+        "label": "Référence d'API",
+        "fields": {
+          "topics": {
+            "label": "Thèmes d'API"
+          },
+          "summary": {
+            "label": "Résumé de l'API"
+          },
+          "parameters": {
+            "label": "Paramètres clés"
+          }
+        },
+        "relations": {
+          "related_to": {
+            "label": "API associées"
+          }
+        }
+      }
+    }
+  },
   "theme_label": "Developers",
   "theme_description": "Thème de documentation pour les développeurs et les équipes techniques — idéal pour les références API, les manuels produit et les guides techniques. Construit sur DaisyUI avec couleurs de thème en temps réel et personnalisation flexible.",
   "theme_languages": {

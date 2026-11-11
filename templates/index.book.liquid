@@ -13,6 +13,7 @@
       <h1 class="text-3xl font-bold tracking-tight text-base-content md:text-4xl">{{ toc_title }}</h1>
       <div class="mx-auto mt-6 h-px w-full max-w-sm bg-base-content/20" aria-hidden="true"></div>
     </header>
+    {% render 'source_article', page: page %}
 
     {% if root_nav_count > 0 %}
       <nav aria-label="{{ toc_title | escape_once }}">
@@ -44,6 +45,8 @@
   ],
   "sub_page_templates": ["page"],
   "settings": [
+      {"id": "title", "type": "text", "readonly": true, "label": "t:schema.templates.page.settings.title.label", "info": "t:schema.templates.page.settings.title.info", "to_markdown": true},
+      {"id": "content", "type": "richtext", "label": "t:schema.templates.page.settings.content.label", "readonly": true, "to_markdown": true, "info": "t:schema.templates.page.settings.content.info"},
     {
       "id": "toc_title",
       "type": "text",

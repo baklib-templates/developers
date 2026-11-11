@@ -1,4 +1,50 @@
 {
+  "context_schema": {
+    "label": "Developer documentation",
+    "types": {
+      "guide": {
+        "label": "Developer guide",
+        "fields": {
+          "topics": {
+            "label": "Documentation topics"
+          },
+          "summary": {
+            "label": "Documentation summary"
+          },
+          "audience": {
+            "label": "Audience"
+          },
+          "prerequisites": {
+            "label": "Prerequisites"
+          }
+        },
+        "relations": {
+          "related_to": {
+            "label": "Related documents"
+          }
+        }
+      },
+      "endpoint": {
+        "label": "API reference",
+        "fields": {
+          "topics": {
+            "label": "API topics"
+          },
+          "summary": {
+            "label": "API summary"
+          },
+          "parameters": {
+            "label": "Key parameters"
+          }
+        },
+        "relations": {
+          "related_to": {
+            "label": "Related APIs"
+          }
+        }
+      }
+    }
+  },
   "theme_label": "Developers",
   "theme_description": "A documentation theme for developers and technical teams — ideal for API references, product manuals, and technical guides.",
   "theme_languages": {

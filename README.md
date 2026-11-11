@@ -1,6 +1,19 @@
-# Baklib Developers 主题
+# Wiki Developers (`developers`)
 
-面向开发者与技术团队的文档主题：API 参考（OpenAPI）、集成指南、Copy for LLM / MCP 工具链。
+English | [简体中文](README.zh-CN.md)
+
+This is a developer documentation site on the wiki scope. Use it for API reference, integration manuals, and technical guides. Do not use it for end-user help centers or a chat-first home.
+
+Read `docs/` in this order. The rest of this file is positioning and build notes, not the content model. The docs are in Chinese.
+
+| File | Read it to learn |
+| --- | --- |
+| [docs/README.md](docs/README.md) | Index of the docs |
+| [docs/overview.md](docs/overview.md) | What it is, and when to use it |
+| [docs/structure.md](docs/structure.md) | Home variants and how pages relate |
+| [docs/schema.md](docs/schema.md) | Field ids, and which ones are writable |
+| [docs/usage.md](docs/usage.md) | How to set the site up |
+| [docs/activation.yml](docs/activation.yml) | Get-started arrangement recipe |
 
 ## 定位
 

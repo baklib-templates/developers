@@ -1,4 +1,50 @@
 {
+  "context_schema": {
+    "label": "Entwicklerdokumentation",
+    "types": {
+      "guide": {
+        "label": "Entwicklerleitfaden",
+        "fields": {
+          "topics": {
+            "label": "Dokumentationsthemen"
+          },
+          "summary": {
+            "label": "Dokumentationszusammenfassung"
+          },
+          "audience": {
+            "label": "Zielgruppe"
+          },
+          "prerequisites": {
+            "label": "Voraussetzungen"
+          }
+        },
+        "relations": {
+          "related_to": {
+            "label": "Verwandte Dokumente"
+          }
+        }
+      },
+      "endpoint": {
+        "label": "API-Referenz",
+        "fields": {
+          "topics": {
+            "label": "API-Themen"
+          },
+          "summary": {
+            "label": "API-Zusammenfassung"
+          },
+          "parameters": {
+            "label": "Wichtige Parameter"
+          }
+        },
+        "relations": {
+          "related_to": {
+            "label": "Verwandte APIs"
+          }
+        }
+      }
+    }
+  },
   "theme_label": "Developers",
   "theme_description": "Ein Dokumentationsthema für Entwickler und technische Teams – ideal für API-Referenzen, Produkthandbücher und technische Leitfäden. Auf DaisyUI mit Laufzeit-Themenfarben und flexibler Anpassung.",
   "theme_languages": {

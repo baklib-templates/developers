@@ -1,0 +1,9 @@
+{% assign source_article_content = page.settings.content | strip %}
+{% if page.full_slug == '/' and source_article_content != blank %}
+  <article class="mx-auto my-8 w-full max-w-4xl rounded-xl border border-base-300 bg-base-100 p-5 text-base-content md:p-8" data-source-article>
+    <h2 class="mb-5 text-2xl font-bold">{{ page.settings.title | escape }}</h2>
+    <div class="ProseMirror !h-auto break-words" data-controller="link-target images-viewer" data-toc-target="content">
+      {{ page.settings.content }}
+    </div>
+  </article>
+{% endif %}

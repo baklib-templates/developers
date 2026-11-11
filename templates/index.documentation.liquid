@@ -45,6 +45,8 @@
     </div>
   </section>
 
+  {% render 'source_article', page: page %}
+
   {% comment %} Featured cards {% endcomment %}
   <section class="relative z-10 px-4 py-8 md:px-10 md:py-10" aria-labelledby="docs-featured-title">
     <h2 id="docs-featured-title" class="mb-6 text-xl font-bold text-base-content md:text-2xl">
@@ -92,6 +94,8 @@
   ],
   "sub_page_templates": ["page"],
   "settings": [
+      {"id": "title", "type": "text", "readonly": true, "label": "t:schema.templates.page.settings.title.label", "info": "t:schema.templates.page.settings.title.info", "to_markdown": true},
+      {"id": "content", "type": "richtext", "label": "t:schema.templates.page.settings.content.label", "readonly": true, "to_markdown": true, "info": "t:schema.templates.page.settings.content.info"},
     {
       "id": "hero_image_url",
       "type": "image_picker",

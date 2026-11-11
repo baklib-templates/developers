@@ -1,0 +1,16 @@
+apply: wiki_space
+page_template: page
+ask_path: "-/search"
+arrangements:
+  - key: original
+    title: 手册保持原有章节
+    description: 导入的手册目录按原层级投影，接口说明和文章还在原来的章节里。
+    rule: original
+  - key: manuals
+    title: 按顶层拆成几本手册
+    description: 每个顶层目录单独成一本手册，下面仍是原来的文章。
+    rule: top_folder
+  - key: flat
+    title: 接口和文章先铺平
+    description: 先都放在根下，之后再收成手册章节。
+    rule: flat

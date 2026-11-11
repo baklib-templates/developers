@@ -1,0 +1,103 @@
+skill:
+  version: 2
+  preset: developers
+  writer: wiki_space
+  summary: 知识库文档目录，辅以真实 OpenAPI 文档页面。
+  home:
+    template: index.documentation
+    hero_fields:
+    - hero_description
+    slots: 0
+  navigation: {}
+  site_fields:
+  - logo_url
+  - left_sidebar_width
+  - nav_tree_expand_by_default
+  - enable_ai_chat_search
+  - ai_search_completed_text
+  - hot_tags
+  - is_allow_author
+  - show_page_tools_dropdown
+  - show_page_illustration
+  - page_top_illustration
+  - lucide_icons
+  page_types:
+  - template: feedback_error_turbo_stream
+    role: feedback_error_turbo_stream
+    writable: []
+  - template: feedback_success_turbo_stream
+    role: feedback_success_turbo_stream
+    writable: []
+  - template: feedback_turbo_stream
+    role: feedback_turbo_stream
+    writable: []
+  - template: index.book
+    role: index.book
+    writable:
+    - toc_title
+    - toc_max_depth
+    - show_chapter_prefix
+    - chapter_prefix
+    - show_page_numbers
+  - template: index.documentation
+    role: index.documentation
+    writable:
+    - hero_image_url
+    - hero_font_color
+    - hero_slogan
+    - hero_description
+    - featured_section_title
+    - featured_count
+  - template: index.portal
+    role: index.portal
+    writable:
+    - hero_image_url
+    - hero_font_color
+    - hero_slogan
+    - hero_description
+    - index_card_page_count
+  - template: page.api
+    role: page.api
+    writable:
+    - title
+    - nav_lucide_icon
+    - api_document
+    - api_document_url
+  - template: page.channel
+    role: page.channel
+    writable:
+    - nav_lucide_icon
+  - template: page
+    role: page
+    writable:
+    - tags
+    - nav_lucide_icon
+    - description
+  - template: search
+    role: search
+    writable: []
+  - template: tag
+    role: tag
+    writable: []
+  limits:
+    channels: 20
+    pages: 100
+  industries: []
+  content_model:
+    hierarchy:
+    - page.channel
+    - page
+    body_field: content
+    default_access: public
+    source_of_truth: knowledge_base
+    boundaries:
+    - 不提供在线执行代码或接口调试能力
+  customization:
+    mode: organization_candidate
+    protected:
+    - content_model
+    - source_references
+    - permissions
+    - identity
+    - forms
+    - dam_references

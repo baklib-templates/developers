@@ -1,0 +1,21 @@
+setup:
+  version: 1
+  workflow: wiki_knowledge
+  preset: developers
+  content_target: wiki_space
+  page_template: page
+  arrangements: [original, top_folder, flat]
+  goal_keys: [developer_documentation]
+  source_modes: [existing_space, url, files, empty]
+  default_index_style: documentation
+  fields:
+    - { target: site, field_id: name }
+    - { target: site, field_id: language }
+    - { target: setup_attribute, field_id: index_style }
+    - { target: theme_settings, field_id: logo_url }
+    - { target: index_settings, template: index.documentation, field_id: hero_slogan }
+    - { target: index_settings, template: index.documentation, field_id: hero_description }
+    - { target: index_settings, template: index.portal, field_id: hero_slogan }
+    - { target: index_settings, template: index.portal, field_id: hero_description }
+    - { target: index_settings, template: index.book, field_id: toc_title }
+  extra_checks: []
